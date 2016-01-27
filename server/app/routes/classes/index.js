@@ -55,8 +55,8 @@ router.put('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
 
     ClassesModel.findByIdAndRemove(req.params.id).exec()
-        .then(updatedClass => {
-            res.send(updatedClass);
+        .then(deletedClass => {
+            res.send(deletedClass);
         })
         .catch(next);
 

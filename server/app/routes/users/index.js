@@ -5,29 +5,29 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const UserModel = mongoose.model('User');
 
-// Get all classes
+// Get all users
 router.get('/', (req, res, next) => {
 
     UserModel.find().exec()
-        .then(classes => {
-            res.send(classes);
+        .then(users => {
+            res.send(users);
         })
         .then(null, next);
 
 });
 
-// Get a class by _id
+// Get a user by _id
 router.get('/:id', (req, res, next) => {
 
     UserModel.findById(req.params.id).exec()
-        .then(oneClass => {
-            res.send(oneClass);
+        .then(user => {
+            res.send(user);
         })
         .then(null, next);
 
 });
 
-// Create new class
+// Create new user
 router.post('/', (req, res, next) => {
 
     UserModel.create(req.body)
@@ -38,25 +38,25 @@ router.post('/', (req, res, next) => {
 
 });
 
-// Update a class
+// Update a user
 router.put('/:id', (req, res, next) => {
 
     UserModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     }).exec()
-        .then(updatedClass => {
-            res.send(updatedClass);
+        .then(updatedUser => {
+            res.send(updatedUser);
         })
         .then(null, next);
 
 });
 
-// Delete a class
+// Delete a user
 router.delete('/:id', (req, res, next) => {
 
     UserModel.findByIdAndRemove(req.params.id).exec()
-        .then(updatedClass => {
-            res.send(updatedClass);
+        .then(deletedUser => {
+            res.send(deletedUser);
         })
         .then(null, next);
 

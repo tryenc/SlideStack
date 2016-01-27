@@ -5,29 +5,29 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const PresentationsModel = mongoose.model('Presentations');
 
-// Get all classes
+// Get all presentations
 router.get('/', (req, res, next) => {
 
     PresentationsModel.find().exec()
-        .then(classes => {
-            res.send(classes);
+        .then(presentations => {
+            res.send(presentations);
         })
         .catch(next);
 
 });
 
-// Get a class by _id
+// Get a presentation by _id
 router.get('/:id', (req, res, next) => {
 
     PresentationsModel.findById(req.params.id).exec()
-        .then(oneClass => {
-            res.send(oneClass);
+        .then(presentation => {
+            res.send(presentation);
         })
         .catch(next);
 
 });
 
-// Create new class
+// Create new presentation
 router.post('/', (req, res, next) => {
 
     PresentationsModel.create(req.body).exec()
@@ -38,25 +38,25 @@ router.post('/', (req, res, next) => {
 
 });
 
-// Update a class
+// Update a presentation
 router.put('/:id', (req, res, next) => {
 
     PresentationsModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     }).exec()
-        .then(updatedClass => {
-            res.send(updatedClass);
+        .then(updatedPresentation => {
+            res.send(updatedPresentation);
         })
         .catch(next);
 
 });
 
-// Delete a class
+// Delete a presentation
 router.delete('/:id', (req, res, next) => {
 
     PresentationsModel.findByIdAndRemove(req.params.id).exec()
-        .then(updatedClass => {
-            res.send(updatedClass);
+        .then(deletedPresentation => {
+            res.send(deletedPresentation);
         })
         .catch(next);
 
