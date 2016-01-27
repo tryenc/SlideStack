@@ -1,13 +1,10 @@
 app.config(function ($stateProvider) {
-    $stateProvider.state('editPres', {
-        url: '/edit',
-        templateUrl: 'js/presentations/edit.html',
-        controller: 'PresentationsCtrl'
-    });
-});
 
-app.controller('PresentationsCtrl', function ($scope, Parser) {
-    $scope.presentation = {
-        markdown: '# This is parsed'
-    };
+    $stateProvider.state('editPres', {
+        url: 'presentations/:id/edit',
+        templateUrl: 'js/presentations/edit.html',
+        controller: function () {
+
+        }
+    });
 });
