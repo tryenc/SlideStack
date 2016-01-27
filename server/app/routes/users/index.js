@@ -3,61 +3,63 @@
  */
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const UsersModel = mongoose.model('Users');
+const UserModel = mongoose.model('User');
 
 // Get all classes
 router.get('/', (req, res, next) => {
 
-    UsersModel.find().exec()
+    UserModel.find().exec()
         .then(classes => {
             res.send(classes);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
 // Get a class by _id
 router.get('/:id', (req, res, next) => {
 
-    UsersModel.findById(req.params.id).exec()
+    UserModel.findById(req.params.id).exec()
         .then(oneClass => {
             res.send(oneClass);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
 // Create new class
 router.post('/', (req, res, next) => {
 
-    UsersModel.create(req.body).exec()
-        .then( () => {
-            res.sendStatus(201);
+    UserModel.create(req.body)
+        .then(newUser => {
+            res.status(201).send(newUser);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
 // Update a class
 router.put('/:id', (req, res, next) => {
 
-    UsersModel.findByIdAndUpdate(req.params.id, req.body, {
+    UserModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     }).exec()
         .then(updatedClass => {
             res.send(updatedClass);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
 // Delete a class
 router.delete('/:id', (req, res, next) => {
 
-    UsersModel.findByIdAndRemove(req.params.id).exec()
+    UserModel.findByIdAndRemove(req.params.id).exec()
         .then(updatedClass => {
             res.send(updatedClass);
         })
-        .catch(next);
+        .then(null, next);
 
 });
+
+module.exports = router;
