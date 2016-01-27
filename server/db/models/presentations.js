@@ -1,7 +1,6 @@
 /**
  * Created by Jon on 1/27/16.
  */
-
 var mongoose = require('mongoose');
 
 /**
@@ -12,9 +11,17 @@ var schema = new mongoose.Schema({
     name: {
         type: String
     },
-    description: {
+    datetime : {
+        type : Date,
+        default : Date.now
+    },
+    markdown: {
         type: String
+    },
+    class: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Class'
     }
 });
 
-mongoose.model('Class', schema);
+mongoose.model('Presentations', schema);
