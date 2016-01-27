@@ -5,7 +5,7 @@
 // Instantiate all models
 var mongoose = require('mongoose');
 require('../../../server/db/models');
-var Users = mongoose.model('User');
+var PresentationsModel = mongoose.model('Presentations');
 
 var expect = require('chai').expect;
 
@@ -15,7 +15,7 @@ var clearDB = require('mocha-mongoose')(dbURI);
 var supertest = require('supertest');
 var app = require('../../../server/app');
 
-describe('Users Route', function () {
+describe('Presentations Route', function () {
 
     beforeEach('Establish DB connection', function (done) {
         if (mongoose.connection.db) return done();
@@ -28,32 +28,29 @@ describe('Users Route', function () {
 
     describe('/', function() {
 
-        var userAgent, newUser;
+        var presentationAgent, newPresentation;
 
-        beforeEach('Create a user', function (done) {
-            Users.create({
-                email: 'thisEmail@gmail.com',
-                password: 'password',
-                name: 'John Doe',
-                isTeacher: true,
-                role: 'teacher'
-            }).then(user => {
-                newUser = user;
+        beforeEach('Create a presentation', function (done) {
+            PresentationsModel.create({
+                name: "Awesome Presentation",
+                markdown: 'some string'
+            }).then(presentation => {
+                newPresentation = presentation;
                 done();
             })
         });
 
         beforeEach('Create guest agent', function () {
-            userAgent = supertest.agent(app);
+            presentationAgent = supertest.agent(app);
         });
 
-        it('responds with an array of all users', function(done) {
-            userAgent
-                .get('/api/users')
+        it('responds with an array of all presentations', function(done) {
+            presentationAgent
+                .get('/api/presentations')
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .end(function(err, response) {
-                    if (err) done(err)
+                    if (err) done(err);
                     else {
                         expect(response.body).to.be.an('array');
                         expect(response.body).to.have.length(1);
@@ -62,69 +59,66 @@ describe('Users Route', function () {
                 })
         });
 
-        it('responds with one user', function(done) {
-            userAgent
-                .get('/api/users/' + newUser._id)
+        it('responds with one presentation', function(done) {
+            presentationAgent
+                .get('/api/presentations/' + newPresentation._id)
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .end(function(err, response) {
-                    if (err) done(err)
+                    if (err) done(err);
                     else {
-                        expect(response.body._id).to.equal(newUser._id.toString())
+                        expect(response.body._id).to.equal(newPresentation._id.toString())
                         done();
                     }
                 })
         });
 
-        it('updates a user', function(done) {
-            userAgent
-                .put('/api/users/' + newUser._id)
+        it('updates a presentation', function(done) {
+            presentationAgent
+                .put('/api/presentations/' + newPresentation._id)
                 .send({name: 'newName'})
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .end(function(err, response) {
                     if (err) done(err)
                     else {
-                        expect(response.body._id).to.equal(newUser._id.toString());
+                        expect(response.body._id).to.equal(newPresentation._id.toString());
                         expect(response.body.name).to.equal("newName");
                         done();
                     }
                 })
         });
 
-        it('creates a user', function(done) {
-            userAgent
-                .post('/api/users/')
+        it('creates a presentation', function(done) {
+            presentationAgent
+                .post('/api/presentations/')
                 .send({
-                    email: 'someEmail@gmail.com',
-                    password: 'password',
-                    name: 'Mike Jones',
-                    isTeacher: true,
-                    role: 'teacher'
+                    name: "A new presentation",
+                    markdown: "This is markdown"
                 })
                 .expect(201)
                 .expect('Content-Type', /json/)
                 .end(function(err, response) {
                     if (err) done(err)
                     else {
-                        expect(response.body.name).to.equal('Mike Jones');
-                        expect(response.body.email).to.equal('someEmail@gmail.com');
+                        expect(response.body.name).to.equal('A new presentation');
+                        expect(response.body.markdown).to.equal('This is markdown');
                         done();
                     }
                 })
         });
 
-        it('deletes a user', function(done) {
-            userAgent
-                .delete('/api/users/' + newUser._id)
+        it('deletes a presentation', function(done) {
+            presentationAgent
+                .delete('/api/presentations/' + newPresentation._id)
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .end(function(err, response) {
                     if (err) done(err)
                     else {
-                        expect(response.body._id).to.equal(newUser._id.toString());
-                        expect(response.body.email).to.equal(newUser.email);
-                        Users.findById(newUser._id).then(found => {
+                        expect(response.body._id).to.equal(newPresentation._id.toString());
+                        expect(response.body.email).to.equal(newPresentation.email);
+                        PresentationsModel.findById(newPresentation._id).then(found => {
                             expect(found).to.be.null;
                             done();
                         })
