@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
         .then(presentations => {
             res.send(presentations);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
@@ -23,18 +23,18 @@ router.get('/:id', (req, res, next) => {
         .then(presentation => {
             res.send(presentation);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
 // Create new presentation
 router.post('/', (req, res, next) => {
 
-    PresentationsModel.create(req.body).exec()
-        .then( () => {
-            res.sendStatus(201);
+    PresentationsModel.create(req.body)
+        .then(presentation => {
+            res.status(201).send(presentation);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
@@ -47,7 +47,7 @@ router.put('/:id', (req, res, next) => {
         .then(updatedPresentation => {
             res.send(updatedPresentation);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
@@ -58,7 +58,7 @@ router.delete('/:id', (req, res, next) => {
         .then(deletedPresentation => {
             res.send(deletedPresentation);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
