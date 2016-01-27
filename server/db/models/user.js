@@ -3,10 +3,35 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 
+/**
+ * Nothing required yet until seed files are written
+ */
+
 var schema = new mongoose.Schema({
+    name: {
+        type: String
+    },
     email: {
         type: String
     },
+    role: {
+        type: String,
+        enum: ['student', 'teacher']
+    },
+    isStudent: {
+        type: Boolean
+    },
+    isTeacher : {
+        type: Boolean
+    },
+    classes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Class'
+    }],
+    presentations: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Presentation'
+    }],
     password: {
         type: String
     },
