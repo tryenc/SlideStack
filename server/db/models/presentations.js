@@ -16,7 +16,8 @@ var schema = new mongoose.Schema({
         default : Date.now
     },
     markdown: {
-        type: String
+        type: String,
+        default: ''
     },
     class: {
         type: mongoose.Schema.Types.ObjectId,

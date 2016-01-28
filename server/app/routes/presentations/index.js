@@ -32,6 +32,7 @@ router.post('/', (req, res, next) => {
 
     PresentationsModel.create(req.body)
         .then(presentation => {
+            console.log(presentation);
             res.status(201).send(presentation);
         })
         .then(null, next);
