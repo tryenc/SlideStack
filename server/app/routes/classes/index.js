@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
         .then(classes => {
             res.send(classes);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
@@ -23,18 +23,18 @@ router.get('/:id', (req, res, next) => {
         .then(oneClass => {
             res.send(oneClass);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
 // Create new class
 router.post('/', (req, res, next) => {
 
-    ClassesModel.create(req.body).exec()
-        .then( () => {
-            res.sendStatus(201);
+    ClassesModel.create(req.body)
+        .then(newClass => {
+            res.status(201).send(newClass);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
@@ -47,7 +47,7 @@ router.put('/:id', (req, res, next) => {
         .then(updatedClass => {
             res.send(updatedClass);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
@@ -58,7 +58,7 @@ router.delete('/:id', (req, res, next) => {
         .then(deletedClass => {
             res.send(deletedClass);
         })
-        .catch(next);
+        .then(null, next);
 
 });
 
