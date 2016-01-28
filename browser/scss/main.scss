@@ -28,6 +28,10 @@ html, body {
     height: 100%;
 }
 
+#ace-editor {
+    height: 300px;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';

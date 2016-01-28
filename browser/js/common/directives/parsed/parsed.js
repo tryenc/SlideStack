@@ -1,4 +1,4 @@
-app.directive('parsed', function (Parser) {
+app.directive('parsed', function (Parser, $compile) {
     return {
         restrict: 'E',
         template: '<div></div>',
@@ -6,12 +6,15 @@ app.directive('parsed', function (Parser) {
             presentation: '='
         },
         link: function (scope, element, attrs) {
-            // element.html(Parser.parse(
-            //     scope.presentation.markdown || '# Markdown goes here')
-            // );
 
             scope.$watch('presentation.markdown', function (newVal, oldVal) {
-                element.html(Parser.parse(scope.presentation.markdown));
+                element.empty();
+
+                const compiled = $compile(
+                    Parser.parse(scope.presentation.markdown)
+                )(scope);
+
+                element.append(compiled);
             });
         }
     }
