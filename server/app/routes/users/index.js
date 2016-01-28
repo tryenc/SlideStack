@@ -19,8 +19,10 @@ router.get('/', (req, res, next) => {
 // Get a user by _id
 router.get('/:id', (req, res, next) => {
 
-    UserModel.findById(req.params.id).exec()
+    UserModel.findById(req.params.id)
+        .populate('classes')
         .then(user => {
+            console.log(user);
             res.send(user);
         })
         .then(null, next);

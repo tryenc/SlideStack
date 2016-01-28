@@ -26,7 +26,7 @@ var schema = new mongoose.Schema({
     },
     classes: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Class'
+        ref: 'Classes'
     }],
     presentations: [{
         type: mongoose.Schema.Types.ObjectId,

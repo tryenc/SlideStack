@@ -1,11 +1,30 @@
-<div class="container">
-    <textarea
-        ng-model="presentation.markdown"
-        cols="30"
-        rows="10">
-    </textarea>
-    <button class="btn" ng-click="save(presentation)">Save</button>
-
-    <pre>{{presentation}}</pre>
-    <parsed markdown="presentation.markdown"></parsed>
-</div>
+<!-- <div class="container-fluid"> -->
+    <div class="flex-container full-height">
+        <div id="editor-container">
+            <div class="flex-container">
+                <input
+                    type="text"
+                    ng-model="presentation.name"
+                    class="form-control">
+                <button
+                    class="btn pull-right"
+                    ng-click="save(presentation)">
+                    Save
+                </button>
+            </div>
+                <textarea
+                    ng-model="presentation.markdown">
+                </textarea>
+        </div>
+        <!-- <slides>
+            <slide>
+                <parsed
+                    markdown="presentation.markdown">
+                </parsed>
+            </slide>
+        </slides> -->
+        <div id="live-preview">
+            <parsed presentation="presentation"></parsed>
+        </div>
+    </div>
+<!-- </div> -->

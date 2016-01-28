@@ -1,0 +1,23 @@
+.flex-container {
+    display: flex;
+    align-content: space-between;
+}
+
+#editor-container, #live-preview {
+    flex: 1 100%;
+    margin: 5px;
+}
+
+#editor-container {
+    display: flex;
+    flex: 1 40%;
+    flex-direction: column;
+    textarea {
+        width: 100%;
+        flex: 1;
+    }
+}
+
+#live-preview {
+    border: solid 1px black;
+}
