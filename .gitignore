@@ -5,3 +5,4 @@ public
 .DS_Store
 coverage
 mdtest.js
+bower_components
