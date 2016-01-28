@@ -1,7 +1,11 @@
 <div class="container">
     <pre>In real life, only show this when the user is a teacher.</pre>
     
-    
+    {{ user.name }}
+    {{ user.email }}
+    {{ user.role }}
+    {{ user.classes }}
+    {{ user.presentations }}
 
     <button
         ng-click="newPresMenu = !newPresMenu"
