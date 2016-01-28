@@ -1,5 +1,6 @@
 app.config(function ($stateProvider) {
-    $stateProvider.state('user', {
+    $stateProvider
+    .state('user', {
         url: '/users/:id',
         templateUrl: 'js/users/profile/profile.html',
         controller: 'UserCtrl',
@@ -8,7 +9,15 @@ app.config(function ($stateProvider) {
                 return UserFactory.fetchById($stateParams.id);
             }
         }
-    });
+    })
+    .state('user.classes', {
+        url: '/classes',
+        templateUrl: 'js/users/profile/profile.classes.html'
+    })
+    .state('user.presentations', {
+        url: '/presentations',
+        templateUrl: 'js/users/profile/profile.presentations.html'
+    })
 });
 
 app.controller('UserCtrl', function ($scope, $state, user, Presentation) {
