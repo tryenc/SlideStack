@@ -4,18 +4,19 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/users/profile/profile.html',
         controller: 'UserCtrl',
         resolve: {
-            user: function (User, $stateParams) {
-                return User.fetchById($stateParams.id)
+            user: function (UserFactory, $stateParams) {
+                return UserFactory.fetchById($stateParams.id);
             }
         }
     });
 });
 
-app.controller('UserCtrl', function ($scope, $state, Presentation, user) {
-    $scope.user = user;
+app.controller('UserCtrl', function ($scope, $state, user, Presentation) {
     $scope.newPresMenu = false;
     $scope.createPresentation = function (newPres) {
         Presentation.create(newPres)
             .then(createdPres => $state.go('editPres', { id: createdPres._id }))
-    }
+    };
+
+    $scope.user = user;
 });

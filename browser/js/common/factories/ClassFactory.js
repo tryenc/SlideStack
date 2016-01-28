@@ -1,19 +1,19 @@
-app.factory('UserFactory', function($http) {
-
+app.factory('ClassFactory', function($http) {
+	
 	return {
-
-		create: function (newUser) {
+		
+		create: function (newClass) {
 			return $http({
-				url: '/api/users/',
+				url: '/api/classes/',
 				method: 'POST',
 				data: newUser
 			})
 			.then(res => res.data);
 		},
 
-		fetchById: function (userId) {
+		fetchById: function (classId) {
 			return $http({
-				url: '/api/users/' + userId,
+				url: '/api/classes/' + classId,
 				method: 'GET'
 			})
 			.then(res => res.data);
@@ -21,24 +21,24 @@ app.factory('UserFactory', function($http) {
 
 		fetchAll: function () {
 			return $http({
-				url: '/api/users/',
+				url: '/api/classes/',
 				method: 'GET'
 			})
 			.then(res => res.data);
 		},
 
-		udpate: function (user) {
+		udpate: function (classToUpdate) {
 			return $http({
-				url: '/api/users/' + user._id,
+				url: '/api/classes/' + classToUpdate._id,
 				method: 'PUT',
-				data: user
+				data: classToUpdate
 			})
 			.then(res => res.data);
 		},
 
-		delete: function (userId) {
+		delete: function (classId) {
 			return $http({
-				url: '/api/users/' + userId,
+				url: '/api/classes/' + classId,
 				method: 'DELETE'
 			})
 			.then(res => res.data);
