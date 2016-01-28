@@ -1,14 +1,14 @@
-var marked = require('marked');
-var fs = require('fs');
-var path = require('path');
-
-var md = require('markdown-it')({
+const marked = require('marked');
+const fs = require('fs');
+const path = require('path');
+const md = require('markdown-it')({
     html: true,
     linkify: true,
     typographer: true
 });
 
-var source = String(fs.readFileSync(path.normalize(__dirname + '/markDownSample.txt')));
+const source = String(fs.readFileSync(path.normalize(__dirname + '/markDownSample.txt')));
+const mdArray = deMarkdown(source);
 
 function deMarkdown(string) {
     return md.render(string).split('\n').map(line => {
@@ -16,7 +16,6 @@ function deMarkdown(string) {
     });
 }
 
-var mdArray = deMarkdown(source);
 
 function buildDirective(markDown) {
     var stringBuilder = '';
