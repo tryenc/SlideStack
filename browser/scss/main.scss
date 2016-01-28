@@ -14,9 +14,18 @@ body {
   }
 }
 
+html, body {
+    height: 100%;
+}
+
 #main {
-  padding-top: 60px;
+  padding-top: 20px;
   margin: 0 auto;
+  height: 92%;
+}
+
+.full-height {
+    height: 100%;
 }
 
 @import 'directives/main';
@@ -24,3 +33,4 @@ body {
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+@import 'presentations/main';

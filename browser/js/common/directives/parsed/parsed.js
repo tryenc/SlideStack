@@ -3,16 +3,15 @@ app.directive('parsed', function (Parser) {
         restrict: 'E',
         template: '<div></div>',
         scope: {
-            markdown: '='
+            presentation: '='
         },
         link: function (scope, element, attrs) {
-            console.log(element);
             // element.html(Parser.parse(
-            //     scope.markdown || '# Markdown goes here')
+            //     scope.presentation.markdown || '# Markdown goes here')
             // );
 
-            scope.$watch('markdown', function (newVal, oldVal) {
-                element.html(Parser.parse(scope.markdown));
+            scope.$watch('presentation.markdown', function (newVal, oldVal) {
+                element.html(Parser.parse(scope.presentation.markdown));
             });
         }
     }
