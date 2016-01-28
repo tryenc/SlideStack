@@ -17,9 +17,13 @@
             <div class="form-group">
                 <label>Class</label>
                 <select
-                    ng-options="class._id as class.name for class in user.classes track by class._id"
+                    ng-options="class as class for class in user.classes"
                     ng-model="newPres.class">
                 </select>
+                <!-- <select
+                    ng-options="class._id as class.name for class in user.classes track by class._id"
+                    ng-model="newPres.class">
+                </select> -->
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>

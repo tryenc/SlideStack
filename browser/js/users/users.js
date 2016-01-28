@@ -17,17 +17,6 @@ app.controller('UserCtrl', function ($scope, $state, Presentation) {
         email: 'test@sam.com',
         role: 'teacher',
         isTeacher: true,
-        classes: [
-            {
-                _id: '1',
-                name: 'CS 101',
-                description: 'It\'s cool'
-            },
-            {
-                _id: '2',
-                name: 'JavaScript',
-                description: 'It\'s about JavaScript'
-            }
-        ]
+        classes: ['56aa3bc8104579c4210d0412', '56aa3bef104579c4210d0413']
     }
 });
