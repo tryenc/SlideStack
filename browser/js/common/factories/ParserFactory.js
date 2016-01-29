@@ -1,46 +1,50 @@
-app.factory('Parser', function () {
+app.factory('Parser', function (marked) {
+
+    const renderer = new marked.Renderer();
+
+    renderer.paragraph = function (text) {
+
+        //don't wrap custom directives in paragraph tags
+        if (/^@\s[\w]*\s@|^\$\$\$$/.test(text)) return text + '\n';
+
+        return '<p>' + text + '</p>\n';
+    };
+
+    const customParse = function (string) {
+        let lines = string.split('\n');
+        let openDir = false;
+
+        lines.forEach((line, i) => {
+            // if the line is $$$, make a new slide
+            if (line === '$$$') {
+
+                // if it's the first line just add an opening slide tag
+                if (i === 0) lines[i] = '<slide>'
+
+                // otherwise close the previous slide first
+                else lines[i] = '</slide>\n<slide>'
+
+            // if there's a custom directive tag, handle it
+            } else if (/^@/.test(line)) {
+
+                lines[i] = lines[i].replace('@ ', (openDir ? '</' : '<'))
+                                   .replace(' @', '>');
+
+                openDir = !openDir;
+            }
+        })
+
+        // close the last slide
+        lines.push('</slide>');
+
+        // wrap the whole thing in a slides directive
+        return '<slides>\n' + lines.join('\n') + '\n</slides>';
+    }
+
+
     return {
         parse: function (string) {
-            const md = window.markdownit();
-
-            const deMarkdown = function (str) {
-                return md.render(str).split('\n').map(line => {
-                    return line.replace("<p>$$$</p>", '<slide></slide>').replace('<p>@', '@').replace('@</p>', '@');
-                });
-            };
-
-            const buildDirective = function (markDown) {
-                var stringBuilder = '';
-                var startedDirective = false;
-                markDown.forEach(line => {
-                    var newLine = '';
-                    if (line[0] === '@') {
-                        line = line.split(' ');
-                        if (!startedDirective) {
-                            startedDirective = true;
-                            newLine = '<' +
-                                (line[1] ? line[1].toString() : '') +
-                                '>' +
-                                '\n';
-                            stringBuilder += newLine;
-                        } else {
-                            startedDirective = false;
-                            newLine = '</' +
-                                (line[1] ? line[1].toString() : '') + 
-                                '>' +
-                                '\n';
-                            stringBuilder += newLine;
-                        }
-                    } else {
-                        stringBuilder += (line + '\n');
-                    }
-                });
-                return stringBuilder;
-            }
-
-            const mdArray = deMarkdown(string);
-            console.log(buildDirective(mdArray));
-            return buildDirective(mdArray);
+            return customParse(marked(string, { renderer: renderer }));
         }
     }
 })
