@@ -1,4 +1,4 @@
-app.factory('Presentation', function ($http) {
+app.factory('PresentationFactory', function ($http) {
     return {
         create: function (newPres) {
             return $http({
@@ -7,6 +7,14 @@ app.factory('Presentation', function ($http) {
                 data: newPres
             })
             .then(res => res.data);
+        },
+
+        fetchAll: function () {
+            return $http({
+                url: '/api/presentations/',
+                method: 'GET'
+            })
+                .then(res => res.data);
         },
 
         fetchById: function (id) {

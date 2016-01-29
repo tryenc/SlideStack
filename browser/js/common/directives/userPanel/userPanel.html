@@ -1,0 +1,20 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">{{type}}</div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in users">
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!--end of table-->
+    </div>
+</div>

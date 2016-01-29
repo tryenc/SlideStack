@@ -1,7 +1,6 @@
 app.factory('UserFactory', function($http) {
 
 	return {
-
 		create: function (newUser) {
 			return $http({
 				url: '/api/users/',
