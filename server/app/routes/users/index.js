@@ -8,7 +8,7 @@ const UserModel = mongoose.model('User');
 // Get all users
 router.get('/', (req, res, next) => {
 
-    UserModel.find().exec()
+    UserModel.find().populate('classes')
         .then(users => {
             res.send(users);
         })

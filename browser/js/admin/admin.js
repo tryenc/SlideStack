@@ -28,6 +28,9 @@ app.config($stateProvider => {
 
 app.controller('AdminCtrl', ($scope, presentations, users) => {
     $scope.users = users;
+    $scope.users = $scope.users.map(user => {
+        user.classNames = fillClassesNames(user);
+    });
 
     $scope.teachers = users.filter(user => {
         return user.isTeacher;
@@ -43,4 +46,12 @@ app.controller('AdminCtrl', ($scope, presentations, users) => {
         { label: 'Users', state: 'admin.users' },
         { label: 'Presentations', state: 'admin.presentations' }
     ];
+
+    function fillClassesNames(user) {
+        let classes = '';
+        user.classes.forEach(oneClass => {
+            classes += (oneClass.name.toString() + ', ');
+        });
+        return classes;
+    }
 });
