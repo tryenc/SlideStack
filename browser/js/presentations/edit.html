@@ -17,7 +17,11 @@
                 </textarea>
         </div>
         <div id="live-preview">
-            <parsed presentation="presentation"></parsed>
+            <slides>
+                <slide ng-repeat="slide in slides track by $index">
+                    <parsed presentation="{ markdown: slide }"></parsed>
+                </slide>
+            </slides>
         </div>
     </div>
 <!-- </div> -->

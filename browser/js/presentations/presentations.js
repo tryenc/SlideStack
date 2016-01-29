@@ -10,6 +10,14 @@ app.config(function ($stateProvider) {
         },
         controller: function ($scope, presentation, Presentation) {
             $scope.presentation = presentation;
+
+            $scope.slides = $scope.presentation.markdown.split('$$$');
+
+            $scope.$watch('presentation.markdown', function (newVal, oldVal) {
+                if (newVal === oldVal) return;
+                $scope.slides = newVal.split('$$$');
+            })
+
             $scope.save = function (presentation) {
                 Presentation.update(presentation)
                     .then(updatedPres => console.log(updatedPres))

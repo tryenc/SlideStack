@@ -2,49 +2,48 @@ app.factory('Parser', function (marked) {
 
     const renderer = new marked.Renderer();
 
+    // Change default marked renderer so it doesn't
+    // wrap custom directives in paragraph tags
     renderer.paragraph = function (text) {
-
-        //don't wrap custom directives in paragraph tags
-        if (/^@\s[\w]*\s@|^\$\$\$$/.test(text)) return text + '\n';
-
-        return '<p>' + text + '</p>\n';
+        if (/^<\/?.*>$/.test(text)) return text;
+        else return '<p>' + text + '</p>';
     };
 
     const customParse = function (string) {
         let lines = string.split('\n');
-        let openDir = false;
+        let openDirectives = {};
 
         lines.forEach((line, i) => {
-            // if the line is $$$, make a new slide
-            if (line === '$$$') {
 
-                // if it's the first line just add an opening slide tag
-                if (i === 0) lines[i] = '<slide>'
+            // Turn '@ directivename @' into '<directivename>'
+            if (/^@\s\w*\s@$/.test(line)) {
 
-                // otherwise close the previous slide first
-                else lines[i] = '</slide>\n<slide>'
-
-            // if there's a custom directive tag, handle it
-            } else if (/^@/.test(line)) {
-
-                lines[i] = lines[i].replace('@ ', (openDir ? '</' : '<'))
-                                   .replace(' @', '>');
-
-                openDir = !openDir;
+                /* The function creates a hash table that maps each open
+                directive's text to the line that it appears on. This allows
+                us to have nested directives and to automatically add
+                closing tags for directives that are left open. */
+                if (!openDirectives[line]) {
+                    openDirectives[line] = i;
+                    lines[i] = lines[i].replace('@ ', '<').replace(' @', '>');
+                } else {
+                    lines[i] = lines[i].replace('@ ', '</').replace(' @', '>');
+                    delete openDirectives[line];
+                }
             }
-        })
+        });
 
-        // close the last slide
-        lines.push('</slide>');
+        // Close any directives without closing tags
+        Object.keys(openDirectives).forEach(key => {
+            let i = openDirectives[key]
+            lines[i] = lines[i] + key.replace('@ ', '</').replace(' @', '>');
+        });
 
-        // wrap the whole thing in a slides directive
-        return '<slides>\n' + lines.join('\n') + '\n</slides>';
+        return lines.join('\n');
     }
-
 
     return {
         parse: function (string) {
-            return customParse(marked(string, { renderer: renderer }));
+            return marked(customParse(string), { renderer: renderer });
         }
     }
 })
