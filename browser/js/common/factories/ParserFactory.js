@@ -1,46 +1,49 @@
-app.factory('Parser', function () {
+app.factory('Parser', function (marked) {
+
+    const renderer = new marked.Renderer();
+
+    // Change default marked renderer so it doesn't
+    // wrap custom directives in paragraph tags
+    renderer.paragraph = function (text) {
+        if (/^<\/?.*>$/.test(text)) return text;
+        else return '<p>' + text + '</p>';
+    };
+
+    const customParse = function (string) {
+        let lines = string.split('\n');
+        let openDirectives = {};
+
+        lines.forEach((line, i) => {
+
+            // Turn '@ directivename @' into '<directivename>'
+            if (/^@\s\w*\s@$/.test(line)) {
+
+                /* The function creates a hash table that maps each open
+                directive's text to the line that it appears on. This allows
+                us to have nested directives and to automatically add
+                closing tags for directives that are left open. */
+                if (!openDirectives[line]) {
+                    openDirectives[line] = i;
+                    lines[i] = lines[i].replace('@ ', '<').replace(' @', '>');
+                } else {
+                    lines[i] = lines[i].replace('@ ', '</').replace(' @', '>');
+                    delete openDirectives[line];
+                }
+            }
+        });
+
+        // Close any directives without closing tags
+        Object.keys(openDirectives).forEach(key => {
+            let i = openDirectives[key]
+            lines[i] = lines[i] + key.replace('@ ', '</').replace(' @', '>');
+        });
+
+        return lines.join('\n');
+    }
+
     return {
         parse: function (string) {
-            const md = window.markdownit();
-
-            const deMarkdown = function (str) {
-                return md.render(str).split('\n').map(line => {
-                    return line.replace("<p>$$$</p>", '<slide></slide>').replace('<p>@', '@').replace('@</p>', '@');
-                });
-            };
-
-            const buildDirective = function (markDown) {
-                var stringBuilder = '';
-                var startedDirective = false;
-                markDown.forEach(line => {
-                    var newLine = '';
-                    if (line[0] === '@') {
-                        line = line.split(' ');
-                        if (!startedDirective) {
-                            startedDirective = true;
-                            newLine = '<' +
-                                (line[1] ? line[1].toString() : '') +
-                                '>' +
-                                '\n';
-                            stringBuilder += newLine;
-                        } else {
-                            startedDirective = false;
-                            newLine = '</' +
-                                (line[1] ? line[1].toString() : '') + 
-                                '>' +
-                                '\n';
-                            stringBuilder += newLine;
-                        }
-                    } else {
-                        stringBuilder += (line + '\n');
-                    }
-                });
-                return stringBuilder;
-            }
-
-            const mdArray = deMarkdown(string);
-            console.log(buildDirective(mdArray));
-            return buildDirective(mdArray);
+            return marked(customParse(string), { renderer: renderer });
         }
     }
 })

@@ -7,14 +7,21 @@ app.directive('parsed', function (Parser, $compile) {
         },
         link: function (scope, element, attrs) {
 
-            scope.$watch('presentation.markdown', function (newVal, oldVal) {
+            const parseAndAppend = function (content, element) {
                 element.empty();
 
-                const compiled = $compile(
-                    Parser.parse(scope.presentation.markdown)
-                )(scope);
+                if (!content) return;
 
-                element.append(compiled);
+                element.append(
+                    $compile(Parser.parse(content))(scope)
+                );
+            };
+
+            parseAndAppend(scope.presentation.markdown, element);
+
+            scope.$watch('presentation.markdown', function (newVal, oldVal) {
+                if (newVal === oldVal) return;
+                parseAndAppend(newVal, element);
             });
         }
     }
