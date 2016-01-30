@@ -16,17 +16,10 @@
                     ng-model="presentation.markdown">
                 </textarea>
         </div>
-        <!-- <slides>
-            <slide>
-                <parsed
-                    markdown="presentation.markdown">
-                </parsed>
-            </slide>
-        </slides> -->
         <div id="live-preview">
             <slides>
-                <slide>
-                    <parsed presentation="presentation"></parsed>
+                <slide ng-repeat="slide in slides track by $index">
+                    <parsed presentation="{ markdown: slide }"></parsed>
                 </slide>
             </slides>
         </div>
