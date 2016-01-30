@@ -3,13 +3,13 @@
  */
 app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
 
-    $scope.open = function (size) {
+    $scope.editUser = function (modalSize) {
 
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: 'myModalContent.html',
+            templateUrl: 'editModal.html',
             controller: 'ModalInstanceCtrl',
-            size: size,
+            size: modalSize,
             resolve: {
                 user : function() {
                     return $scope.user;
@@ -18,10 +18,27 @@ app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
         });
     };
 
-}).controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, user) {
+    $scope.deleteUser = function(modalSize) {
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'deleteModal.html',
+            controller: 'ModalInstanceCtrl',
+            size: modalSize,
+            resolve: {
+                user : function() {
+                    return $scope.user;
+                }
+            }
+        });
+    }
+
+}).controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, user, UserFactory) {
     $scope.user = user;
 
-    $scope.ok = function () {
+    $scope.ok = function (user) {
+        if (user) {
+            UserFactory.delete(user._id);
+        }
         $uibModalInstance.close();
     };
 
