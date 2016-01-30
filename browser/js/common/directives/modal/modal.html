@@ -1,10 +1,12 @@
 <div>
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
+            <h3 class="modal-title">Edit User</h3>
         </div>
         <div class="modal-body">
-            <pre>{{user}}</pre>
+            <label>Name</label><p>{{user.name}}</p>
+            <label>Email</label><p>{{user.email}}</p>
+            <label>Classes</label><p>{{user.classes}}</p>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>

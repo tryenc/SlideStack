@@ -5,7 +5,7 @@ app.directive('adminModal', () => {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/modal/modal.html',
-        controller: 'UserPanelCtrl',
+        controller: 'ModalCtrl',
         scope: {
             user: '='
         }
