@@ -27,8 +27,7 @@ app.config($stateProvider => {
 });
 
 app.controller('AdminCtrl', ($scope, presentations, users) => {
-    $scope.users = users;
-    $scope.users = $scope.users.map(user => {
+    $scope.users = users.map(user => {
         user.classNames = fillClassesNames(user);
     });
 

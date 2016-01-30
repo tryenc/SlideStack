@@ -8,7 +8,7 @@ app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'editModal.html',
-            controller: 'ModalInstanceCtrl',
+            controller: 'EditUserModalCtrl',
             size: modalSize,
             resolve: {
                 user : function() {
@@ -22,7 +22,7 @@ app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'deleteModal.html',
-            controller: 'ModalInstanceCtrl',
+            controller: 'DeleteUserModalCtrl',
             size: modalSize,
             resolve: {
                 user : function() {
@@ -32,7 +32,17 @@ app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
         });
     }
 
-}).controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, user, UserFactory) {
+}).controller('EditUserModalCtrl', function ($scope, $uibModalInstance, user, UserFactory) {
+    $scope.user = user;
+
+    $scope.ok = function (user) {
+        $uibModalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+}).controller('DeleteUserModalCtrl', function ($scope, $uibModalInstance, user, UserFactory) {
     $scope.user = user;
 
     $scope.ok = function (user) {
@@ -46,3 +56,4 @@ app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
         $uibModalInstance.dismiss('cancel');
     };
 });
+
