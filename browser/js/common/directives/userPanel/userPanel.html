@@ -7,6 +7,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Classes</th>
+                <th>Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -14,6 +15,7 @@
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.classNames}}</td>
+                <td><admin-modal user="user"></admin-modal></td>
             </tr>
             </tbody>
         </table>
