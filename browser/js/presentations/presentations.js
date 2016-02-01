@@ -12,6 +12,7 @@ app.config(function ($stateProvider) {
             $scope.presentation = presentation;
 
             $scope.slides = $scope.presentation.markdown.split('$$$');
+            console.log("slides", $scope.slides);
 
             $scope.$watch('presentation.markdown', function (newVal, oldVal) {
                 if (newVal === oldVal) return;
@@ -30,10 +31,9 @@ app.config(function ($stateProvider) {
             ];
 
 
-             Reveal.initialize({
-               width: 600,
-               height: 50
-              });
+            Reveal.initialize({
+                embedded: true
+            });
 
         }
     });

@@ -20,11 +20,16 @@
 
         <div class="reveal" vertical-center>
           <div class="slides" >
-            <section data-background="#0000aa">
+            <section>
                 I'm blue
             </section>
 
-            <section data-background="{s.background}" ng-repeat="s in xslides">{{s.title}}</section>
+            <section>
+                <h1>This is a header</h1>
+            </section>
+
+            <section ng-repeat="slide in slides">
+            <parsed presentation="{ markdown: slide }"></parsed></section>
 
           </div>
       </div>
