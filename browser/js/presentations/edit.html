@@ -1,6 +1,6 @@
 <!-- <div class="container-fluid"> -->
-    <div class="flex-container full-height">
-        <div id="editor-container">
+    <!-- <div class="flex-container full-height"> -->
+<!--         <div id="editor-container">
             <div class="flex-container">
                 <input
                     type="text"
@@ -15,13 +15,26 @@
                 <textarea
                     ng-model="presentation.markdown">
                 </textarea>
-        </div>
-        <div id="live-preview">
-            <slides>
+        </div> -->
+        <!-- <div id="live-preview"> -->
+<!--             <slides>
                 <slide ng-repeat="slide in slides track by $index">
                     <parsed presentation="{ markdown: slide }"></parsed>
                 </slide>
-            </slides>
-        </div>
-    </div>
+            </slides> -->
+
+            <div class="reveal">
+                <div class="slides">
+                    <section>
+                        <h1>Slide 1</h1>
+                    </section>
+                    <section>
+                        <h1>Slide 2</h1>
+                    </section>
+                </div>
+            </div>
+    <script>Reveal.initialize();</script>
+
+        <!-- </div> -->
+    <!-- </div> -->
 <!-- </div> -->
