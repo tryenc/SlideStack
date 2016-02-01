@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-    <div class="panel-heading">{{type}}</div>
+    <div class="panel-heading">Presentations</div>
     <div class="panel-body">
         <table class="table table-condensed">
             <thead>
@@ -11,7 +11,7 @@
             <tbody>
             <tr ng-repeat="presentation in presentations">
                 <td>{{presentation.name}}</td>
-                <td>{{presentation.datetime}}</td>
+                <td>{{presentation.datetime | date: 'medium'}}</td>
             </tr>
             </tbody>
         </table>

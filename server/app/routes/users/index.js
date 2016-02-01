@@ -45,8 +45,9 @@ router.put('/:id', (req, res, next) => {
 
     UserModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
-    }).exec()
+    }).populate('classes')
         .then(updatedUser => {
+            console.log(updatedUser);
             res.send(updatedUser);
         })
         .then(null, next);
@@ -56,7 +57,7 @@ router.put('/:id', (req, res, next) => {
 // Delete a user
 router.delete('/:id', (req, res, next) => {
 
-    UserModel.findByIdAndRemove(req.params.id).exec()
+    UserModel.findByIdAndRemove(req.params.id)
         .then(deletedUser => {
             res.send(deletedUser);
         })

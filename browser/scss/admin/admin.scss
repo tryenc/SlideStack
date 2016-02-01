@@ -3,8 +3,12 @@ h3 {
   color: blue;
 }
 
+#addUser {
+  margin: 0 auto;
+}
+
 .panel {
-  width: 650px;
+  width: 750px;
   margin: auto;
 }
 
@@ -117,7 +121,7 @@ table {
   }
 
   #sidebar-wrapper {
-    width: 250px;
+    width: 200px;
   }
 
   #wrapper.toggled #sidebar-wrapper {

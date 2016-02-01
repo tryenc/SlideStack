@@ -1,0 +1,19 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Classes</div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Class Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="singleClass in classes">
+                <td>{{singleClass.name}}</td>
+                <td>{{singleClass.description}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

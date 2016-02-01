@@ -18,5 +18,22 @@
             </tr>
             </tbody>
         </table>
+        <a ng-click="addUser()">+ Add {{type}}</a>
     </div>
 </div>
+
+<!--Add User-->
+<script type="text/ng-template" id="addModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Add User</h3>
+    </div>
+    <pre>{{newUser}}</pre>
+    <form>
+        <label>Name</label><input type="text" ng-model="newUser.name"><br>
+        <label>Email</label><input type="text" ng-model="newUser.email"><br>
+    </form>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="makeNewUser()">Add</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

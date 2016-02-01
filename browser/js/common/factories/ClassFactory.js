@@ -1,12 +1,12 @@
 app.factory('ClassFactory', function($http) {
-	
+
 	return {
-		
+
 		create: function (newClass) {
 			return $http({
 				url: '/api/classes/',
 				method: 'POST',
-				data: newUser
+				data: newClass
 			})
 			.then(res => res.data);
 		},
@@ -27,7 +27,7 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		udpate: function (classToUpdate) {
+		update: function (classToUpdate) {
 			return $http({
 				url: '/api/classes/' + classToUpdate._id,
 				method: 'PUT',

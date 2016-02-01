@@ -1,7 +1,7 @@
 /**
  * Created by Jon on 1/29/16.
  */
-app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
+app.controller('ModalCtrl', ($scope, $uibModal) => {
 
     $scope.editUser = function (modalSize) {
 
@@ -32,36 +32,42 @@ app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
         });
     }
 
-}).controller('EditUserModalCtrl', function ($scope, $uibModalInstance, user, UserFactory) {
+
+
+}).controller('EditUserModalCtrl', function ($scope, $uibModalInstance, user, UserFactory, ClassFactory, $state) {
     $scope.user = user;
 
-    $scope.ok = (user) => {
-        $uibModalInstance.close();
+    $scope.ok = () => {
+        UserFactory.update($scope.user)
+            .then( () => {
+                $uibModalInstance.close();
+            });
     };
 
     $scope.cancel = () => {
+        $state.reload();
         $uibModalInstance.dismiss('cancel');
     };
 
     $scope.addClass = () => {
-        document.getElementsByClassName("modal-body").append('<input type="text">');
+        ClassFactory.create()
+            .then(newClass => {
+                user.classes.push(newClass);
+            });
     };
 
 }).controller('DeleteUserModalCtrl', function ($scope, $uibModalInstance, user, UserFactory, $state) {
     $scope.user = user;
 
-    $scope.ok = function (user) {
-        if (user) {
-
-            UserFactory.delete(user._id).then( () => {
+    $scope.ok = function () {
+        UserFactory.delete(user._id)
+            .then( () => {
                 $state.reload();
             });
-        }
         $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-});
-
+})

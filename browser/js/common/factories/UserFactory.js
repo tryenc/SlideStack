@@ -26,7 +26,7 @@ app.factory('UserFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		udpate: function (user) {
+		update: function (user) {
 			return $http({
 				url: '/api/users/' + user._id,
 				method: 'PUT',

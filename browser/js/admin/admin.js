@@ -13,6 +13,9 @@ app.config($stateProvider => {
                },
                users: UserFactory => {
                    return UserFactory.fetchAll();
+               },
+               classes: ClassFactory => {
+                   return ClassFactory.fetchAll();
                }
            }
        })
@@ -24,22 +27,8 @@ app.config($stateProvider => {
            url: '/users',
            templateUrl: 'js/admin/admin.users.html'
        })
-});
-
-app.controller('AdminCtrl', ($scope, presentations, users) => {
-    $scope.users = users;
-    $scope.teachers = users.filter(user => {
-        return user.isTeacher;
-    });
-
-    $scope.students = users.filter(user => {
-        return user.isStudent;
-    });
-
-    $scope.presentations = presentations;
-
-    $scope.items = [
-        { label: 'Users', state: 'admin.users' },
-        { label: 'Presentations', state: 'admin.presentations' }
-    ];
+       .state('admin.classes', {
+           url: '/classes',
+           templateUrl: 'js/admin/admin.classes.html'
+       })
 });

@@ -7,6 +7,6 @@ app.directive('presentationPanel', () => {
         scope: {
             presentations: '='
         },
-        templateUrl: 'js/common/directives/presentationPanel/presentationPanel.html'
+        templateUrl: 'js/admin/directives/presentationPanel/presentationPanel.html'
     };
 });
