@@ -23,6 +23,18 @@ app.config(function ($stateProvider) {
                     .then(updatedPres => console.log(updatedPres))
                     .then(null, err => $scope.error = err);
             }
+
+            $scope.xslides = [
+            { title:"I'm white - but should have some color",  background:"#22BB44"},
+            { title:"...no color here? Why??",  background:"#99BB44"}
+            ];
+
+
+             Reveal.initialize({
+               width: 600,
+               height: 50
+              });
+
         }
     });
 });

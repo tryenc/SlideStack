@@ -24,16 +24,17 @@
             </slides> -->
 
             <div class="reveal">
-                <div class="slides">
-                    <section>
-                        <h1>Slide 1</h1>
-                    </section>
-                    <section>
-                        <h1>Slide 2</h1>
-                    </section>
-                </div>
-            </div>
-    <script>Reveal.initialize();</script>
+              <div class="slides">
+    <!-- this works -->
+                <section data-background="#0000aa">
+                    I'm blue
+                </section>
+
+    <!-- this works, except for the background -->
+                <section data-background="{s.background}" ng-repeat="s in xslides">{{s.title}}</section>
+
+              </div>
+          </div>
 
         <!-- </div> -->
     <!-- </div> -->
