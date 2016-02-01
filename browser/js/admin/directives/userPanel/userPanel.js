@@ -1,7 +1,7 @@
 /**
  * Created by Jon on 1/29/16.
  */
-app.directive('userPanel', () => {
+app.directive('userPanel', (ClassFactory) => {
    return {
        restrict: 'E',
        scope: {
@@ -24,19 +24,50 @@ app.controller('UserPanelCtrl', ($scope, $uibModal) => {
             resolve: {
                 users() {
                     return $scope.users;
+                },
+                type() {
+                    return $scope.type;
                 }
             }
         });
     }
-}).controller('AddUserModalCtrl', ($scope, $uibModalInstance, UserFactory, users) => {
-    $scope.newUser = {
-        role: $scope.type
+}).controller('AddUserModalCtrl', ($scope, $uibModalInstance, ClassFactory, UserFactory, users, type, $state) => {
+
+    if (type === 'Teachers') {
+        $scope.newUser = {
+            role: 'teacher',
+            isTeacher: true,
+            classes: []
+        };
+    }
+    else {
+        $scope.newUser = {
+            role: 'student',
+            isStudent: true,
+            classes: []
+        };
+    }
+
+    // Gets all classes to populate
+    ClassFactory.fetchAll()
+        .then(allClasses => {
+            $scope.classes = allClasses;
+        });
+
+    // Adds or removes the class depending on if the class is currently in the users class array
+    $scope.updateClasses = (classToAddOrRemove) => {
+        const classIndexOfUser = $scope.newUser.classes.indexOf(classToAddOrRemove);
+        if(classIndexOfUser === -1) {   // Class not found
+            $scope.newUser.classes.push(classToAddOrRemove)
+        } else {
+            $scope.newUser.classes.splice(classIndexOfUser, 1)
+        }
     };
 
     $scope.makeNewUser = () => {
         UserFactory.create($scope.newUser)
-            .then( (userFromDb) => {
-                users.push(userFromDb);
+            .then(userFromDb => {
+                $state.reload();
             });
         $uibModalInstance.close();
     };

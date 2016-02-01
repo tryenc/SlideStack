@@ -14,7 +14,7 @@
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
                 <td><p ng-repeat="singleClass in user.classes">{{singleClass.name}}</p></td>
-                <td><admin-modal user="user"></admin-modal></td>
+                <td><edit-delete-modal user="user"></edit-delete-modal></td>
             </tr>
             </tbody>
         </table>
@@ -31,6 +31,11 @@
     <form>
         <label>Name</label><input type="text" ng-model="newUser.name"><br>
         <label>Email</label><input type="text" ng-model="newUser.email"><br>
+        <label>Classes</label>
+        <div ng-repeat="singleClass in classes">
+            <input type="checkbox" ng-click="updateClasses(singleClass._id)">{{singleClass.name}}
+        </div>
+
     </form>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="makeNewUser()">Add</button>

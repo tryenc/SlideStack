@@ -6,12 +6,13 @@
         </div>
         <div class="modal-body">
             <label>Name</label><input type="text" ng-model="user.name"><br>
-            <label>Role </label>{{user.role}}<br>
             <label>Email</label><input type="text" ng-model="user.email"><br>
             <!--<label>Classes</label><select ng-repeat="singleClass in user.classes"></select>-->
             <label>Classes</label><br>
-            <p class="classList" ng-repeat="singleClass in user.classes" ng-model="singleClass.name">{{singleClass.name}}<br>
-
+            <!--<p class="classList" ng-repeat="singleClass in user.classes" ng-model="singleClass.name">{{singleClass.name}}<br>-->
+            <div ng-repeat="singleClass in classes">
+                <input type="checkbox" ng-click="updateClasses(singleClass._id)">{{singleClass.name}}
+            </div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
