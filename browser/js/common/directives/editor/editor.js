@@ -4,7 +4,8 @@ app.directive('editor', function () {
         scope: {},
         transclude: true,
         templateUrl: 'js/common/directives/editor/editor.html',
-        link: function (scope, element, attrs) {
+        link: function (scope, element, attrs, ctrl, transclude) {
+            scope.code = transclude().text().trim();
         }
     }
 })

@@ -13,9 +13,12 @@ app.config(function ($stateProvider) {
 
             $scope.slides = $scope.presentation.markdown.split('$$$');
 
+            console.log('scope.slides: ', $scope.slides);
+
             $scope.$watch('presentation.markdown', function (newVal, oldVal) {
                 if (newVal === oldVal) return;
                 $scope.slides = newVal.split('$$$');
+                console.log('scope.slides: ', $scope.slides);
             })
 
             $scope.save = function (presentation) {
