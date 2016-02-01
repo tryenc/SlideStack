@@ -5,16 +5,13 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Classes</th>
+                <th>Created On</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="user in users">
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td><p ng-repeat="singleClass in user.classes">{{singleClass.name}}</p></td>
-                <td><admin-modal user="user"></admin-modal></td>
+            <tr ng-repeat="presentation in presentations">
+                <td>{{presentation.name}}</td>
+                <td>{{presentation.datetime}}</td>
             </tr>
             </tbody>
         </table>

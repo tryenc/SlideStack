@@ -11,7 +11,7 @@ app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
             controller: 'EditUserModalCtrl',
             size: modalSize,
             resolve: {
-                user : function() {
+                user() {
                     return $scope.user;
                 }
             }
@@ -25,7 +25,7 @@ app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
             controller: 'DeleteUserModalCtrl',
             size: modalSize,
             resolve: {
-                user : function() {
+                user() {
                     return $scope.user;
                 }
             }
@@ -35,19 +35,27 @@ app.controller('ModalCtrl', ($scope, $uibModal, $log) => {
 }).controller('EditUserModalCtrl', function ($scope, $uibModalInstance, user, UserFactory) {
     $scope.user = user;
 
-    $scope.ok = function (user) {
+    $scope.ok = (user) => {
         $uibModalInstance.close();
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = () => {
         $uibModalInstance.dismiss('cancel');
     };
-}).controller('DeleteUserModalCtrl', function ($scope, $uibModalInstance, user, UserFactory) {
+
+    $scope.addClass = () => {
+        document.getElementsByClassName("modal-body").append('<input type="text">');
+    };
+
+}).controller('DeleteUserModalCtrl', function ($scope, $uibModalInstance, user, UserFactory, $state) {
     $scope.user = user;
 
     $scope.ok = function (user) {
         if (user) {
-            UserFactory.delete(user._id);
+
+            UserFactory.delete(user._id).then( () => {
+                $state.reload();
+            });
         }
         $uibModalInstance.close();
     };
