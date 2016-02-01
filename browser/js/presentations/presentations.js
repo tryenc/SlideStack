@@ -12,6 +12,7 @@ app.config(function ($stateProvider) {
             $scope.presentation = presentation;
 
             $scope.slides = $scope.presentation.markdown.split('$$$');
+            console.log("slides", $scope.slides);
 
             $scope.$watch('presentation.markdown', function (newVal, oldVal) {
                 if (newVal === oldVal) return;
@@ -23,6 +24,17 @@ app.config(function ($stateProvider) {
                     .then(updatedPres => console.log(updatedPres))
                     .then(null, err => $scope.error = err);
             }
+
+            $scope.xslides = [
+            { title:"I'm white - but should have some color",  background:"#22BB44"},
+            { title:"...no color here? Why??",  background:"#99BB44"}
+            ];
+
+
+            Reveal.initialize({
+                embedded: true
+            });
+
         }
     });
 });
