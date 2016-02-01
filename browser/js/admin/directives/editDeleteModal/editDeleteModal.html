@@ -11,7 +11,7 @@
             <label>Classes</label><br>
             <!--<p class="classList" ng-repeat="singleClass in user.classes" ng-model="singleClass.name">{{singleClass.name}}<br>-->
             <div ng-repeat="singleClass in classes">
-                <input type="checkbox" ng-checked="checkValue(singleClass, user)">{{singleClass.name}}
+                <input type="checkbox" ng-checked="checkValue(singleClass, user)" ng-click="updateClasses(singleClass, user)">{{singleClass.name}}
             </div>
             <pre>{{user.classes}}</pre>
         </div>

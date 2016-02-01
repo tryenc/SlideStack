@@ -37,6 +37,8 @@ app.controller('ModalCtrl', ($scope, $uibModal) => {
 }).controller('EditUserModalCtrl', function ($scope, $uibModalInstance, user, UserFactory, ClassFactory, $state) {
     $scope.user = user;
 
+    $scope.updateClasses = ClassFactory.updateClasses;
+
     // All Classes
     ClassFactory.fetchAll()
         .then(allClasses => {
@@ -45,7 +47,7 @@ app.controller('ModalCtrl', ($scope, $uibModal) => {
 
     $scope.checkValue = function(singleClass, user) {
         for(var i = 0; i < user.classes.length; i++) {
-            if (user.classes[i].name === singleClass.name) {
+            if (user.classes[i]._id === singleClass._id) {
                 return true;
             }
         }

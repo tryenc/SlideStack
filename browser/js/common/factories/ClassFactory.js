@@ -44,12 +44,21 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-        updateClasses (classToAddOrRemove, user) {
-            const classIndexOfUser = user.classes.indexOf(classToAddOrRemove);
-            if (classIndexOfUser === -1) {   // Class not found
-                user.classes.push(classToAddOrRemove)
+        updateClasses (classIdToCheck, user) {
+            console.log(classIdToCheck);
+            var matched = false;
+            var found = 0;
+            for(var i = 0; i < user.classes.length; i++) {
+                if (user.classes[i]._id === classIdToCheck._id) {
+                    console.log("FOund match");
+                    found = i;
+                    matched = true;
+                }
+            }
+            if (matched) {
+                user.classes.splice(found, 1)
             } else {
-                user.classes.splice(classIndexOfUser, 1)
+                user.classes.push(classIdToCheck)
             }
         }
 	};
