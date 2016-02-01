@@ -51,6 +51,7 @@ app.controller('UserPanelCtrl', ($scope, $uibModal) => {
     // Gets all classes to populate
     ClassFactory.fetchAll()
         .then(allClasses => {
+            console.log(allClasses);
             $scope.classes = allClasses;
         });
 
