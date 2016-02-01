@@ -13,7 +13,6 @@
             <div ng-repeat="singleClass in classes">
                 <input type="checkbox" ng-checked="checkValue(singleClass, user)" ng-click="updateClasses(singleClass, user)">{{singleClass.name}}
             </div>
-            <pre>{{user.classes}}</pre>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>

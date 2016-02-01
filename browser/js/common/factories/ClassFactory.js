@@ -46,11 +46,10 @@ app.factory('ClassFactory', function($http) {
 
         updateClasses (classIdToCheck, user) {
             console.log(classIdToCheck);
-            var matched = false;
-            var found = 0;
-            for(var i = 0; i < user.classes.length; i++) {
+            let matched = false,
+            found = 0;
+            for(let i = 0; i < user.classes.length; i++) {
                 if (user.classes[i]._id === classIdToCheck._id) {
-                    console.log("FOund match");
                     found = i;
                     matched = true;
                 }
