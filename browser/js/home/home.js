@@ -4,3 +4,10 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/home/home.html'
     });
 });
+
+app.controller('TestCtrl', function ($scope) {
+    $scope.code = {};
+    $scope.seeCode = function () {
+        console.log($scope.code);
+    }
+})
