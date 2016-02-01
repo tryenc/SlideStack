@@ -1,37 +1,33 @@
-<div class="container-fluid">
-    <div class="flex-container full-height">
-        <div id="editor-container">
-            <div class="flex-container">
-                <input
-                    type="text"
-                    ng-model="presentation.name"
-                    class="form-control">
-                <button
-                    class="btn pull-right"
-                    ng-click="save(presentation)">
-                    Save
-                </button>
-            </div>
-                <textarea
-                    ng-model="presentation.markdown">
-                </textarea>
+<div class="flex-container full-height">
+    <div id="editor-container">
+        <div class="flex-container">
+            <input
+                type="text"
+                ng-model="presentation.name"
+                class="form-control">
+            <button
+                class="btn pull-right"
+                ng-click="save(presentation)">
+                Save
+            </button>
         </div>
-        <div id="live-preview">        
+            <textarea
+                ng-model="presentation.markdown">
+            </textarea>
+    </div>
+    <div id="live-preview">        
 
 
-            <div class="reveal">
-              <div class="slides">
-    <!-- this works -->
-                <section data-background="#0000aa">
-                    I'm blue
-                </section>
+        <div class="reveal" vertical-center>
+          <div class="slides" >
+            <section data-background="#0000aa">
+                I'm blue
+            </section>
 
-    <!-- this works, except for the background -->
-                <section data-background="{s.background}" ng-repeat="s in xslides">{{s.title}}</section>
+            <section data-background="{s.background}" ng-repeat="s in xslides">{{s.title}}</section>
 
-              </div>
           </div>
+      </div>
 
-        <!-- </div> -->
-    <!-- </div> -->
-<!-- </div> -->
+    </div>
+</div>
