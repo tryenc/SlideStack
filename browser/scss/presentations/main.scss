@@ -15,6 +15,9 @@
     textarea {
         width: 100%;
         flex: 1;
+        -moz-tab-size : 2;
+        -o-tab-size : 2;
+        tab-size : 2;
     }
 }
 
