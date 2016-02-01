@@ -33,7 +33,7 @@
         <label>Email</label><input type="text" ng-model="newUser.email"><br>
         <label>Classes</label>
         <div ng-repeat="singleClass in classes">
-            <input type="checkbox" ng-click="updateClasses(singleClass._id)">{{singleClass.name}}
+            <input type="checkbox" ng-click="updateClasses(singleClass._id, user)">{{singleClass.name}}
         </div>
 
     </form>

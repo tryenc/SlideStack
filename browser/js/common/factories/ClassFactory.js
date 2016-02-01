@@ -42,7 +42,15 @@ app.factory('ClassFactory', function($http) {
 				method: 'DELETE'
 			})
 			.then(res => res.data);
-		}
+		},
 
+        updateClasses (classToAddOrRemove, user) {
+            const classIndexOfUser = user.classes.indexOf(classToAddOrRemove);
+            if (classIndexOfUser === -1) {   // Class not found
+                user.classes.push(classToAddOrRemove)
+            } else {
+                user.classes.splice(classIndexOfUser, 1)
+            }
+        }
 	};
 });

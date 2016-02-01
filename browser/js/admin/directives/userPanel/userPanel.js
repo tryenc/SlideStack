@@ -55,14 +55,7 @@ app.controller('UserPanelCtrl', ($scope, $uibModal) => {
         });
 
     // Adds or removes the class depending on if the class is currently in the users class array
-    $scope.updateClasses = (classToAddOrRemove) => {
-        const classIndexOfUser = $scope.newUser.classes.indexOf(classToAddOrRemove);
-        if(classIndexOfUser === -1) {   // Class not found
-            $scope.newUser.classes.push(classToAddOrRemove)
-        } else {
-            $scope.newUser.classes.splice(classIndexOfUser, 1)
-        }
-    };
+    $scope.updateClasses = ClassFactory.updateClasses;
 
     $scope.makeNewUser = () => {
         UserFactory.create($scope.newUser)
