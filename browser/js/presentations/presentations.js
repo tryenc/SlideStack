@@ -9,31 +9,25 @@ app.config(function ($stateProvider) {
             }
         },
         controller: function ($scope, presentation, Presentation) {
+
             $scope.presentation = presentation;
 
             $scope.slides = $scope.presentation.markdown.split('$$$');
-            console.log("slides", $scope.slides);
 
-            $scope.$watch('presentation.markdown', function (newVal, oldVal) {
-                if (newVal === oldVal) return;
-                $scope.slides = newVal.split('$$$');
-            })
+            // $scope.$watch('presentation.markdown', function (newVal, oldVal) {
+            //     if (newVal === oldVal) return;
+            //     $scope.slides = newVal.split('$$$');
+            //     console.dir($scope.slides);
+            // })
 
-            $scope.save = function (presentation) {
-                Presentation.update(presentation)
-                    .then(updatedPres => console.log(updatedPres))
-                    .then(null, err => $scope.error = err);
-            }
-
-            $scope.xslides = [
-            { title:"I'm white - but should have some color",  background:"#22BB44"},
-            { title:"...no color here? Why??",  background:"#99BB44"}
-            ];
+            // $scope.save = function (presentation) {
+            //     Presentation.update(presentation)
+            //         .then(updatedPres => console.log(updatedPres))
+            //         .then(null, err => $scope.error = err);
+            // }
 
 
-            Reveal.initialize({
-                embedded: true
-            });
+            Reveal.initialize({});
 
         }
     });

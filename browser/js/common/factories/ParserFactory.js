@@ -43,6 +43,7 @@ app.factory('Parser', function (marked) {
 
     return {
         parse: function (string) {
+            // console.log(marked(customParse(string), { renderer: renderer }));
             return marked(customParse(string), { renderer: renderer });
         }
     }

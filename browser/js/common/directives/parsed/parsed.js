@@ -12,6 +12,8 @@ app.directive('parsed', function (Parser, $compile) {
 
                 if (!content) return;
 
+                console.log(Parser.parse(content));
+
                 element.append(
                     $compile(Parser.parse(content))(scope)
                 );
