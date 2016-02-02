@@ -4,6 +4,7 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const ClassesModel = mongoose.model('Classes');
+const UserModel = mongoose.model('User');
 
 // Get all classes
 router.get('/', (req, res, next) => {
@@ -22,6 +23,18 @@ router.get('/:id', (req, res, next) => {
     ClassesModel.findById(req.params.id).exec()
         .then(oneClass => {
             res.send(oneClass);
+        })
+        .then(null, next);
+
+});
+
+// Get a class list of students
+router.get('/:id/students', (req, res, next) => {
+    const id = req.params.id;
+
+    UserModel.find({ classes: id, isStudent: true})
+        .then(arrayOfStudents => {
+            res.send(arrayOfStudents)
         })
         .then(null, next);
 
