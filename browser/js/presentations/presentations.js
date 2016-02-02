@@ -25,15 +25,8 @@ app.config(function ($stateProvider) {
                     .then(null, err => $scope.error = err);
             }
 
-            $scope.xslides = [
-            { title:"I'm white - but should have some color",  background:"#22BB44"},
-            { title:"...no color here? Why??",  background:"#99BB44"}
-            ];
 
-
-            Reveal.initialize({
-                embedded: true
-            });
+            Reveal.initialize({});
 
         }
     });
