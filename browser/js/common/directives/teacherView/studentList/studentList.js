@@ -5,9 +5,9 @@ app.directive('ssStudentList', () => {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/teacherView/studentList/studentList.html',
-        link: (scope) => {
-
-        },
+        //link: (scope) => {
+        //
+        //},
         scope: {
             studentList: '='
         }

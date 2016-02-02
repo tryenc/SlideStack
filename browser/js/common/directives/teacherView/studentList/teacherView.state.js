@@ -1,14 +1,11 @@
-app.config( $stateProvider => {
+app.config( ($stateProvider) => {
 
     $stateProvider.state('teacherView', {
 
         url: '/teacherView',
-        template: '<ss-student-list></ss-student-list>',
+        template: '<ss-student-list studentList="studentList"></ss-student-list>',
         resolve: {
-            userList (UserFactory) {
-
-            }
+            studentList: ClassFactory.fetchStudentsByClass()
         }
     });
-
 });
