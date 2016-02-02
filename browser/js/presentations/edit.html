@@ -18,13 +18,13 @@
             </textarea>
     </div>
     <div id="live-preview">
-
-        <ss-slideshow>
-            <ss-slide
-                ng-repeat="slide in slides track by $index">
-                <parsed markdown="{{slide}}"></parsed>
-            </ss-slide>
-        </ss-slideshow>
-
+        <div class="slideshow-container" ratio="177">
+            <ss-slideshow>
+                <ss-slide
+                    ng-repeat="slide in slides track by $index">
+                    <parsed markdown="{{slide}}"></parsed>
+                </ss-slide>
+            </ss-slideshow>
+        </div>
     </div>
 </div>

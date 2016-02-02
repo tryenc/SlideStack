@@ -25,6 +25,10 @@
     border: solid 1px black;
     position: relative;
 
+    .slideshow-container {
+        border: solid 1px gray;
+    }
+
     .slide-controls {
         position: absolute;
         bottom: 10px;
