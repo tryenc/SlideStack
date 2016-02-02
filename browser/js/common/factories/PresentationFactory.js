@@ -1,6 +1,6 @@
 app.factory('PresentationFactory', function ($http) {
     return {
-        create: function (newPres) {
+        create (newPres) {
             return $http({
                 url: '/api/presentations/',
                 method: 'POST',
@@ -9,7 +9,7 @@ app.factory('PresentationFactory', function ($http) {
             .then(res => res.data);
         },
 
-        fetchAll: function () {
+        fetchAll () {
             return $http({
                 url: '/api/presentations/',
                 method: 'GET'
@@ -17,7 +17,7 @@ app.factory('PresentationFactory', function ($http) {
                 .then(res => res.data);
         },
 
-        fetchById: function (id) {
+        fetchById (id) {
             return $http({
                 url: '/api/presentations/' + id,
                 method: 'GET'
@@ -25,7 +25,7 @@ app.factory('PresentationFactory', function ($http) {
             .then(res => res.data);
         },
 
-        update: function (presentation) {
+        update (presentation) {
             return $http({
                 url: '/api/presentations/' + presentation._id,
                 method: 'PUT',
@@ -34,4 +34,4 @@ app.factory('PresentationFactory', function ($http) {
             .then(res => res.data);
         }
     }
-})
+});

@@ -2,7 +2,7 @@ app.factory('ClassFactory', function($http) {
 
 	return {
 
-		create: function (newClass) {
+		create (newClass) {
 			return $http({
 				url: '/api/classes/',
 				method: 'POST',
@@ -11,7 +11,7 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		fetchById: function (classId) {
+		fetchById (classId) {
 			return $http({
 				url: '/api/classes/' + classId,
 				method: 'GET'
@@ -19,7 +19,7 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		fetchAll: function () {
+		fetchAll () {
 			return $http({
 				url: '/api/classes/',
 				method: 'GET'
@@ -27,7 +27,7 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		update: function (classToUpdate) {
+		update (classToUpdate) {
 			return $http({
 				url: '/api/classes/' + classToUpdate._id,
 				method: 'PUT',
@@ -36,7 +36,7 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		delete: function (classId) {
+		delete (classId) {
 			return $http({
 				url: '/api/classes/' + classId,
 				method: 'DELETE'
@@ -45,20 +45,13 @@ app.factory('ClassFactory', function($http) {
 		},
 
         updateClasses (classIdToCheck, user) {
-            console.log(classIdToCheck);
-            let matched = false,
-            found = 0;
             for(let i = 0; i < user.classes.length; i++) {
                 if (user.classes[i]._id === classIdToCheck._id) {
-                    found = i;
-                    matched = true;
+                    user.classes.splice(i, 1);
+                    return;
                 }
             }
-            if (matched) {
-                user.classes.splice(found, 1)
-            } else {
-                user.classes.push(classIdToCheck)
-            }
+            user.classes.push(classIdToCheck)
         }
 	};
 });

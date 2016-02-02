@@ -61,8 +61,8 @@ app.controller('UserPanelCtrl', ($scope, $uibModal) => {
         UserFactory.create($scope.newUser)
             .then(userFromDb => {
                 $state.reload();
+                $uibModalInstance.close();
             });
-        $uibModalInstance.close();
     };
 
     $scope.cancel = () => {

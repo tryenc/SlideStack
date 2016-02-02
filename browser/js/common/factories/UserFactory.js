@@ -1,7 +1,7 @@
 app.factory('UserFactory', function($http) {
 
 	return {
-		create: function (newUser) {
+		create (newUser) {
 			return $http({
 				url: '/api/users/',
 				method: 'POST',
@@ -10,7 +10,7 @@ app.factory('UserFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		fetchById: function (userId) {
+		fetchById (userId) {
 			return $http({
 				url: '/api/users/' + userId,
 				method: 'GET'
@@ -18,7 +18,7 @@ app.factory('UserFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		fetchAll: function () {
+		fetchAll () {
 			return $http({
 				url: '/api/users/',
 				method: 'GET'
@@ -26,7 +26,7 @@ app.factory('UserFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		update: function (user) {
+		update (user) {
 			return $http({
 				url: '/api/users/' + user._id,
 				method: 'PUT',
@@ -35,7 +35,7 @@ app.factory('UserFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		delete: function (userId) {
+		delete (userId) {
 			return $http({
 				url: '/api/users/' + userId,
 				method: 'DELETE'

@@ -93,9 +93,6 @@ table {
   font-size: 16px;
   cursor: pointer;
   transition: color 0.2s;
-  &.active {
-    color: darken(#f31214, 10%);
-  }
   &:hover {
     background: none;
     text-decoration: none;
@@ -109,6 +106,7 @@ table {
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
   text-decoration: none;
+  color: darken(#f31214, 10%);
 }
 
 @media(min-width:768px) {
