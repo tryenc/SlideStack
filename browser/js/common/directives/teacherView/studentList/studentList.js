@@ -5,11 +5,10 @@ app.directive('ssStudentList', () => {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/teacherView/studentList/studentList.html',
-        //link: (scope) => {
-        //
-        //},
-        //scope: {
-        //    studentList: '='
-        //}
+        link: (scope) => {
+            scope.callOnStudent = (student) => {
+                console.log("Called on ", student);
+            };
+        }
     };
 });
