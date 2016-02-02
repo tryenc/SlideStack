@@ -1,10 +1,10 @@
 /**
  * Created by Jon on 1/29/16.
  */
-app.directive('editDeleteModal', () => {
+app.directive('editDeleteUser', () => {
     return {
         restrict: 'E',
-        templateUrl: 'js/admin/directives/editDeleteModal/editDeleteModal.html',
+        templateUrl: 'js/admin/directives/userPanel/editDeleteUser/editDeleteUser.html',
         controller: 'ModalCtrl',
         scope: {
             user: '='

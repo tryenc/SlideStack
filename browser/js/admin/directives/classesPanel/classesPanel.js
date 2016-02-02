@@ -10,6 +10,8 @@ app.directive('classesPanel', () => {
         scope: {
             classes: '='
         },
-        templateUrl: 'js/admin/directives/classesPanel/classesPanel.html'
+        templateUrl: 'js/admin/directives/classesPanel/classesPanel.html',
+        controller: 'ClassesPanelCtrl'
     };
 });
+
