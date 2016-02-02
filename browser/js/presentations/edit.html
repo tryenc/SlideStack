@@ -16,19 +16,11 @@
             </textarea>
     </div>
     <div id="live-preview">
-
-
-        <div class="reveal" vertical-center>
-          <div class="slides" >
-            <section>
-                This is a bug
-            </section>
-
-            <section ng-repeat="slide in slides">
-            <parsed presentation="{ markdown: slide }"></parsed></section>
-
-          </div>
-      </div>
-
+        <ss-slideshow>
+            <ss-slide
+                ng-repeat="slide in slides track by $index">
+                <parsed markdown="{{slide}}"></parsed>
+            </ss-slide>
+        </ss-slideshow>
     </div>
 </div>
