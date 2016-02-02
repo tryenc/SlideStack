@@ -8,8 +8,8 @@ app.directive('ssStudentList', () => {
         //link: (scope) => {
         //
         //},
-        scope: {
-            studentList: '='
-        }
+        //scope: {
+        //    studentList: '='
+        //}
     };
 });
