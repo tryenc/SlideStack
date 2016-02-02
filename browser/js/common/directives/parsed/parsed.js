@@ -3,25 +3,23 @@ app.directive('parsed', function (Parser, $compile) {
         restrict: 'E',
         template: '<div></div>',
         scope: {
-            presentation: '='
+            markdown: '@'
         },
         link: function (scope, element, attrs) {
 
-            const parseAndAppend = function (content, element) {
+            const parseAndAppend = function (content) {
                 element.empty();
 
                 if (!content) return;
-
-                console.log(Parser.parse(content));
 
                 element.append(
                     $compile(Parser.parse(content))(scope)
                 );
             };
 
-            parseAndAppend(scope.presentation.markdown, element);
+            parseAndAppend(scope.markdown);
 
-            scope.$watch('presentation.markdown', function (newVal, oldVal) {
+            scope.$watch('markdown', function (newVal, oldVal) {
                 if (newVal === oldVal) return;
                 parseAndAppend(newVal, element);
             });

@@ -8,7 +8,6 @@ app.directive('editor', function () {
             scope.code = transclude().text().trim();
 
             const editor = window.ace.edit('ace-editor');
-            debugger;
             editor.$blockScrolling = Infinity;
             editor.getSession().setMode("ace/mode/javascript");
             editor.insert(scope.code);

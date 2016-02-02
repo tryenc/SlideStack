@@ -14,21 +14,16 @@ app.config(function ($stateProvider) {
 
             $scope.slides = $scope.presentation.markdown.split('$$$');
 
-            // $scope.$watch('presentation.markdown', function (newVal, oldVal) {
-            //     if (newVal === oldVal) return;
-            //     $scope.slides = newVal.split('$$$');
-            //     console.dir($scope.slides);
-            // })
+            $scope.$watch('presentation.markdown', function (newVal, oldVal) {
+                if (newVal === oldVal) return;
+                $scope.slides = newVal.split('$$$');
+            });
 
-            // $scope.save = function (presentation) {
-            //     Presentation.update(presentation)
-            //         .then(updatedPres => console.log(updatedPres))
-            //         .then(null, err => $scope.error = err);
-            // }
-
-
-            Reveal.initialize({});
-
+            $scope.save = function (presentation) {
+                Presentation.update(presentation)
+                    .then(updatedPres => console.log(updatedPres))
+                    .then(null, err => $scope.error = err);
+            }
         }
     });
 });
