@@ -5,8 +5,10 @@ app.directive('presentationPanel', () => {
     return {
         restrict: 'E',
         scope: {
-            presentations: '='
+            presentations: '=',
+            classes: '='
         },
-        templateUrl: 'js/admin/directives/presentationPanel/presentationPanel.html'
+        templateUrl: 'js/admin/directives/presentationPanel/presentationPanel.html',
+        controller: 'PresentationPanelCtrl'
     };
 });

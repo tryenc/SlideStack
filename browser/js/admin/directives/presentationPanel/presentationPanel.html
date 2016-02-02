@@ -12,8 +12,29 @@
             <tr ng-repeat="presentation in presentations">
                 <td>{{presentation.name}}</td>
                 <td>{{presentation.datetime | date: 'medium'}}</td>
+                <td ng-repeat="singleClass in presentation.classes">{{singleClass.name}}</td>
             </tr>
             </tbody>
         </table>
+        <a ng-click="addPresentation()">+ Add Presentation</a>
     </div>
 </div>
+
+<!--Add Presentation-->
+<script type="text/ng-template" id="addPresentationModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Presentation</h3>
+    </div>
+    <form>
+        <label>Name</label><input type="text" ng-model="newPresentation.name"><br>
+        <label>Classes</label>
+        <div ng-repeat="singleClass in classes">
+            <input type="checkbox" ng-click="updateClasses(singleClass, newPresentation)">{{singleClass.name}}
+        </div>
+    </form>
+    <pre>{{newPresentation}}</pre>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="makeNewPresentation()">Add</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
