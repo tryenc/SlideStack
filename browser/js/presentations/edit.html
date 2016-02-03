@@ -17,22 +17,12 @@
     </div>
     <div id="live-preview">
 
-
-        <div class="reveal" vertical-center>
-          <div class="slides" >
-            <section>
-                I'm blue
-            </section>
-
-            <section>
-                <h1>This is a header</h1>
-            </section>
-
-            <section ng-repeat="slide in slides">
-            <parsed presentation="{ markdown: slide }"></parsed></section>
-
-          </div>
-      </div>
+        <ss-slideshow>
+            <ss-slide
+                ng-repeat="slide in slides track by $index">
+                <parsed markdown="{{slide}}"></parsed>
+            </ss-slide>
+        </ss-slideshow>
 
     </div>
 </div>
