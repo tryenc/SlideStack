@@ -14,6 +14,10 @@ app.config( ($stateProvider) => {
                 }
             },
             controller: ($scope, presentation, studentList) => {
+                $scope.display =  {
+                    mode: 'teacher'
+                };
+
                 $scope.presentation = presentation;
                 $scope.studentList = studentList;
                 console.log("presentation in teacherView", presentation);

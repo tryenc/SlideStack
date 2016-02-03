@@ -8,6 +8,8 @@ app.directive('ssSlideshow', function () {
         templateUrl: 'js/common/directives/slideshow/slideshow.html',
         controller: function ($scope) {
 
+            console.log($scope.display);
+
             var slides = [];
             $scope.currentSlide = 0;
 

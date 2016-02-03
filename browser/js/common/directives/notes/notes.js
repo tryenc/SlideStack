@@ -3,8 +3,12 @@ app.directive('notes', function () {
         restrict: 'E',
         templateUrl: 'js/common/directives/notes/notes.html',
         transclude: true,
-        scope: {
-            display: "="
+        link: (scope) => {
+            console.log(scope.display);
         }
+        //,
+        //scope: {
+        //    display: "="
+        //}
     }
 });
