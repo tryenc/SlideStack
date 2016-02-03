@@ -5,6 +5,7 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/presentations/edit.html',
         resolve: {
             presentation: function (Presentation, $stateParams) {
+                console.log('in the resolve block');
                 return Presentation.fetchById($stateParams.id);
             }
         },
