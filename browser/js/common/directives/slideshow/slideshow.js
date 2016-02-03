@@ -45,7 +45,7 @@ app.directive('ssSlideshow', function () {
                 slides[newIdx].selected = true;
 
                 if ($scope.display.mode === 'teacher') {
-                    Socket.broadcast.emit('change slide', newIdx)
+                    Socket.emit('teacher slide change', newIdx)
                 }
             });
 
@@ -63,12 +63,15 @@ app.directive('ssSlideshow', function () {
             }
 
             // handle socket events
-            // socket.on('change slide', function (slideNumber) {
-            //     currentTeacherSlide = slideNumber;
-            //     if ($scope.syncedWithTeacher) {
-            //         $scope.currentSlide = currentTeacherSlide;
-            //     }
-            // })
+            Socket.on('slide change', function (slideNumber) {
+                console.log('slideNumber', slideNumber);
+                currentTeacherSlide = slideNumber;
+                if ($scope.syncedWithTeacher) {
+                    $scope.currentSlide = currentTeacherSlide;
+                    $scope.$digest();
+                    console.log("$scope.currentSlide", $scope.currentSlide);
+                }
+            })
 
 
         }

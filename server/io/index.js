@@ -11,8 +11,9 @@ module.exports = function (server) {
     io.on('connection', function (socket) {
         // Now have access to socket, wowzers!
         console.log("socket.id", socket.id);
-        socket.on('change slide', function(newIdx){
+        socket.on('teacher slide change', function(newIdx){
         	console.log("newIdx", newIdx);
+        	socket.broadcast.emit('slide change', newIdx);
         });
     });
     
