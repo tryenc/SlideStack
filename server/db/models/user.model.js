@@ -18,6 +18,10 @@ var schema = new mongoose.Schema({
         type: String,
         enum: ['student', 'teacher']
     },
+    imageUrl: {
+        type: String,
+        default: 'https://tracker.moodle.org/secure/attachment/30912/f3.png'
+    },
     isStudent: {
         type: Boolean
     },

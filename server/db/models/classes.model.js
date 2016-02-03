@@ -14,6 +14,10 @@ var schema = new mongoose.Schema({
     },
     description: {
         type: String
+    },
+    imageUrl: {
+    	type: String,
+    	default: 'https://s3.amazonaws.com/lbc-content/images/classes-icon.png'
     }
 });
 

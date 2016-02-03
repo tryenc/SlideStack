@@ -20,10 +20,10 @@ app.config(function ($stateProvider) {
     })
 });
 
-app.controller('UserCtrl', function ($scope, $state, user, Presentation) {
+app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory) {
     $scope.newPresMenu = false;
     $scope.createPresentation = function (newPres) {
-        Presentation.create(newPres)
+        PresentationFactory.create(newPres)
             .then(createdPres => $state.go('editPres', { id: createdPres._id }))
     };
 
