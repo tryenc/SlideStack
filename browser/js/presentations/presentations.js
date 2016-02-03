@@ -24,6 +24,10 @@ app.config(function ($stateProvider) {
                     .then(updatedPres => console.log(updatedPres))
                     .then(null, err => $scope.error = err);
             }
+
+            $scope.display = {
+                fullscreen: false
+            }
         }
     });
 });

@@ -22,16 +22,65 @@
 }
 
 #live-preview {
-    border: solid 1px black;
     position: relative;
+    background-color: #fdfdfd;
+    overflow: hidden;
+
+    &.fullscreen {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        .slideshow-container {
+            height: 100%!important;
+        }
+        .slide-container {
+            position: absolute;
+        }
+
+        // Animations
+        .fade-on-change {
+            transition: opacity ease 0.5s;
+
+            &.ng-enter, &.ng-leave.ng-leave-active {
+                opacity: 0;
+            }
+
+            &.ng-leave, &.ng-enter.ng-enter-active {
+                opacity: 1;
+            }
+        }
+    }
 
     .slideshow-container {
         border: solid 1px gray;
+        overflow: hidden;
     }
 
     .slide-controls {
         position: absolute;
         bottom: 10px;
-        right:: 10px;
+        right: 10px;
+    }
+
+    .slide-container {
+        height: 100%;
+        width: 100%;
+
+        h1 {
+            font-size: 5em;
+            flex-basis: auto;
+        }
+
+        /* the parsed element will always be the main container holding all of the slide content */
+        parsed {
+            height: 100%;
+            display: flex;
+            padding: 2% 5%;
+            flex-direction: column;
+            background-color: white;
+        }
     }
 }
