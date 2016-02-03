@@ -28,9 +28,10 @@
     <form>
         <label>Name</label><input type="text" ng-model="newPresentation.name"><br>
         <label>Classes</label>
-        <div ng-repeat="singleClass in classes">
-            <input type="checkbox" ng-click="updateClasses(singleClass, newPresentation)">{{singleClass.name}}
-        </div>
+        <!--<input type="checkbox" ng-click="updatePresentationClass(singleClass, newPresentation)">{{singleClass.name}}-->
+        <select ng-model="newPresentation.class">
+            <option ng-repeat="singleClass in classes" value="{{singleClass._id}}">{{singleClass.name}}</option>
+        </select>
     </form>
     <pre>{{newPresentation}}</pre>
     <div class="modal-footer">
