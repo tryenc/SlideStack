@@ -1,7 +1,9 @@
 app.directive('ssSlideshow', function () {
     return {
         restrict: 'E',
-        scope: {},
+        scope: {
+            display: '='
+        },
         transclude: true,
         templateUrl: 'js/common/directives/slideshow/slideshow.html',
         controller: function ($scope) {
@@ -26,10 +28,12 @@ app.directive('ssSlideshow', function () {
 
             document.body.addEventListener('keyup', function (e) {
                 if (e.which === 39) {
+                    e.preventDefault();
                     $scope.next();
                     $scope.$digest();
                 }
                 if (e.which === 37) {
+                    e.preventDefault();
                     $scope.prev();
                     $scope.$digest();
                 }
@@ -40,7 +44,8 @@ app.directive('ssSlideshow', function () {
 
                 slides[oldIdx].selected = false;
                 slides[newIdx].selected = true;
-            })
+            });
+
         }
     }
 });
