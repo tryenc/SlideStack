@@ -1,0 +1,10 @@
+<div id="presentation-view" class="fullscreen">
+    <div class="slideshow-container" ratio="1.77">
+        <ss-slideshow display="{ fullscreen: true, mode: 'student' }">
+            <ss-slide
+                ng-repeat="slide in slides track by $index">
+                <parsed markdown="{{slide}}"></parsed>
+            </ss-slide>
+        </ss-slideshow>
+    </div>
+</div>
