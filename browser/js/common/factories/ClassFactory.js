@@ -1,7 +1,7 @@
 app.factory('ClassFactory', function($http) {
-	
+
 	return {
-		
+
 		create: function (newClass) {
 			return $http({
 				url: '/api/classes/',
@@ -42,7 +42,14 @@ app.factory('ClassFactory', function($http) {
 				method: 'DELETE'
 			})
 			.then(res => res.data);
-		}
+		},
+
+        fetchStudentsByClass: function(classId) {
+            return $http({
+                url: '/api/classes/' + classId + '/students',
+                method: 'GET'
+            }).then(res => res.data);
+        }
 
 	};
 });
