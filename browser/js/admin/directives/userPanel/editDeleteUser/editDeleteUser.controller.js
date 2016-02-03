@@ -45,7 +45,7 @@ app.controller('ModalCtrl', ($scope, $uibModal) => {
             $scope.classes = allClasses;
         });
 
-    $scope.hasClass = (singleClass, user) => {
+    $scope.hasClass = (singleClass) => {
         return user.classes.some(userClass => {
             return userClass._id.toString() === singleClass._id.toString();
         });
@@ -84,4 +84,4 @@ app.controller('ModalCtrl', ($scope, $uibModal) => {
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-})
+});

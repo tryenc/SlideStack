@@ -44,7 +44,7 @@ app.controller('UserPanelCtrl', ($scope, $uibModal) => {
 
     $scope.makeNewUser = () => {
         UserFactory.create($scope.newUser)
-            .then(userFromDb => {
+            .then( () => {
                 $state.reload();
                 $uibModalInstance.close();
             });

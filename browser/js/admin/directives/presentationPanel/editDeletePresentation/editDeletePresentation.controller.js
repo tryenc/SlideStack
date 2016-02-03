@@ -41,7 +41,6 @@ app.controller('EditPresentationCtrl', ($scope, $uibModal) => {
 
     $scope.presentation = presentation;
     $scope.classes = classes;
-    console.log(classes);
 
     $scope.ok = () => {
         PresentationFactory.update($scope.presentation)

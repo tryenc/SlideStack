@@ -22,13 +22,9 @@ app.controller('PresentationPanelCtrl', ($scope, $uibModal) => {
 
     $scope.classes = classes;
 
-    // Adds or removes the class depending on if the class is currently in the users class array
-    $scope.updateClass = PresentationFactory.updatePresentationClass;
-
     $scope.makeNewPresentation = () => {
         PresentationFactory.create($scope.newPresentation)
-            .then(presFromDb => {
-                console.log("presFromDB",presFromDb);
+            .then( () => {
                 $state.reload();
                 $uibModalInstance.close();
             });
