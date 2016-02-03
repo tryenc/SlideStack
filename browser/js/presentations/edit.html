@@ -1,5 +1,5 @@
 <div class="flex-container full-height">
-    <div id="editor-container">
+    <div id="editor-container" ng-hide="display.fullscreen">
         <div class="flex-container">
             <input
                 type="text"
@@ -18,7 +18,7 @@
             </textarea>
     </div>
     <div id="live-preview" ng-class="{ fullscreen: display.fullscreen }">
-        <div class="slideshow-container" ratio="177">
+        <div class="slideshow-container" ratio="1.77">
             <ss-slideshow display="display">
                 <ss-slide
                     ng-repeat="slide in slides track by $index">

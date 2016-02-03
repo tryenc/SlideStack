@@ -9,7 +9,6 @@ app.config(function ($stateProvider) {
             }
         },
         controller: function ($scope, presentation, PresentationFactory) {
-
             $scope.presentation = presentation;
 
             $scope.slides = $scope.presentation.markdown.split('$$$');
