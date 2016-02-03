@@ -34,8 +34,13 @@ app.factory('PresentationFactory', function ($http) {
             .then(res => res.data);
         },
 
-        updatePresentationClass(singleClass, presentation) {
-            presentation.class = singleClass._id;
+        delete (presentation) {
+            return $http({
+                url: '/api/presentations/' + presentation._id,
+                method: 'DELETE',
+                data: presentation
+            }).then(res => res.data);
+
         }
     }
 });

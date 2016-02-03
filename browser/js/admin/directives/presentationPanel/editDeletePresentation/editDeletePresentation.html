@@ -1,13 +1,16 @@
 <div>
-    <!--Edit Class-->
-    <script type="text/ng-template" id="editClassModal.html">
+    <!--Edit Presentation-->
+    <script type="text/ng-template" id="editPresentationModal.html">
         <div class="modal-header">
-            <h3 class="modal-title">Edit Class</h3>
+            <h3 class="modal-title">Edit Presentation</h3>
         </div>
-        <pre>{{singleClass}}</pre>
+        <pre>{{presentation}}</pre>
         <div class="modal-body">
-            <label>Name</label><input type="text" ng-model="singleClass.name"><br>
-            <label>Description</label><input type="text" ng-model="singleClass.description"><br>
+            <label>Name</label><input type="text" ng-model="presentation.name"><br>
+            <label>Created On</label>{{presentation.datetime | date: 'medium'}}<br>
+            <select ng-model="presentation.class">
+                <option ng-repeat="singleClass in classes" value="{{singleClass._id}}">{{singleClass.name}}</option>
+            </select>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
@@ -16,24 +19,27 @@
         </div>
     </script>
 
-    <!--Delete Class-->
-    <script type="text/ng-template" id="deleteClassModal.html">
+    <!--Delete Presentation-->
+    <script type="text/ng-template" id="deletePresentationModal.html">
         <div class="modal-header">
             <h3 class="modal-title">Delete Class</h3>
         </div>
         <div class="modal-body alert alert-warning" role="alert">
             <span class="glyphicon glyphicon-warning-sign"><p>Are you sure you want to delete this class?</p></span>
         </div>
-        <label>{{singleClass.name}}</label>
+        <label>{{presentation.name}}</label>
+        <pre> {{presentation}}</pre>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ok()">Delete</button>
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
     </script>
 
+
+
     <div class="btn-group" role="group">
-        <button type="button" class="btn btn-warning" ng-click="editUser()">Edit</button>
-        <button type="button" class="btn btn-danger" ng-click="deleteUser('sm')">Delete</button>
+        <button type="button" class="btn btn-warning" ng-click="editPresentation()">Edit</button>
+        <button type="button" class="btn btn-danger" ng-click="deletePresentation('sm')">Delete</button>
     </div>
 
 </div>

@@ -6,13 +6,15 @@
             <tr>
                 <th>Name</th>
                 <th>Created On</th>
+                <th>Class</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="presentation in presentations">
                 <td>{{presentation.name}}</td>
                 <td>{{presentation.datetime | date: 'medium'}}</td>
-                <td ng-repeat="singleClass in presentation.classes">{{singleClass.name}}</td>
+                <td>{{presentation.class.name}}</td>
+                <td><edit-delete-presentation></edit-delete-presentation></td>
             </tr>
             </tbody>
         </table>

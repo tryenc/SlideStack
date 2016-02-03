@@ -21,7 +21,7 @@ app.config($stateProvider => {
        })
        .state('admin.presentations', {
            url: '/presentations',
-           templateUrl: 'js/admin/admin.presentations.html'
+           template: '<presentation-panel presentations="presentations" classes="classes"></presentation-panel>'
        })
        .state('admin.users', {
            url: '/users',
@@ -29,6 +29,6 @@ app.config($stateProvider => {
        })
        .state('admin.classes', {
            url: '/classes',
-           templateUrl: 'js/admin/admin.classes.html'
+           template: '<classes-panel classes="classes"></classes-panel>'
        })
 });

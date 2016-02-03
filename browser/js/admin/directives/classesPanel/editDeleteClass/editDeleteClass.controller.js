@@ -1,9 +1,7 @@
 /**
  * Created by Jon on 2/2/16.
  */
-/**
- * Created by Jon on 1/29/16.
- */
+
 app.controller('EditClassCtrl', ($scope, $uibModal) => {
 
     $scope.editUser = function (modalSize) {
