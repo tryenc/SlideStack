@@ -6,14 +6,14 @@ app.config( ($stateProvider) => {
             url: '/teacherView/:presId',
             template: '',
             resolve: {
-                studentList: (ClassFactory, $stateParams) => {
-                    return ClassFactory.fetchStudentsByClass($stateParams.presId);
+                presentation: (PresentationFactory, $stateParams) => {
+                    return PresentationFactory.fetchById($stateParams.presId);
                 }
             },
-            controller: ($scope, studentList) => {
-                $scope.studentList = studentList;
+            controller: ($scope, presentation) => {
+                $scope.presentation = presentation;
             }
-        })
+        });
         //.state('teacherView.studentList', {
         //    url: '/studentList',
         //    template: '<ss-student-list studentList="studentList"></ss-student-list>',
