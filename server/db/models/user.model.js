@@ -63,10 +63,10 @@ schema.methods.sanitize = function () {
 
 // get all of a teacher's students, aka query for all users that have the same class and filter by isTeacher = true
 schema.methods.getStudents = function() {
-    return this.find({
+    return mongoose.model('User').find({
         classes: { $in: this.classes },
-        isTeacher: false
-    })
+        isStudent: true
+    });
 };
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations

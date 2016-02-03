@@ -19,25 +19,27 @@ router.get('/', (req, res, next) => {
 // Get a user by _id
 router.get('/:id', (req, res, next) => {
 
+    var user;
+
     UserModel.findById(req.params.id)
         .populate('classes presentations')
-        .then(user => {
-            res.send(user);
+        .then(returnedUser => {
+            user = returnedUser;
+            if(user.isStudent){
+                return res.send(user);
+            }
+            return user.getStudents()
+        })
+        .then(students => {
+            user = user.toObject()
+            //'toObject' turns 'user', which is a mongoose document, into a JS object, which gives us the ability to add properties to it
+            user.students = students;
+            console.log("user", user);
+            res.json(user);
         })
         .then(null, next);
 
 });
-
-// Get a teacher's students
-router.get('/students/:classId', (req, res, next) => {
-
-    UserModel.find({
-        classes: req.params.classId,
-        isStudent: true
-    })
-        .then(students => res.send(students))
-        .then(null, next);
-})
 
 // Create new user
 router.post('/', (req, res, next) => {
