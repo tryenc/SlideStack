@@ -1,34 +1,30 @@
-<!-- <div class="container-fluid"> -->
-    <div class="flex-container full-height">
-        <div id="editor-container">
-            <div class="flex-container">
-                <input
-                    type="text"
-                    ng-model="presentation.name"
-                    class="form-control">
-                <button
-                    class="btn pull-right"
-                    ng-click="save(presentation)">
-                    Save
-                </button>
-            </div>
-                <textarea
-                    ng-model="presentation.markdown">
-                </textarea>
+<div class="flex-container full-height">
+    <div id="editor-container">
+        <div class="flex-container">
+            <input
+                type="text"
+                ng-model="presentation.name"
+                class="form-control">
+            <button
+                class="btn pull-right"
+                ng-click="save(presentation)">
+                Save
+            </button>
         </div>
-        <!-- <slides>
-            <slide>
-                <parsed
-                    markdown="presentation.markdown">
-                </parsed>
-            </slide>
-        </slides> -->
-        <div id="live-preview">
-            <slides>
-                <slide>
-                    <parsed presentation="presentation"></parsed>
-                </slide>
-            </slides>
-        </div>
+            <textarea
+                ng-model="presentation.markdown"
+                enable-tabs
+                dont-move-slides>
+            </textarea>
     </div>
-<!-- </div> -->
+    <div id="live-preview">
+
+        <ss-slideshow>
+            <ss-slide
+                ng-repeat="slide in slides track by $index">
+                <parsed markdown="{{slide}}"></parsed>
+            </ss-slide>
+        </ss-slideshow>
+
+    </div>
+</div>
