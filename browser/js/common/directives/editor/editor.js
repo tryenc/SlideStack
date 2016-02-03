@@ -7,10 +7,11 @@ app.directive('editor', function () {
         link: function (scope, element, attrs, ctrl, transclude) {
             scope.code = transclude().text().trim();
 
-            const editor = window.ace.edit('ace-editor');
+            let editor = window.ace.edit('ace-editor');
             editor.$blockScrolling = Infinity;
             editor.getSession().setMode("ace/mode/javascript");
             editor.insert(scope.code);
+
         }
     }
 })
