@@ -7,7 +7,6 @@ app.directive('ssSlideshow', function () {
         transclude: true,
         templateUrl: 'js/common/directives/slideshow/slideshow.html',
         controller: function ($scope) {
-
             const slides = [];
             $scope.currentSlide = 0;
 

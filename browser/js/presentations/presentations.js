@@ -5,12 +5,10 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/presentations/edit.html',
         resolve: {
             presentation: function (PresentationFactory, $stateParams) {
-                console.log('in the resolve block');
                 return PresentationFactory.fetchById($stateParams.id);
             }
         },
         controller: function ($scope, presentation, PresentationFactory) {
-
             $scope.presentation = presentation;
 
             $scope.slides = $scope.presentation.markdown.split('$$$');
