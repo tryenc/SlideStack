@@ -34,7 +34,7 @@ var schema = new mongoose.Schema({
     }],
     presentations: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Presentation'
+        ref: 'Presentations'
     }],
     password: {
         type: String
@@ -59,6 +59,14 @@ var schema = new mongoose.Schema({
 // method to remove sensitive information from user objects before sending them out
 schema.methods.sanitize = function () {
     return _.omit(this.toJSON(), ['password', 'salt']);
+};
+
+// get all of a teacher's students, aka query for all users that have the same class and filter by isTeacher = true
+schema.methods.getStudents = function() {
+    return this.find({
+        classes: { $in: this.classes },
+        isTeacher: false
+    })
 };
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations

@@ -20,14 +20,24 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
 
     UserModel.findById(req.params.id)
-        .populate('classes')
+        .populate('classes presentations')
         .then(user => {
-            console.log(user);
             res.send(user);
         })
         .then(null, next);
 
 });
+
+// Get a teacher's students
+router.get('/students/:classId', (req, res, next) => {
+
+    UserModel.find({
+        classes: req.params.classId,
+        isStudent: true
+    })
+        .then(students => res.send(students))
+        .then(null, next);
+})
 
 // Create new user
 router.post('/', (req, res, next) => {

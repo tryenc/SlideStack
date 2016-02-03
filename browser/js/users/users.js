@@ -17,6 +17,11 @@ app.config(function ($stateProvider) {
     .state('user.presentations', {
         url: '/presentations',
         templateUrl: 'js/users/profile/profile.presentations.html'
+
+    })
+    .state('user.students', {
+        url: '/students',
+        templateUrl: 'js/users/profile/profile.students.html'
     })
 });
 
@@ -26,6 +31,6 @@ app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory) 
         PresentationFactory.create(newPres)
             .then(createdPres => $state.go('editPres', { id: createdPres._id }))
     };
-
+    console.log("user", user);
     $scope.user = user;
 });
