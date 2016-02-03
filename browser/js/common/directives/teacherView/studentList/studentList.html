@@ -1,0 +1,21 @@
+<div id="studentList" style="margin: 0 auto; width: 300px;">
+    <div class="panel panel-primary">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Students</div>
+
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <th>Name</th>
+            </tr>
+            <tr ng-repeat="student in studentList">
+                <td>{{ student.name }}<button ng-click="callOnStudent(student)" class="btn btn-default btn-sm">Call On</button></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<!--<div class="panel panel-primary">-->
+    <!--<div class="panel-heading">{{type}}</div>-->
+    <!--<div class="panel-body">-->

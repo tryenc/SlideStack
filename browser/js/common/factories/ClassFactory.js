@@ -44,6 +44,13 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
+        fetchStudentsByClass: function(classId) {
+            return $http({
+                url: '/api/classes/' + classId + '/students',
+                method: 'GET'
+            }).then(res => res.data);
+        },
+
         updateClasses (classIdToCheck, user) {
             for(let i = 0; i < user.classes.length; i++) {
                 if (user.classes[i]._id === classIdToCheck._id) {
