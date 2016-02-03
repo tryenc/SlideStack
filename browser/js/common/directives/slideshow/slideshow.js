@@ -6,7 +6,7 @@ app.directive('ssSlideshow', function () {
         },
         transclude: true,
         templateUrl: 'js/common/directives/slideshow/slideshow.html',
-        controller: function ($scope) {
+        controller: function ($scope, Socket) {
             const slides = [];
             $scope.currentSlide = 0;
 
@@ -44,9 +44,9 @@ app.directive('ssSlideshow', function () {
                 slides[oldIdx].selected = false;
                 slides[newIdx].selected = true;
 
-                // if ($scope.display.mode === 'teacher') {
-                //     socket.broadcast.emit('change slide', newIdx)
-                // }
+                if ($scope.display.mode === 'teacher') {
+                    Socket.broadcast.emit('change slide', newIdx)
+                }
             });
 
             // controls for student view
