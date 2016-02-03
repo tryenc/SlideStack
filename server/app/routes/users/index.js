@@ -8,7 +8,7 @@ const UserModel = mongoose.model('User');
 // Get all users
 router.get('/', (req, res, next) => {
 
-    UserModel.find().exec()
+    UserModel.find().populate('classes')
         .then(users => {
             res.send(users);
         })
@@ -45,8 +45,9 @@ router.put('/:id', (req, res, next) => {
 
     UserModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
-    }).exec()
+    }).populate('classes')
         .then(updatedUser => {
+            console.log(updatedUser);
             res.send(updatedUser);
         })
         .then(null, next);
@@ -56,7 +57,7 @@ router.put('/:id', (req, res, next) => {
 // Delete a user
 router.delete('/:id', (req, res, next) => {
 
-    UserModel.findByIdAndRemove(req.params.id).exec()
+    UserModel.findByIdAndRemove(req.params.id)
         .then(deletedUser => {
             res.send(deletedUser);
         })

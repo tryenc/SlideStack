@@ -19,9 +19,9 @@ html, body {
 }
 
 #main {
-  padding-top: 20px;
-  margin: 0 auto;
-  height: 92%;
+  padding-top: 70px;
+  margin: -50px auto;
+  height: 100%;
 }
 
 .full-height {
@@ -38,3 +38,4 @@ html, body {
 @import 'tutorial/main';
 @import 'login/main';
 @import 'presentations/main';
+@import 'admin/admin';
