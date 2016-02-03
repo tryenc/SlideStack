@@ -4,7 +4,7 @@
 app.directive('ssStudentList', () => {
     return {
         restrict: 'E',
-        templateUrl: 'js/common/directives/teacherView/studentList/studentList.html',
+        templateUrl: 'js/common/directives/studentList/studentList.html',
         link: (scope) => {
             scope.callOnStudent = (student) => {
                 console.log("Called on ", student);

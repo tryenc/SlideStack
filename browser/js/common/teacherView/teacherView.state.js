@@ -4,14 +4,20 @@ app.config( ($stateProvider) => {
         .state('teacherView', {
 
             url: '/teacherView/:presId',
-            template: '',
+            templateUrl: 'js/common/teacherView/teacherViewTemplate.html',
             resolve: {
                 presentation: (PresentationFactory, $stateParams) => {
                     return PresentationFactory.fetchById($stateParams.presId);
+                },
+                studentList: (UserFactory) => {
+                    return UserFactory.fetchAll();
                 }
             },
-            controller: ($scope, presentation) => {
+            controller: ($scope, presentation, studentList) => {
                 $scope.presentation = presentation;
+                $scope.studentList = studentList;
+                console.log("presentation in teacherView", presentation);
+                console.log("studentList in teacherView", studentList);
             }
         });
         //.state('teacherView.studentList', {
