@@ -37,16 +37,21 @@ app.config(function ($stateProvider) {
         resolve: {
             presentation: function (PresentationFactory, $stateParams) {
                 return PresentationFactory.fetchById($stateParams.id);
+            },
+            user: function (AuthService) {
+                return AuthService.getLoggedInUser();
             }
         },
-        controller: function ($scope, presentation, Socket) {
+        controller: function ($scope, presentation, Socket, user) {
             $scope.slides = presentation.markdown.split('$$$');
             Socket.on('connect', function(){
                 console.log("Connected!");
             })
-            Socket.on('test', function(){
-                console.log("test working");
-            })
+            Socket.emit('request join', {
+                presentation: presentation._id,
+                student: user 
+            });
+
         }
     })
 });

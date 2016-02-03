@@ -11,14 +11,29 @@ app.config($stateProvider => {
                 },
                 studentList: UserFactory => UserFactory.fetchAll()
             },
-            controller: ($scope, presentation, studentList) => {
+            controller: ($scope, presentation, studentList, Socket) => {
                 $scope.display =  {
                     mode: 'teacher'
                 };
 
+                $scope.studentList = [];
+
+                Socket.emit('request join', {
+                    presentation: presentation._id
+                });
+
+                Socket.on("student joined", function(student){
+                    $scope.studentList.push(student);
+                })
                 $scope.presentation = presentation;
-                $scope.studentList = studentList;
+                // $scope.studentList = studentList;
                 $scope.slides = presentation.markdown.split('$$$');
+
+                Socket.on("somebody left", function(studentId){
+                    $scope.studentList = $scope.studentList.filter(function(student){
+                        return student._id !== studentId;
+                    })
+                })
             }
         });
 });
