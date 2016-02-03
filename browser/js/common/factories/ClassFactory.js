@@ -2,16 +2,16 @@ app.factory('ClassFactory', function($http) {
 
 	return {
 
-		create: function (newClass) {
+		create (newClass) {
 			return $http({
 				url: '/api/classes/',
 				method: 'POST',
-				data: newUser
+				data: newClass
 			})
 			.then(res => res.data);
 		},
 
-		fetchById: function (classId) {
+		fetchById (classId) {
 			return $http({
 				url: '/api/classes/' + classId,
 				method: 'GET'
@@ -19,7 +19,7 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		fetchAll: function () {
+		fetchAll () {
 			return $http({
 				url: '/api/classes/',
 				method: 'GET'
@@ -27,7 +27,7 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		udpate: function (classToUpdate) {
+		update (classToUpdate) {
 			return $http({
 				url: '/api/classes/' + classToUpdate._id,
 				method: 'PUT',
@@ -36,7 +36,7 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		delete: function (classId) {
+		delete (classId) {
 			return $http({
 				url: '/api/classes/' + classId,
 				method: 'DELETE'
@@ -49,7 +49,16 @@ app.factory('ClassFactory', function($http) {
                 url: '/api/classes/' + classId + '/students',
                 method: 'GET'
             }).then(res => res.data);
-        }
+        },
 
+        updateClasses (classIdToCheck, user) {
+            for(let i = 0; i < user.classes.length; i++) {
+                if (user.classes[i]._id === classIdToCheck._id) {
+                    user.classes.splice(i, 1);
+                    return;
+                }
+            }
+            user.classes.push(classIdToCheck)
+        }
 	};
 });

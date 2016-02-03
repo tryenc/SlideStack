@@ -1,41 +1,51 @@
 app.directive('ssSlideshow', function () {
     return {
         restrict: 'E',
-        scope: {},
+        scope: {
+            display: '='
+        },
         transclude: true,
         templateUrl: 'js/common/directives/slideshow/slideshow.html',
         controller: function ($scope) {
 
             var slides = [];
-            var currentSlide = 0;
-
-            var activate = function (index) {
-                slides[index].selected = true;
-            };
-
-            var deactivate = function (index) {
-                slides[index].selected = false;
-            };
+            $scope.currentSlide = 0;
 
             this.addSlide = function (slide) {
                 slides.push(slide);
-                if (slides.length === 1) activate(0);
-                console.log(slides);
+                if (slides.length === 1) slide.selected = true;
             };
 
-            this.nextSlide = function () {
-                if (currentSlide === slides.length - 1) return;
-                deactivate(currentSlide);
-                currentSlide++;
-                activate(currentSlide);
+            $scope.next = function () {
+                if ($scope.currentSlide === slides.length - 1) return;
+                $scope.currentSlide++;
             };
 
-            this.prevSlide = function () {
-                if (currentSlide === 0) return;
-                deactivate(currentSlide);
-                currentSlide--;
-                activate(currentSlide);
-            }
+            $scope.prev = function () {
+                if ($scope.currentSlide === 0) return;
+                $scope.currentSlide--;
+            };
+
+            document.body.addEventListener('keyup', function (e) {
+                if (e.which === 39) {
+                    e.preventDefault();
+                    $scope.next();
+                    $scope.$digest();
+                }
+                if (e.which === 37) {
+                    e.preventDefault();
+                    $scope.prev();
+                    $scope.$digest();
+                }
+            });
+
+            $scope.$watch('currentSlide', function (newIdx, oldIdx) {
+                if (newIdx === oldIdx) return;
+
+                slides[oldIdx].selected = false;
+                slides[newIdx].selected = true;
+            });
+
         }
     }
 });
