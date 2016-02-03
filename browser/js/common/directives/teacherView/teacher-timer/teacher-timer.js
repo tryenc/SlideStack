@@ -1,7 +1,7 @@
 app.directive('teacherTimer', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/common/directives/teacher-timer/teacher-timer.html',
+        templateUrl: 'js/common/directives/teacher-view/teacher-timer/teacher-timer.html',
         controller: 'timerCtrl'
     }
 });
