@@ -18,10 +18,13 @@ app.config( ($stateProvider) => {
                     mode: 'teacher'
                 };
 
+
+
                 $scope.presentation = presentation;
                 $scope.studentList = studentList;
-                console.log("presentation in teacherView", presentation);
-                console.log("studentList in teacherView", studentList);
+
+                $scope.slides = presentation.markdown.split('$$$');
+                console.log($scope.slides);
             }
         });
         //.state('teacherView.studentList', {
