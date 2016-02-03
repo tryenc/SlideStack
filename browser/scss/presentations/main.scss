@@ -23,4 +23,10 @@
 
 #live-preview {
     border: solid 1px black;
+
+    .slide-controls {
+        position: absolute;
+        bottom: 10px;
+        right:: 10px;
+    }
 }
