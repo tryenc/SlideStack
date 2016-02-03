@@ -39,8 +39,14 @@ app.config(function ($stateProvider) {
                 return PresentationFactory.fetchById($stateParams.id);
             }
         },
-        controller: function ($scope, presentation) {
+        controller: function ($scope, presentation, Socket) {
             $scope.slides = presentation.markdown.split('$$$');
+            Socket.on('connect', function(){
+                console.log("Connected!");
+            })
+            Socket.on('test', function(){
+                console.log("test working");
+            })
         }
     })
 });
