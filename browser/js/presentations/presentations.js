@@ -10,6 +10,7 @@ app.config(function ($stateProvider) {
             }
         },
         controller: function ($scope, presentation, PresentationFactory) {
+            $scope.view = false;
 
             $scope.presentation = presentation;
 
