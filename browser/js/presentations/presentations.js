@@ -27,8 +27,22 @@ app.config(function ($stateProvider) {
             }
 
             $scope.display = {
-                fullscreen: false
+                fullscreen: false,
+                mode: 'edit'
             }
         }
     });
+
+    $stateProvider.state('viewPres', {
+        url: '/presentations/:id',
+        templateUrl: 'js/presentations/view.html',
+        resolve: {
+            presentation: function (PresentationFactory, $stateParams) {
+                return PresentationFactory.fetchById($stateParams.id);
+            }
+        },
+        controller: function ($scope, presentation) {
+            $scope.slides = presentation.markdown.split('$$$');
+        }
+    })
 });

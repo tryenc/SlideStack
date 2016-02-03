@@ -1,6 +1,20 @@
 <ng-transclude></ng-transclude>
+
 <div class="slide-controls">
-    <button ng-click="display.fullscreen = !display.fullscreen">Fullscreen</button>
-    <button ng-click="prev()">Previous</button>
-    <button ng-click="next()">Next</button>
+
+    <div ng-if="display.mode === 'edit'">
+        <button ng-click="display.fullscreen = !display.fullscreen">Fullscreen</button>
+        <button ng-click="prev()">Previous</button>
+        <button ng-click="next()">Next</button>
+    </div>
+
+    <div ng-if="display.mode === 'student'">
+        <button ng-click="toggleSync()">
+            <span ng-show="syncedWithTeacher">Pause</span>
+            <span ng-show="!syncedWithTeacher">Resume</span>
+        </button>
+        <button ng-click="prev()" ng-disabled="syncedWithTeacher">Prev</button>
+        <button ng-click="next()" ng-disabled="syncedWithTeacher">Next</button>
+        <button>Ask</button>
+    </div>
 </div>
