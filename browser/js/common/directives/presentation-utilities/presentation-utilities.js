@@ -6,11 +6,14 @@ app.directive('ratio', function () {
             ratio: '@'
         },
         link: function (scope, element, attrs) {
-            const width = element[0].clientWidth;
-            const ratio = parseInt(scope.ratio, 10) / 100;
+            const width = element[0].scrollWidth;
+            const ratio = parseFloat(scope.ratio, 10);
 
             if (Number.isNaN(ratio)) return;
 
+            console.log('ratio: ', ratio);
+            console.log('width: ', width);
+            console.dir(element[0]);
             element.css('height', (width / ratio).toString() + 'px');
         }
     }

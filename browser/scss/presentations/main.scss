@@ -21,7 +21,7 @@
     }
 }
 
-#live-preview {
+#live-preview, #presentation-view {
     position: relative;
     background-color: #fdfdfd;
     overflow: hidden;
@@ -84,3 +84,33 @@
         }
     }
 }
+//
+// #presentation-view {
+//     &.fullscreen {
+//         position: absolute;
+//         left: 0;
+//         top: 0;
+//         width: 100vw;
+//         height: 100vh;
+//         margin: 0;
+//         .slideshow-container {
+//             height: 100%!important;
+//         }
+//         .slide-container {
+//             position: absolute;
+//         }
+//
+//         // Animations
+//         .fade-on-change {
+//             transition: opacity ease 0.5s;
+//
+//             &.ng-enter, &.ng-leave.ng-leave-active {
+//                 opacity: 0;
+//             }
+//
+//             &.ng-leave, &.ng-enter.ng-enter-active {
+//                 opacity: 1;
+//             }
+//         }
+//     }
+// }
