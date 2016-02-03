@@ -6,8 +6,8 @@ app.directive('ssStudentList', () => {
         restrict: 'E',
         templateUrl: 'js/common/directives/studentList/studentList.html',
         link: (scope) => {
-            scope.callOnStudent = (student) => {
-                console.log("Called on ", student);
+            scope.callOnStudent = student => {
+                //console.log("Called on ", student);
             };
         }
     };
