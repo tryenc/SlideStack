@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Classes</div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Class Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="singleClass in classes">
+                <td>{{singleClass.name}}</td>
+                <td>{{singleClass.description}}</td>
+                <td><edit-delete-class></edit-delete-class></td>
+            </tr>
+            </tbody>
+        </table>
+        <a ng-click="addClass()">+ Add Class</a>
+    </div>
+</div>
+
+<!--Add Class-->
+<script type="text/ng-template" id="addClassModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Class</h3>
+    </div>
+    <form>
+        <label>Class Name</label><input type="text" ng-model="newClass.name"><br>
+        <label>Description</label><input type="text" ng-model="newClass.description"><br>
+    </form>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="makeNewClass()">Add</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
