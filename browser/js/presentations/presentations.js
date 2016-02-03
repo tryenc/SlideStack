@@ -4,12 +4,12 @@ app.config(function ($stateProvider) {
         url: '/presentations/:id/edit',
         templateUrl: 'js/presentations/edit.html',
         resolve: {
-            presentation: function (Presentation, $stateParams) {
+            presentation: function (PresentationFactory, $stateParams) {
                 console.log('in the resolve block');
-                return Presentation.fetchById($stateParams.id);
+                return PresentationFactory.fetchById($stateParams.id);
             }
         },
-        controller: function ($scope, presentation, Presentation) {
+        controller: function ($scope, presentation, PresentationFactory) {
 
             $scope.presentation = presentation;
 
@@ -21,7 +21,7 @@ app.config(function ($stateProvider) {
             });
 
             $scope.save = function (presentation) {
-                Presentation.update(presentation)
+                PresentationFactory.update(presentation)
                     .then(updatedPres => console.log(updatedPres))
                     .then(null, err => $scope.error = err);
             }
