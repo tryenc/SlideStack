@@ -1,10 +1,8 @@
 app.config($stateProvider => {
-
     $stateProvider
         .state('teacherView', {
-
             url: '/teacherView/:presId',
-            templateUrl: 'js/common/teacherView/teacherViewTemplate.html',
+            templateUrl: 'js/teacherView/teacherView.template.html',
             resolve: {
                 presentation: (PresentationFactory, $stateParams) => {
                     return PresentationFactory.fetchById($stateParams.presId);
