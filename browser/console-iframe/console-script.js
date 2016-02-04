@@ -4,15 +4,18 @@ var runCode = function (code, shouldShowCommand) {
     if (shouldShowCommand) {
         var command = document.createElement('div');
         command.innerText = '>> ' + code;
-        document.body.appendChild(command);
+        consoleDiv.appendChild(command);
     }
 
     // print out whatever was returned
-    var result = document.createElement('div');
-    result.innerText = eval(code);
-    document.body.appendChild(result);
+    try {
+        var result = document.createElement('div');
+        result.innerText = '=> ' + eval(code);
+        consoleDiv.appendChild(result);
+    }
 };
 
+var consoleDiv = document.getElementById('console');
 var prompt = document.createElement('div');
 prompt.innerText = '>> ';
 
@@ -21,7 +24,7 @@ promptLine.innerText = 'Type';
 promptLine.setAttribute('contenteditable', true);
 
 prompt.appendChild(promptLine);
-document.body.appendChild(prompt);
+consoleDiv.appendChild(prompt);
 
 promptLine.addEventListener('keypress', function (event) {
     if (event.which !== 13) return;
@@ -30,7 +33,7 @@ promptLine.addEventListener('keypress', function (event) {
     runCode(promptLine.innerText, true);
 
     promptLine.innerText = 'Type';
-    document.body.appendChild(prompt);
+    consoleDiv.appendChild(prompt);
 });
 
 var button = document.getElementById('run-btn');
@@ -40,5 +43,12 @@ button.addEventListener('click', function () {
     runCode(code);
 
     promptLine.innerText = 'Type';
-    document.body.appendChild(prompt);
+    consoleDiv.appendChild(prompt);
 });
+
+// overwrite console.log - is this bad?
+console.log = function (expression) {
+    var output = document.createElement('div');
+    output.innerText = expression;
+    consoleDiv.appendChild(output);
+}
