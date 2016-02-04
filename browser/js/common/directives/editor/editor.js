@@ -23,6 +23,11 @@ app.directive('editor', function ($rootScope) {
                 scope.code.text = editor.getValue().trim();
                 scope.$parent.$digest();
             });
+
+            scope.runCode = function (code) {
+                const iframe = document.getElementById('iframe-console').contentWindow;
+                iframe.postMessage(code, '*');
+            }
         }
     }
 })
