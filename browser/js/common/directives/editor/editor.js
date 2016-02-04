@@ -25,7 +25,6 @@ app.directive('editor', function ($rootScope) {
 
             scope.runCode = function (code) {
                 const iframe = element.parent().find('iframe')[0].contentWindow;
-                // const iframe = document.getElementById('iframe-console').contentWindow;
                 iframe.postMessage(code, '*');
             }
         }
