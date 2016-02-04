@@ -17,7 +17,8 @@ app.config(function ($stateProvider) {
             $scope.studentList = [];
 
             Socket.emit('request join', {
-                presentation: presentation._id
+                presentation: presentation._id,
+                teacher: true
             });
 
             Socket.on("student joined", student => {

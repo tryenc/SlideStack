@@ -19,11 +19,11 @@ app.directive('editor', function (Socket) {
 
             const editorDiv = document.getElementById('ace-editor');
             editorDiv.addEventListener('keyup', function () {
-
-                //emit socket event - need to find a way to identify the teacher
-
                 scope.code.text = editor.getValue().trim();
+
+                // emit socket event - need to find a way to identify the teacher
                 Socket.emit('editing code', scope.code.text);
+
                 scope.$parent.$digest();
             });
 
