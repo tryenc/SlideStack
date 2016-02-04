@@ -11,13 +11,12 @@
                 Save
             </button>
         </div>
-            <textarea
-                ng-model="presentation.markdown"
-                enable-tabs
-                dont-move-slides>
-            </textarea>
+        <textarea
+            ng-model="presentation.markdown"
+            enable-tabs
+            dont-move-slides>
+        </textarea>
     </div>
-
     <div id="live-preview" ng-class="{ fullscreen: display.fullscreen }">
         <div class="slideshow-container" ratio="1.77">
             <ss-slideshow display="display">
