@@ -71,12 +71,36 @@ connectToDb.then(function () {
         presentations = [
             {
                 name: 'Shakespeare Shakedown',
-                markdown:'#Heres some markdown about Shakespeare./n He wrote/n*Romeo and Juliet/n*Othello/n*MacBeth',
+                markdown:'#Heres some markdown about Shakespeare.\n He wrote\n*Romeo and Juliet«\n*Othello\n*MacBeth',
                 class: classes[0]._id
             },
             {
                 name: 'How we raped the Native Americans',
                 markdown:'#Heres some markdown about the Native Americans./n We used to call them _indians_',
+                class: classes[1]._id
+            },
+            {
+                name: 'Sex and the Greeks',
+                markdown:'#Sex in Greek Mythology/n##Everything that doesnt seem like its about sex is actually about sex./n These people are __worse__ than Disney',
+                class: classes[2]._id
+            },
+            {
+                name: 'Alfred Hitchcock',
+                markdown:'Here are some of the movies he made:./n*Birds/n*North By Northwest/n*Psycho',
+                class: classes[3]._id
+            },
+
+            // BREAK OLD //
+
+            {
+                name: 'Communication Breakdown',
+                markdown:'#Led Zeppelin./n He wrote/n* $$$ Stuff and Juliet/n* $$$ Othello/n*Things',
+                class: classes[4]._id
+            },
+            {
+                name: 'How we saved the Native Americans',
+                markdown:'#Heres some markdown about the Native Americans and how great white people are $$$ ' +
+                    './n We used to call them _slaves_ $$$ This is the last slide',
                 class: classes[1]._id
             },
             {
@@ -124,7 +148,7 @@ connectToDb.then(function () {
                 password: 'Sloane',
                 classes: [presentations[1].class, presentations[2].class]
             },
-            {   
+            {
                 name: 'Ed Rooney',
                 email: 'getinline@highschool.edu',
                 role: 'teacher',
@@ -134,7 +158,7 @@ connectToDb.then(function () {
                 classes: [presentations[3].class, presentations[1].class],
                 presentations: [presentations[2]._id, presentations[3]._id]
             },
-            {            
+            {
                 name: 'Marty MacFly',
                 email: 'BackInTime@earthlink.com',
                 role: 'student',
@@ -142,7 +166,58 @@ connectToDb.then(function () {
                 isTeacher: false,
                 password: 'J3nn1f3r',
                 classes: [presentations[3].class, presentations[1].class]
+            },
+
+            // BREAK OLD //
+
+            {
+                name: 'Conner Greene',
+                email: 'slacker@gmail.com',
+                role: 'student',
+                isStudent: true,
+                isTeacher: false,
+                password: 'obviousPassword',
+                classes: [presentations[1].class, presentations[2].class],
+                presentations: [presentations[0]._id]
+            },
+            {
+                name: 'Chris Tyren',
+                email: 'creativeEmail@netscape.com',
+                role: 'student',
+                isStudent: true,
+                isTeacher: false,
+                password: 'ImNotCreative',
+                classes: [presentations[2].class, presentations[3].class]
+            },
+            {
+                name: 'Joe Shmoe',
+                email: 'jshmoe@aol.com',
+                role: 'student',
+                isStudent: true,
+                isTeacher: false,
+                password: 'password123',
+                classes: [presentations[4].class, presentations[5].class]
+            },
+            {
+                name: 'Bill Nye',
+                email: 'scienceGuy@pierson.edu',
+                role: 'teacher',
+                isStudent: false,
+                isTeacher: true,
+                password: 'meandering',
+                classes: [presentations[6].class, presentations[5].class],
+                presentations: [presentations[2]._id, presentations[2]._id]
+            },
+            {
+                name: 'Hacksaw Jim Dueggen',
+                email: 'rassling@wwf.com',
+                role: 'student',
+                isStudent: true,
+                isTeacher: false,
+                password: 'pileDriver',
+                classes: [presentations[6].class, presentations[7].class]
             }
+
         ];
 
         return User.createAsync(users);
