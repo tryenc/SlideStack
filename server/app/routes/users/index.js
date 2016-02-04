@@ -21,7 +21,7 @@ router.get('/:id', (req, res, next) => {
 
     var user;
 
-    return UserModel.findById(req.params.id)
+     UserModel.findById(req.params.id)
         .populate('classes presentations')
         .then(returnedUser => {
             user = returnedUser;

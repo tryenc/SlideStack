@@ -25,13 +25,9 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, UserFactory, ClassFactory) {
+app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, UserFactory) {
 
     $scope.user = user;
-
-    if ($scope.user.isTeacher) {
-        //ClassFactory.fetchStudentsByClass()
-    }
 
     //==========NEW PRESENTATION CONTROLS==========
 
