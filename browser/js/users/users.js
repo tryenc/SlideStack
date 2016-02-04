@@ -12,7 +12,7 @@ app.config(function ($stateProvider) {
     })
     .state('user.classes', {
         url: '/classes',
-        templateUrl: 'js/users/profile/profile.classes.html'
+        templateUrl: 'js/users/profile/classes/profile.classes.html'
     })
     .state('user.presentations', {
         url: '/presentations',

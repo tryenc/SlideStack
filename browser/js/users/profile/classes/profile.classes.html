@@ -1,0 +1,33 @@
+<div ng-controller="AccordionDemoCtrl">
+    <script type="text/ng-template" id="group-template.html">
+        <div class="panel {{panelClass || 'panel-default'}}">
+            <div class="panel-heading">
+                <h4 class="panel-title" style="color:#fa39c3">
+                    <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()"
+                       uib-accordion-transclude="heading"><span
+                            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+                </h4>
+            </div>
+            <div class="panel-collapse collapse" uib-collapse="!isOpen">
+                <div class="panel-body" style="text-align: right" ng-transclude></div>
+            </div>
+        </div>
+    </script>
+
+    <uib-accordion id="a1">
+        <uib-accordion-group ng-repeat="class in classes" heading="{{class}}">
+            <uib-accordion>
+
+                <uib-accordion-group heading="Students">
+                        <div ng-repeat="student in students">{{student}}</div>
+                </uib-accordion-group>
+
+                <uib-accordion-group heading="Presentations">
+                    <div ng-repeat="pres in presentations">{{pres}}</div>
+                </uib-accordion-group>
+
+            </uib-accordion>
+        </uib-accordion-group>
+    </uib-accordion>
+
+</div>
