@@ -66,7 +66,7 @@ schema.methods.getStudents = function() {
     return mongoose.model('User').find({
         classes: { $in: this.classes },
         isStudent: true
-    });
+    }).populate('classes');
 };
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
