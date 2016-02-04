@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <ss-slideshow display="{fullscreen: false, mode: 'teacher'}">
                 <ss-slide ng-repeat="slide in slides">
-                    <parsed markdown="{{slide}}"></parsed>
+                    <parsed display="{mode: 'teacher'}" markdown="{{slide}}"></parsed>
                 </ss-slide>
             </ss-slideshow>
         </div>
