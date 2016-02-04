@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 
 // Get a presentation by _id
 router.get('/:id', (req, res, next) => {
-
+    
     PresentationsModel.findById(req.params.id).populate('class')
         .then(presentation => {
             res.send(presentation);
