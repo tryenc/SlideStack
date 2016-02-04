@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Teacher View</title>
+</head>
+<body>
+<h3>Top Of View</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <ss-slideshow display="{fullscreen: false, mode: 'teacher'}">
+                <ss-slide ng-repeat="slide in slides">
+                    <parsed markdown="{{slide}}"></parsed>
+                </ss-slide>
+            </ss-slideshow>
+        </div>
+        <div class="container">
+            <div class="col-md-6">
+                <div class="row">
+                    <teacher-timer></teacher-timer>
+                </div>
+                <div class="row">
+                    <ss-student-list></ss-student-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

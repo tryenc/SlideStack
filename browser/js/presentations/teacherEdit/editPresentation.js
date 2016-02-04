@@ -1,8 +1,9 @@
 app.config(function ($stateProvider) {
 
+    // Teachers
     $stateProvider.state('editPres', {
         url: '/presentations/:id/edit',
-        templateUrl: 'js/presentations/edit.html',
+        templateUrl: 'js/presentations/teacherEdit/editPresentation.html',
         resolve: {
             presentation: function (PresentationFactory, $stateParams) {
                 return PresentationFactory.fetchById($stateParams.id);
@@ -30,28 +31,4 @@ app.config(function ($stateProvider) {
             }
         }
     });
-
-    $stateProvider.state('viewPres', {
-        url: '/presentations/:id',
-        templateUrl: 'js/presentations/view.html',
-        resolve: {
-            presentation: function (PresentationFactory, $stateParams) {
-                return PresentationFactory.fetchById($stateParams.id);
-            },
-            user: function (AuthService) {
-                return AuthService.getLoggedInUser();
-            }
-        },
-        controller: function ($scope, presentation, Socket, user) {
-            $scope.slides = presentation.markdown.split('$$$');
-            Socket.on('connect', function(){
-                console.log("Connected!");
-            })
-            Socket.emit('request join', {
-                presentation: presentation._id,
-                student: user 
-            });
-
-        }
-    })
 });
