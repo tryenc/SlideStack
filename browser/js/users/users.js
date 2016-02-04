@@ -12,7 +12,7 @@ app.config(function ($stateProvider) {
     })
     .state('user.classes', {
         url: '/classes',
-        templateUrl: 'js/users/profile/profile.classes.html'
+        templateUrl: 'js/users/profile/classes/profile.classes.html'
     })
     .state('user.presentations', {
         url: '/presentations',
@@ -25,9 +25,13 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, UserFactory, $log) {
+app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, UserFactory, ClassFactory) {
 
     $scope.user = user;
+
+    if ($scope.user.isTeacher) {
+        //ClassFactory.fetchStudentsByClass()
+    }
 
     //==========NEW PRESENTATION CONTROLS==========
 
