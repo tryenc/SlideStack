@@ -6,8 +6,8 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('TestCtrl', function ($scope) {
-    $scope.code = {};
-    $scope.seeCode = function () {
-        console.log($scope.code);
-    }
+    // $scope.code = {};
+    // $scope.seeCode = function () {
+    //     console.log($scope.code);
+    // }
 })

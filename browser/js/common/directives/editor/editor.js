@@ -2,12 +2,11 @@ app.directive('editor', function ($rootScope) {
     return {
         restrict: 'E',
         scope: {
-            code: '='
         },
         transclude: true,
         templateUrl: 'js/common/directives/editor/editor.html',
         link: function (scope, element, attrs, ctrl, transclude) {
-            scope.code.text = scope.code.text || '';
+            scope.code = { text: '' };
 
             if (transclude().text().trim()) {
                 scope.code.text = transclude().text().trim();
@@ -25,7 +24,8 @@ app.directive('editor', function ($rootScope) {
             });
 
             scope.runCode = function (code) {
-                const iframe = document.getElementById('iframe-console').contentWindow;
+                const iframe = element.parent().find('iframe')[0].contentWindow;
+                // const iframe = document.getElementById('iframe-console').contentWindow;
                 iframe.postMessage(code, '*');
             }
         }

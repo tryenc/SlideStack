@@ -1,7 +1,9 @@
 <div
     id="ace-editor"
+    ng-model="code.text"
     dont-move-slides>
 </div>
 <div>
     <button ng-click="runCode(code.text)">RUN CODE</button>
+    <button ng-click="runCode()">CLEAR CONSOLE</button>
 </div>
