@@ -22,6 +22,10 @@ var schema = new mongoose.Schema({
     class: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classes'
+    },
+    imageUrl: {
+        type: String,
+        default: 'https://cdn4.iconfinder.com/data/icons/business-management-2/256/Presentation-512.png'
     }
 });
 
