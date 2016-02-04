@@ -1,0 +1,43 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">{{type}}</div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Classes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in users">
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td><p ng-repeat="singleClass in user.classes">{{singleClass.name}}</p></td>
+                <td><edit-delete-user user="user"></edit-delete-user></td>
+            </tr>
+            </tbody>
+        </table>
+        <a ng-click="addUser()">+ Add {{type}}</a>
+    </div>
+</div>
+
+<!--Add User-->
+<script type="text/ng-template" id="addModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Add User</h3>
+    </div>
+    <form>
+        <label>Name</label><input type="text" ng-model="newUser.name"><br>
+        <label>Email</label><input type="text" ng-model="newUser.email"><br>
+        <label>Classes</label>
+        <div ng-repeat="singleClass in classes">
+            <input type="checkbox" ng-click="updateClasses(singleClass, newUser)">{{singleClass.name}}
+        </div>
+
+    </form>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="makeNewUser()">Add</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

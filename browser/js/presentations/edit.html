@@ -1,5 +1,5 @@
 <div class="flex-container full-height">
-    <div id="editor-container">
+    <div id="editor-container" ng-hide="display.fullscreen">
         <div class="flex-container">
             <input
                 type="text"
@@ -11,17 +11,20 @@
                 Save
             </button>
         </div>
-            <textarea
-                ng-model="presentation.markdown"
-                dont-move-slides
-                enable-tabs>
-            </textarea>
+        <textarea
+            ng-model="presentation.markdown"
+            enable-tabs
+            dont-move-slides>
+        </textarea>
     </div>
-    <div id="live-preview">
-        <slides>
-            <slide ng-repeat="slide in slides track by $index">
-                <parsed presentation="{ markdown: slide }"></parsed>
-            </slide>
-        </slides>
+    <div id="live-preview" ng-class="{ fullscreen: display.fullscreen }">
+        <div class="slideshow-container" ratio="1.77">
+            <ss-slideshow display="display">
+                <ss-slide
+                    ng-repeat="slide in slides track by $index">
+                    <parsed markdown="{{slide}}"></parsed>
+                </ss-slide>
+            </ss-slideshow>
+        </div>
     </div>
 </div>

@@ -1,9 +1,14 @@
+// color variables
+$green: #57bb89;
+$orange: #f79b60;
+$background: #efede7;
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  background: #fdfdfd;
+  background: $background;
 }
 
 @mixin clearfix {
@@ -19,9 +24,9 @@ html, body {
 }
 
 #main {
-  padding-top: 20px;
-  margin: 0 auto;
-  height: 92%;
+  padding-top: 70px;
+  margin: -50px auto;
+  height: 100%;
 }
 
 .full-height {
@@ -38,3 +43,5 @@ html, body {
 @import 'tutorial/main';
 @import 'login/main';
 @import 'presentations/main';
+@import 'admin/admin';
+@import 'teacherView/main';

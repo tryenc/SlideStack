@@ -1,6 +1,6 @@
 'use strict';
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
+var session = require('./session');
+// var MongoStore = require('connect-mongo')(session);
 var _ = require('lodash');
 var passport = require('passport');
 var path = require('path');
@@ -19,12 +19,7 @@ module.exports = function (app) {
     // First, our session middleware will set/read sessions from the request.
     // Our sessions will get stored in Mongo using the same connection from
     // mongoose. Check out the sessions collection in your MongoCLI.
-    app.use(session({
-        secret: app.getValue('env').SESSION_SECRET,
-        store: new MongoStore({mongooseConnection: mongoose.connection}),
-        resave: false,
-        saveUninitialized: false
-    }));
+    app.use(session);
 
     // Initialize passport and also allow it to read
     // the request session information.

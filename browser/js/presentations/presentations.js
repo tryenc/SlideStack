@@ -4,11 +4,11 @@ app.config(function ($stateProvider) {
         url: '/presentations/:id/edit',
         templateUrl: 'js/presentations/edit.html',
         resolve: {
-            presentation: function (Presentation, $stateParams) {
-                return Presentation.fetchById($stateParams.id);
+            presentation: function (PresentationFactory, $stateParams) {
+                return PresentationFactory.fetchById($stateParams.id);
             }
         },
-        controller: function ($scope, presentation, Presentation) {
+        controller: function ($scope, presentation, PresentationFactory) {
             $scope.presentation = presentation;
 
             $scope.slides = $scope.presentation.markdown.split('$$$');
@@ -16,13 +16,42 @@ app.config(function ($stateProvider) {
             $scope.$watch('presentation.markdown', function (newVal, oldVal) {
                 if (newVal === oldVal) return;
                 $scope.slides = newVal.split('$$$');
-            })
+            });
 
             $scope.save = function (presentation) {
-                Presentation.update(presentation)
+                PresentationFactory.update(presentation)
                     .then(updatedPres => console.log(updatedPres))
                     .then(null, err => $scope.error = err);
             }
+
+            $scope.display = {
+                fullscreen: false,
+                mode: 'edit'
+            }
         }
     });
+
+    $stateProvider.state('viewPres', {
+        url: '/presentations/:id',
+        templateUrl: 'js/presentations/view.html',
+        resolve: {
+            presentation: function (PresentationFactory, $stateParams) {
+                return PresentationFactory.fetchById($stateParams.id);
+            },
+            user: function (AuthService) {
+                return AuthService.getLoggedInUser();
+            }
+        },
+        controller: function ($scope, presentation, Socket, user) {
+            $scope.slides = presentation.markdown.split('$$$');
+            Socket.on('connect', function(){
+                console.log("Connected!");
+            })
+            Socket.emit('request join', {
+                presentation: presentation._id,
+                student: user 
+            });
+
+        }
+    })
 });

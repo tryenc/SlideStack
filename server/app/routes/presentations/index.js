@@ -8,7 +8,7 @@ const PresentationsModel = mongoose.model('Presentations');
 // Get all presentations
 router.get('/', (req, res, next) => {
 
-    PresentationsModel.find().exec()
+    PresentationsModel.find().populate('class')
         .then(presentations => {
             res.send(presentations);
         })
@@ -18,8 +18,8 @@ router.get('/', (req, res, next) => {
 
 // Get a presentation by _id
 router.get('/:id', (req, res, next) => {
-
-    PresentationsModel.findById(req.params.id).exec()
+    
+    PresentationsModel.findById(req.params.id).populate('class')
         .then(presentation => {
             res.send(presentation);
         })
