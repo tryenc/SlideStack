@@ -25,14 +25,18 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, UserFactory, $log) {
+app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, UserFactory, ClassFactory) {
 
     $scope.user = user;
 
+    if ($scope.user.isTeacher) {
+        //ClassFactory.fetchStudentsByClass()
+    }
+
     //==========NEW PRESENTATION CONTROLS==========
-    
+
     $scope.newPresMenu = false;
-    
+
     $scope.createPresentation = function (newPres) {
         PresentationFactory.create(newPres)
             .then(createdPres => $state.go('editPres', { id: createdPres._id }))
