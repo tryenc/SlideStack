@@ -1,9 +1,14 @@
+// color variables
+$green: #57bb89;
+$orange: #f79b60;
+$background: #efede7;
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  background: #fdfdfd;
+  background: $background;
 }
 
 @mixin clearfix {
