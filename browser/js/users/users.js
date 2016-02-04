@@ -31,6 +31,13 @@ app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory) 
         PresentationFactory.create(newPres)
             .then(createdPres => $state.go('editPres', { id: createdPres._id }))
     };
+    $scope.editState = function(id){
+      $state.go('editPres', { id: id });
+    };
+
+    $scope.viewState = function(id){
+      $state.go('viewPres', { id: id });
+    };
     console.log("user", user);
     $scope.user = user;
 });
