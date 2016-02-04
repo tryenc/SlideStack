@@ -38,7 +38,7 @@
             consoleDiv.appendChild(command);
         }
 
-        // print out whatever was returned
+        // print out whatever was returned or print the error
         try {
             var result = document.createElement('div');
             result.innerText = '=> ' + eval(code);
@@ -51,17 +51,12 @@
         }
     };
 
+    // recieve code from main app
     window.addEventListener('message', function (event) {
         if (event.origin !== window.location.origin) return;
 
         setUpPrompt();
         if (event.data) runCode(event.data);
-    });
-
-    var clearButton = document.getElementById('clear-btn');
-    clearButton.addEventListener('click', function () {
-        consoleDiv.innerHTML = '';
-        setUpPrompt();
     });
 
     // replace console.log with this
