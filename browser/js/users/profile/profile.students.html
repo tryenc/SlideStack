@@ -1,10 +1,10 @@
 <div class="well">
     <!-- switch class from panel to card? -->
     <div ng-repeat="student in user.students" class="col-md-4 panel panel-default">
-        <img ng-src="{{ student.imageUrl }}" style="width:50px;">
+        <img ng-src="{{ student.imageUrl }}" class="panel-picture">
         <h4>{{ student.name }}</h4>
         <ul>
-            <li ng-repeat="class in student.classes">{{ class.name }}</li>
+            <li ng-repeat="class in student.classes">{{ class.name }}<span class="glyphicon glyphicon-remove-sign"></span></li>
         </ul>
     </div>
     
