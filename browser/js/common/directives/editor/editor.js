@@ -1,4 +1,4 @@
-app.directive('editor', function ($rootScope) {
+app.directive('editor', function (Socket) {
     return {
         restrict: 'E',
         scope: {
@@ -19,8 +19,17 @@ app.directive('editor', function ($rootScope) {
 
             const editorDiv = document.getElementById('ace-editor');
             editorDiv.addEventListener('keyup', function () {
+
+                //emit socket event - need to find a way to identify the teacher
+
                 scope.code.text = editor.getValue().trim();
+                Socket.emit('editing code', scope.code.text);
                 scope.$parent.$digest();
+            });
+
+            Socket.on('code change', function (newCode) {
+                scope.code.text = newCode;
+                editor.setValue(newCode, 1);
             });
 
             scope.consolePresent = !!element.parent().find('console')[0];

@@ -44,7 +44,7 @@ module.exports = function (server) {
         });
 
         socket.on('teacher slide change', function(newIdx){
-        	socket.broadcast.emit('slide change', newIdx);
+        	socket.broadcast.to(room).emit('slide change', newIdx);
         });
 
         // TODO with the session we don't need this anymore
@@ -57,6 +57,11 @@ module.exports = function (server) {
         		socket.broadcast.to(obj.presentation).emit('student joined', socket.user);
         	}
         });
+
+        socket.on('editing code', function (code) {
+            console.log(code);
+            socket.broadcast.to(room).emit('code change', code);
+        })
 
         socket.on('disconnect', function(){
         	io.sockets.to(room).emit('somebody left', userId);
