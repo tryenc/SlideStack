@@ -23,9 +23,11 @@ app.directive('editor', function ($rootScope) {
                 scope.$parent.$digest();
             });
 
+            scope.consolePresent = !!element.parent().find('console')[0];
+
             scope.runCode = function (code) {
-                const iframe = element.parent().find('iframe')[0].contentWindow;
-                iframe.postMessage(code, '*');
+                const consoleFrame = element.parent().find('iframe')[0].contentWindow;
+                consoleFrame.postMessage(code, '*');
             }
         }
     }
