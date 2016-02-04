@@ -18,6 +18,10 @@ var schema = new mongoose.Schema({
         type: String,
         enum: ['student', 'teacher']
     },
+    imageUrl: {
+        type: String,
+        default: 'https://tracker.moodle.org/secure/attachment/30912/f3.png'
+    },
     isStudent: {
         type: Boolean
     },
@@ -30,7 +34,7 @@ var schema = new mongoose.Schema({
     }],
     presentations: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Presentation'
+        ref: 'Presentations'
     }],
     password: {
         type: String
@@ -55,6 +59,14 @@ var schema = new mongoose.Schema({
 // method to remove sensitive information from user objects before sending them out
 schema.methods.sanitize = function () {
     return _.omit(this.toJSON(), ['password', 'salt']);
+};
+
+// get all of a teacher's students, aka query for all users that have the same class and filter by isTeacher = true
+schema.methods.getStudents = function() {
+    return mongoose.model('User').find({
+        classes: { $in: this.classes },
+        isStudent: true
+    }).populate('classes');
 };
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
