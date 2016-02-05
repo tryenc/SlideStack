@@ -82,8 +82,17 @@ module.exports = function (server) {
             socket.broadcast.to(room).emit('code change', code);
         });
 
+        socket.on('call on', function (socketId) {
+            io.to(socketId).emit('called');
+        });
+
+        socket.on('end call on', function (socketId) {
+            io.to(socketId).emit('not called');
+        });
+
         socket.on('disconnect', function(){
         	io.sockets.to(room).emit('somebody left', userId);
+            // TODO also remove them from the allRooms object
         });
 
     });
