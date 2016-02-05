@@ -20,7 +20,7 @@ module.exports = function (server) {
 
         //skip if this has already happened
         if (socket.user) return next();
-        if (!socket.handshale.session.passport) return next();
+        if (!socket.handshake.session.passport) return next();
 
         var userId = socket.handshake.session.passport.user;
         User.findById(userId)
