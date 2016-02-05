@@ -206,7 +206,7 @@ connectToDb.then(function () {
                 isTeacher: true,
                 password: 'meandering',
                 classes: [presentations[6].class, presentations[5].class],
-                presentations: [presentations[2]._id, presentations[2]._id]
+                presentations: [presentations[2]._id, presentations[7]._id]
             },
             {
                 name: 'Hacksaw Jim Dueggen',
