@@ -17,10 +17,12 @@ app.config(function ($stateProvider) {
             $scope.studentList = [];
 
             Socket.emit('request join', {
-                presentation: presentation._id
+                presentation: presentation._id,
+                teacher: true
             });
 
             Socket.on("student joined", student => {
+                console.log('student joined: ', student);
                 $scope.studentList.push(student);
             });
 
@@ -31,6 +33,8 @@ app.config(function ($stateProvider) {
                 $scope.studentList = $scope.studentList.filter(student => {
                     return student._id !== studentId;
                 });
+                console.log('student list: ', $scope.studentList);
+                console.log(studentId);
             });
 
         }
