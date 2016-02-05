@@ -52,6 +52,7 @@ app.directive('editor', function (Socket) {
             // Enable sharing when called on
             Socket.on('called', function () {
                 sharing = true;
+                Socket.emit('editing code', scope.code.text);
             });
 
             // Cancel sharing when called on ends
