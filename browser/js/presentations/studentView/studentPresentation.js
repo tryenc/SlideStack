@@ -22,11 +22,13 @@ app.config(function ($stateProvider) {
             });
 
             $scope.user = user;
-            //where does confusion need to be stored?
-            //if it's in the modal, it would get reset to false every time a modal is open
-            //if it's store in this controller, how does the modal communicate to this controller when the confusion has been toggled?
+
             $scope.user.confused = false;
 
+            $scope.toggleConfusion = function(){
+                $scope.user.confused = !$scope.user.confused;
+                Socket.emitConfusion(user);
+            }
 
             $scope.open = function (size) {
 

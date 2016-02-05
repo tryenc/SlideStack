@@ -26,5 +26,9 @@
     </script>
 
     <button type="button" class="btn btn-default" ng-click="open('sm')">Have a Question?</button>
+    
+    <div class="toggle-button" ng-class="{'toggle-button-selected': user.confused }">
+       <button ng-click="toggleConfusion()"></button>
+   	</div>
 
 </div>

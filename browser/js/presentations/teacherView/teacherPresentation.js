@@ -38,6 +38,10 @@ app.config(function ($stateProvider) {
                 console.log("studentObj", studentObj);
             });
 
+            Socket.onConfusion(studentObj => {
+                console.log("confused student", studentObj);
+            });
+
         }
     });
 });

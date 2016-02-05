@@ -102,6 +102,10 @@ module.exports = function (server) {
             io.to(allRooms[room].teacher.socket).emit('question asked', data);
         });
 
+        socket.on('confusion', function(student) {
+            io.to(allRooms[room].teacher.socket).emit('student confused', student);
+        });
+
         socket.on('disconnect', function(){
         	io.sockets.to(room).emit('somebody left', userId);
             if (allRooms[room]) allRooms[room].students = allRooms[room].students.filter(function (student) {
