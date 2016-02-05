@@ -20,6 +20,7 @@ module.exports = function (server) {
 
         //skip if this has already happened
         if (socket.user) return next();
+        if (!socket.handshake.session.passport) return next();
 
         var userId = socket.handshake.session.passport.user;
         User.findById(userId)
@@ -31,6 +32,14 @@ module.exports = function (server) {
     });
 
     var allRooms = {};
+    /*
+    {
+        roomID1: {
+            teacher: teacherObj,
+            students: [studentObj1, studentObj2]
+        }
+    }
+    */
 
     io.on('connection', function (socket) {
 
@@ -53,7 +62,7 @@ module.exports = function (server) {
 
         	room = obj.presentation;
             userId = socket.user._id;
-            
+
             if (!allRooms[room]) allRooms[room] = { students: [] };
 
         	socket.join(room);
@@ -88,6 +97,14 @@ module.exports = function (server) {
 
         socket.on('end call on', function (socketId) {
             io.to(socketId).emit('not called');
+        });
+
+        socket.on('question', function(data) {
+            io.to(allRooms[room].teacher.socket).emit('question asked', data);
+        });
+
+        socket.on('confusion', function(student) {
+            io.to(allRooms[room].teacher.socket).emit('student confused', student);
         });
 
         socket.on('disconnect', function(){

@@ -34,6 +34,14 @@ app.config(function ($stateProvider) {
                 });
             });
 
+            Socket.questionAsked(studentObj => {
+                console.log("studentObj", studentObj);
+            });
+
+            Socket.onConfusion(studentObj => {
+                console.log("confused student", studentObj);
+            });
+
         }
     });
 });
