@@ -1,10 +1,10 @@
 app.factory('PresentationFactory', function ($http) {
     return {
-        create (newPres) {
+        create (newPres, userId) {
             return $http({
                 url: '/api/presentations/',
                 method: 'POST',
-                data: newPres
+                data: {presentation: newPres, user: userId}
             })
             .then(res => res.data);
         },

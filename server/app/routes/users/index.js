@@ -21,21 +21,25 @@ router.get('/:id', (req, res, next) => {
 
     var user;
 
-    UserModel.findById(req.params.id)
+     UserModel.findById(req.params.id)
         .populate('classes presentations')
         .then(returnedUser => {
             user = returnedUser;
             if(user.isStudent){
-                return res.send(user);
+                res.send(user);
+            } else {
+                return user.getStudents()
             }
-            return user.getStudents()
         })
         .then(students => {
-            user = user.toObject()
-            //'toObject' turns 'user', which is a mongoose document, into a JS object, which gives us the ability to add properties to it
+            //'toObject' turns 'user', which is a mongoose document,
+            // into a JS object, which gives us the ability to add properties to it
+            user = user.toObject();
+
             user.students = students;
-            console.log("user", user);
-            res.json(user);
+            if(!user.isStudent){
+                res.send(user);
+            }
         })
         .then(null, next);
 

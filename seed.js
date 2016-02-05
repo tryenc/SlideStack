@@ -47,6 +47,26 @@ var classes = [
     {
         name: 'Literature',
         description: 'See name'
+    },
+    {
+        name: 'American History',
+        description: 'The history of the United States spanning from the Native Americans to present day'
+    },
+    {
+        name: 'Math',
+        description: 'An introduction to the laws that govern all things big and small'
+    },
+    {
+        name: 'Computer Science',
+        description: 'An overview of the most important characters and stories in Greek mythology'
+    },
+    {
+        name: 'Phys Ed',
+        description: 'This is the only fun class this school has to offer'
+    },
+    {
+        name: 'Theater',
+        description: 'See name'
     }
 ];
 
@@ -80,13 +100,13 @@ connectToDb.then(function () {
                 class: classes[1]._id
             },
             {
-                name: 'Sex and the Greeks',
-                markdown:'#Sex in Greek Mythology/n##Everything that doesnt seem like its about sex is actually about sex./n These people are __worse__ than Disney',
+                name: 'How to Kill a Mockingbird',
+                markdown:'#Sex in Greek Mythology/n##Everything is about sex drugs and rock and roll./n These people are __worse__ than Disney',
                 class: classes[2]._id
             },
             {
-                name: 'Alfred Hitchcock',
-                markdown:'Here are some of the movies he made:./n*Birds/n*North By Northwest/n*Psycho',
+                name: 'Where have all the cowgirls gone',
+                markdown:'My First Presentation, my EG WILDE./n*Birds/n*North By Northwest/n*Psycho',
                 class: classes[3]._id
             },
 
@@ -101,17 +121,27 @@ connectToDb.then(function () {
                 name: 'How we saved the Native Americans',
                 markdown:'#Heres some markdown about the Native Americans and how great white people are $$$ ' +
                     './n We used to call them _slaves_ $$$ This is the last slide',
-                class: classes[1]._id
+                class: classes[5]._id
             },
             {
                 name: 'Sex and the Greeks',
                 markdown:'#Sex in Greek Mythology/n##Everything that doesnt seem like its about sex is actually about sex./n These people are __worse__ than Disney',
-                class: classes[2]._id
+                class: classes[6]._id
             },
             {
-                name: 'Alfred Hitchcock',
-                markdown:'Here are some of the movies he made:./n*Birds/n*North By Northwest/n*Psycho',
-                class: classes[3]._id
+                name: 'Tom Sawyer',
+                markdown:'A book about nothing:./n*Birds/n*North By Northwest/n*Psycho',
+                class: classes[7]._id
+            },
+            {
+                name: 'A day in life of Morty',
+                markdown:'#Sex in Greek Mythology/n## $$$ ./n These people are __worse__ than Disney',
+                class: classes[8]._id
+            },
+            {
+                name: 'Lord of the Flies',
+                markdown:'Everybody dies in the end./n*Birds/n*North By Northwest/n*Psycho',
+                class: classes[9]._id
             }
         ];
 
@@ -127,8 +157,8 @@ connectToDb.then(function () {
                 isStudent: false,
                 isTeacher: true,
                 password: 'password',
-                classes: [presentations[0].class, presentations[1].class],
-                presentations: [presentations[0]._id]
+                classes: [presentations[0].class, presentations[1].class, presentations[9].class, presentations[8].class],
+                presentations: [presentations[0]._id, presentations[1]._id, presentations[2]._id, presentations[3]._id]
             },
             {
                 name: 'Student MacTween',
@@ -155,8 +185,8 @@ connectToDb.then(function () {
                 isStudent: false,
                 isTeacher: true,
                 password: 'password',
-                classes: [presentations[3].class, presentations[1].class],
-                presentations: [presentations[2]._id, presentations[3]._id]
+                classes: [presentations[3].class, presentations[1].class, presentations[7].class, presentations[6].class],
+                presentations: [presentations[4]._id, presentations[5]._id, presentations[6]._id, presentations[7]._id]
             },
             {
                 name: 'Marty MacFly',
@@ -183,11 +213,12 @@ connectToDb.then(function () {
             {
                 name: 'Chris Tyren',
                 email: 'creativeEmail@netscape.com',
-                role: 'student',
-                isStudent: true,
-                isTeacher: false,
+                role: 'teacher',
+                isStudent: false,
+                isTeacher: true,
                 password: 'ImNotCreative',
-                classes: [presentations[2].class, presentations[3].class]
+                classes: [presentations[2].class, presentations[3].class, presentations[4].class, presentations[5].class],
+                presentations: [presentations[2]._id, presentations[4]._id, presentations[6]._id, presentations[8]._id]
             },
             {
                 name: 'Joe Shmoe',
@@ -206,7 +237,7 @@ connectToDb.then(function () {
                 isTeacher: true,
                 password: 'meandering',
                 classes: [presentations[6].class, presentations[5].class],
-                presentations: [presentations[2]._id, presentations[2]._id]
+                presentations: [presentations[2]._id, presentations[7]._id]
             },
             {
                 name: 'Hacksaw Jim Dueggen',
@@ -215,7 +246,7 @@ connectToDb.then(function () {
                 isStudent: true,
                 isTeacher: false,
                 password: 'pileDriver',
-                classes: [presentations[6].class, presentations[7].class]
+                classes: [presentations[6].class, presentations[7].class, presentations[9].class, presentations[1].class]
             }
 
         ];

@@ -4,6 +4,7 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const PresentationsModel = mongoose.model('Presentations');
+const UserModel = mongoose.model('User');
 
 // Get all presentations
 router.get('/', (req, res, next) => {
@@ -18,7 +19,7 @@ router.get('/', (req, res, next) => {
 
 // Get a presentation by _id
 router.get('/:id', (req, res, next) => {
-    
+
     PresentationsModel.findById(req.params.id).populate('class')
         .then(presentation => {
             res.send(presentation);
@@ -30,10 +31,13 @@ router.get('/:id', (req, res, next) => {
 // Create new presentation
 router.post('/', (req, res, next) => {
 
-    PresentationsModel.create(req.body)
+    PresentationsModel.create(req.body.presentation)
         .then(presentation => {
-            console.log(presentation);
-            res.status(201).send(presentation);
+            return UserModel.findByIdAndUpdate(req.body.user,
+                {presentations: presentation._id}, {new: true});
+        })
+        .then(updatedUser => {
+            res.send(updatedUser);
         })
         .then(null, next);
 
@@ -42,9 +46,8 @@ router.post('/', (req, res, next) => {
 // Update a presentation
 router.put('/:id', (req, res, next) => {
 
-    PresentationsModel.findByIdAndUpdate(req.params.id, req.body, {
-        new: true
-    }).exec()
+    PresentationsModel.findByIdAndUpNdate(req.params.id,
+            req.body, { new: true }).exec()
         .then(updatedPresentation => {
             res.send(updatedPresentation);
         })

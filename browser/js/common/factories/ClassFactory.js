@@ -51,14 +51,15 @@ app.factory('ClassFactory', function($http) {
             }).then(res => res.data);
         },
 
-        updateClasses (classIdToCheck, user) {
+        updateClasses (user, classToUpdate) {
             for(let i = 0; i < user.classes.length; i++) {
-                if (user.classes[i]._id === classIdToCheck._id) {
+                if (user.classes[i]._id === classToUpdate._id) {
                     user.classes.splice(i, 1);
-                    return;
+                    return user;
                 }
             }
-            user.classes.push(classIdToCheck)
+            user.classes.push(classToUpdate);
+            return user;
         }
 	};
 });

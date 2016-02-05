@@ -4,7 +4,7 @@
 var mongoose = require('mongoose');
 
 /**
- * Nothing required yet until seed files are written
+ * Nothing required yet
  */
 
 var schema = new mongoose.Schema({
