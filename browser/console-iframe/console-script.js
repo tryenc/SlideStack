@@ -30,11 +30,12 @@
     };
 
     var runCode = function (code, shouldShowCommand) {
-        code = code.replace('console.log', 'logOutput')
+        code = code.replace(/console.log/gm, 'logOutput');
+        console.log(code);
         // print out the command that was run
         if (shouldShowCommand) {
             var command = document.createElement('div');
-            command.innerText = '>> ' + code.replace('logOutput', 'console.log');
+            command.innerText = '>> ' + code.replace(/logOutput/gm, 'console.log');
             consoleDiv.appendChild(command);
         }
 

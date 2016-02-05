@@ -30,6 +30,8 @@ module.exports = function (server) {
             });
     });
 
+    var allRooms = {};
+
     io.on('connection', function (socket) {
 
     	var room;
@@ -44,22 +46,53 @@ module.exports = function (server) {
         });
 
         socket.on('teacher slide change', function(newIdx){
-        	socket.broadcast.emit('slide change', newIdx);
+        	socket.broadcast.to(room).emit('slide change', newIdx);
         });
 
-        // TODO with the session we don't need this anymore
-        socket.on('request join', function(obj){
+        socket.on('request join', function(obj) {
+
         	room = obj.presentation;
 
-        	socket.join(obj.presentation);
+            if (!allRooms[room]) allRooms[room] = { students: [] };
 
-        	if (obj.student) {
-        		socket.broadcast.to(obj.presentation).emit('student joined', socket.user);
+            var teacher = allRooms[room].teacher;
+
+        	socket.join(room);
+
+        	if (!obj.teacher) {
+                allRooms[room].students.push(socket.user);
+                if (teacher) {
+                    console.log('teach socketId: ', teacher.socket)
+                    socket.broadcast.to(teacher.socket).emit('student joined', socket.user);
+                }
         	}
+
+            if (obj.teacher) {
+                allRooms[room].teacher = socket.user;
+                // console.log('teacher is here: ', allRooms[room].teacher)
+                allRooms[room].students.forEach(function (student) {
+                    console.log('in for each: ', student);
+                    io.to(allRooms[room].teacher.socket).emit('student joined', student);
+                });
+            }
+            console.log('room: ', allRooms[room]);
+        });
+
+        socket.on('editing code', function (code) {
+            socket.broadcast.to(room).emit('code change', code);
+        });
+
+        socket.on('call on', function (socketId) {
+            io.to(socketId).emit('called');
+        });
+
+        socket.on('end call on', function (socketId) {
+            io.to(socketId).emit('not called');
         });
 
         socket.on('disconnect', function(){
         	io.sockets.to(room).emit('somebody left', userId);
+            // TODO also remove them from the allRooms object
         });
 
     });

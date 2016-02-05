@@ -23,8 +23,7 @@ app.config(function ($stateProvider) {
             });
 
             Socket.emit('request join', {
-                presentation: presentation._id,
-                student: user
+                presentation: presentation._id
             });
         }
     })
