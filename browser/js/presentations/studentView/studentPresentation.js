@@ -17,12 +17,7 @@ app.config(function ($stateProvider) {
         },
         controller: function ($scope, presentation, Socket, user, $uibModal) {
             $scope.slides = presentation.markdown.split('$$$');
-
-            Socket.on('connect', function () {
-                console.log("Connected!");
-            });
-
-            Socket.emit('request join', {
+            Socket.joinRoom({
                 presentation: presentation._id
             });
 
