@@ -46,7 +46,7 @@ router.post('/', (req, res, next) => {
 // Update a presentation
 router.put('/:id', (req, res, next) => {
 
-    PresentationsModel.findByIdAndUpNdate(req.params.id,
+    PresentationsModel.findByIdAndUpdate(req.params.id,
             req.body, { new: true }).exec()
         .then(updatedPresentation => {
             res.send(updatedPresentation);

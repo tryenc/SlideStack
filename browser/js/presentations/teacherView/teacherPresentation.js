@@ -16,25 +16,22 @@ app.config(function ($stateProvider) {
 
             $scope.studentList = [];
 
-            Socket.emit('request join', {
+            Socket.joinRoom({
                 presentation: presentation._id,
                 teacher: true
             });
 
-            Socket.on("student joined", student => {
-                console.log('student joined: ', student);
+            Socket.onStudentJoin(student => {
                 $scope.studentList.push(student);
             });
 
             $scope.presentation = presentation; // might not need this
             $scope.slides = presentation.markdown.split('$$$');
 
-            Socket.on("somebody left", studentId => {
+            Socket.onStudentLeft(studentId => {
                 $scope.studentList = $scope.studentList.filter(student => {
                     return student._id !== studentId;
                 });
-                console.log('student list: ', $scope.studentList);
-                console.log(studentId);
             });
 
         }

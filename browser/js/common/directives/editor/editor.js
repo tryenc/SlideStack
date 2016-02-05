@@ -35,12 +35,12 @@ app.directive('editor', function (Socket) {
                 scope.code.text = editor.getValue().trim();
 
                 // Emit socket event if sharing code
-                if (sharing) Socket.emit('editing code', scope.code.text);
+                if (sharing) Socket.shareCode(scope.code.text);
 
             });
 
             // Listen for edit events from sockets
-            Socket.on('code change', function (newCode) {
+            Socket.onCodeChange(function (newCode) {
 
                 // If currently editing, track teacher's changes but don't update
                 if (scope.editCode) return teacherCode = newCode;
@@ -50,13 +50,13 @@ app.directive('editor', function (Socket) {
             });
 
             // Enable sharing when called on
-            Socket.on('called', function () {
+            Socket.onCalled(function () {
                 sharing = true;
-                Socket.emit('editing code', scope.code.text);
+                Socket.shareCode(scope.code.text);
             });
 
             // Cancel sharing when called on ends
-            Socket.on('not called', function () {
+            Socket.onNotCalled(function () {
                 sharing = false;
             });
 
