@@ -52,14 +52,14 @@ module.exports = function (server) {
         socket.on('request join', function(obj) {
 
         	room = obj.presentation;
-
+            userId = socket.user._id;
+            
             if (!allRooms[room]) allRooms[room] = { students: [] };
-
-            var teacher = allRooms[room].teacher;
 
         	socket.join(room);
 
         	if (!obj.teacher) {
+                var teacher = allRooms[room].teacher;
                 allRooms[room].students.push(socket.user);
                 if (teacher) {
                     console.log('teach socketId: ', teacher.socket)
@@ -92,7 +92,9 @@ module.exports = function (server) {
 
         socket.on('disconnect', function(){
         	io.sockets.to(room).emit('somebody left', userId);
-            // TODO also remove them from the allRooms object
+            if (allRooms[room]) allRooms[room].students = allRooms[room].students.filter(function (student) {
+                return student._id !== userId;
+            });
         });
 
     });

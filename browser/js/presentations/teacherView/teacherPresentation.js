@@ -33,6 +33,8 @@ app.config(function ($stateProvider) {
                 $scope.studentList = $scope.studentList.filter(student => {
                     return student._id !== studentId;
                 });
+                console.log('student list: ', $scope.studentList);
+                console.log(studentId);
             });
 
         }
