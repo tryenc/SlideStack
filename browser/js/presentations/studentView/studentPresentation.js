@@ -52,10 +52,8 @@ app.config(function ($stateProvider) {
     })
 }).controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, user, Socket) {
 
-    $scope.confused = false;
-
   $scope.submitQuestion = function (question) {
-    console.log("question", question);
+    Socket.askQuestion({id: user.id, question: question});
     $uibModalInstance.close();
   };
 

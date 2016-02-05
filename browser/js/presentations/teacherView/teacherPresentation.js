@@ -34,6 +34,10 @@ app.config(function ($stateProvider) {
                 });
             });
 
+            Socket.questionAsked(studentObj => {
+                console.log("studentObj", studentObj);
+            });
+
         }
     });
 });
