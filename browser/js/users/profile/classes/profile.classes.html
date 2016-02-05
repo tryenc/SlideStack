@@ -5,12 +5,20 @@
 
                 <div ng-show="user.isTeacher">
                     <uib-accordion-group heading="Students">
-                        <div ng-repeat="student in class.students">{{student.name}}</div>
+                        <div ng-repeat="student in class.students">
+                            <a ng-href="/users/{{student._id}}">
+                                {{student.name}}
+                            </a>
+                        </div>
                     </uib-accordion-group>
                 </div>
 
                 <uib-accordion-group heading="Presentations">
-                    <div ng-repeat="pres in user.presentations">{{pres.name}}</div>
+                    <div ng-repeat="pres in user.presentations">
+                        <a ng-href="/presentations/{{pres._id}}">
+                            {{pres.name}}
+                        </a>
+                    </div>
                 </uib-accordion-group>
 
             </uib-accordion>

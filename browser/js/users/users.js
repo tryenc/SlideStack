@@ -61,6 +61,7 @@ app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, 
 
     };
 
+    // Filter for teacher/student dropdown showing only available classes
 }).filter('NotEnrolled', () => {
     return (teacherArray, student) => {
 
@@ -77,6 +78,4 @@ app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, 
         }
         return teacherArrayCopy;
     }
-
-
 });
