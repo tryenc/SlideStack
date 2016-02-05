@@ -2,8 +2,6 @@
 var path = require('path');
 var express = require('express');
 var app = express();
-var _ = require('lodash');
-console.log(_);
 module.exports = app;
 
 // Pass our express application pipeline into the configuration
