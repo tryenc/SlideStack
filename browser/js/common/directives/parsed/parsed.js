@@ -3,7 +3,8 @@ app.directive('parsed', function (Parser, $compile) {
         restrict: 'E',
         template: '<div></div>',
         scope: {
-            markdown: '@'
+            markdown: '@',
+            display: '='
         },
         link: function (scope, element, attrs) {
 
