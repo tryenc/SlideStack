@@ -10,3 +10,25 @@
         </ss-slideshow>
     </div>
 </div>
+<div style="z-index:2; position:absolute;">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Have a Question?</h3>
+        </div>
+        <div class="modal-body">
+ 			<textarea placeholder="Type your question here" ng-model="question"></textarea>
+        </div>
+        <div class="modal-footer">
+        	
+            <button class="btn btn-primary" type="button" ng-click="submitQuestion(question)">Submit Question</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button type="button" class="btn btn-default" ng-click="open('sm')">Have a Question?</button>
+    
+    <div class="toggle-button" ng-class="{'toggle-button-selected': user.confused }">
+       <button ng-click="toggleConfusion()"></button>
+   	</div>
+
+</div>

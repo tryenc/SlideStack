@@ -32,6 +32,14 @@ module.exports = function (server) {
     });
 
     var allRooms = {};
+    /*
+    {
+        roomID1: {
+            teacher: teacherObj,
+            students: [studentObj1, studentObj2]
+        }
+    }
+    */
 
     io.on('connection', function (socket) {
 
@@ -89,6 +97,14 @@ module.exports = function (server) {
 
         socket.on('end call on', function (socketId) {
             io.to(socketId).emit('not called');
+        });
+
+        socket.on('question', function(data) {
+            io.to(allRooms[room].teacher.socket).emit('question asked', data);
+        });
+
+        socket.on('confusion', function(student) {
+            io.to(allRooms[room].teacher.socket).emit('student confused', student);
         });
 
         socket.on('disconnect', function(){

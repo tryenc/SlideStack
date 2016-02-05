@@ -34,6 +34,18 @@ app.factory('Socket', function () {
       },
       endCallOn: function(id){
         socket.emit('end call on', id);
+      },
+      askQuestion: function(data){
+        socket.emit('question', data);
+      },
+      questionAsked: function(fn){
+        socket.on('question asked', fn);
+      },
+      emitConfusion: function(student){
+        socket.emit('confusion', student);
+      },
+      onConfusion: function(fn){
+        socket.on('student confused', fn);
       }
 
     };
