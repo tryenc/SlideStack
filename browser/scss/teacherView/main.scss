@@ -21,9 +21,10 @@
 
 .slide-container {
   .noteDiv {
-    position: absolute;
+    display: flex;
+    position: fixed;
+    bottom: 0;
     padding: 50px;
-    border: solid 1px gray;
     margin: 300px 100px 0px 0px;
   }
 }
