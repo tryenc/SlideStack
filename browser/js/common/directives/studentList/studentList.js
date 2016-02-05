@@ -10,10 +10,10 @@ app.directive('ssStudentList', (Socket) => {
 
             scope.callOnStudent = student => {
                 if (!scope.calledOn[student.socket]) {
-                    Socket.emit('call on', student.socket);
+                    Socket.callOn(student.socket);
                     scope.calledOn[student.socket] = true;
                 } else {
-                    Socket.emit('end call on', student.socket);
+                    Socket.endCallOn(student.socket);
                     scope.calledOn[student.socket] = false;
                 }
             };

@@ -45,7 +45,7 @@ app.directive('ssSlideshow', function () {
                 slides[newIdx].selected = true;
 
                 if ($scope.display.mode === 'teacher') {
-                    Socket.emit('teacher slide change', newIdx)
+                    Socket.changeSlide(newIdx)
                 }
             });
 
@@ -63,7 +63,7 @@ app.directive('ssSlideshow', function () {
             }
 
             // handle socket events
-            Socket.on('slide change', function (slideNumber) {
+            Socket.onSlideChange(function (slideNumber) {
                 console.log('slideNumber', slideNumber);
                 currentTeacherSlide = slideNumber;
                 if ($scope.syncedWithTeacher) {
