@@ -22,6 +22,7 @@ app.config(function ($stateProvider) {
             });
 
             Socket.on("student joined", student => {
+                console.log('student joined: ', student);
                 $scope.studentList.push(student);
             });
 

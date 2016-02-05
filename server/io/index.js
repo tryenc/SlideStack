@@ -30,7 +30,7 @@ module.exports = function (server) {
             });
     });
 
-    var allRooms = {}
+    var allRooms = {};
 
     io.on('connection', function (socket) {
 
@@ -55,22 +55,24 @@ module.exports = function (server) {
 
             if (!allRooms[room]) allRooms[room] = { students: [] };
 
+            var teacher = allRooms[room].teacher;
 
         	socket.join(room);
 
         	if (!obj.teacher) {
                 allRooms[room].students.push(socket.user);
-                var teacher = allRooms[room].teacher;
                 if (teacher) {
                     console.log('teach socketId: ', teacher.socket)
-                    socket.broadcast.to(teacher.socketId).emit('student joined', socket.user);
+                    socket.broadcast.to(teacher.socket).emit('student joined', socket.user);
                 }
         	}
 
             if (obj.teacher) {
                 allRooms[room].teacher = socket.user;
+                // console.log('teacher is here: ', allRooms[room].teacher)
                 allRooms[room].students.forEach(function (student) {
-                    socket.to(teacher.socket).emit('student joined', student);
+                    console.log('in for each: ', student);
+                    io.to(allRooms[room].teacher.socket).emit('student joined', student);
                 });
             }
             console.log('room: ', allRooms[room]);
