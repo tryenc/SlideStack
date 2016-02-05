@@ -31,7 +31,6 @@
 
     var runCode = function (code, shouldShowCommand) {
         code = code.replace(/console.log/gm, 'logOutput');
-        console.log(code);
         // print out the command that was run
         if (shouldShowCommand) {
             var command = document.createElement('div');

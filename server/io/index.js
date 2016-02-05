@@ -46,12 +46,9 @@ module.exports = function (server) {
     	var room;
         var userId;
         // Now have access to socket, wowzers!
-        console.log("socket.id", socket.id);
-        console.log("socket.user", socket.user);
 
         socket.on('login', function (userData) {
             socket.handshake.session.userdata = userData;
-            console.log('session stuff: ', socket.handshake.session.userdata);
         });
 
         socket.on('teacher slide change', function(newIdx){
@@ -71,20 +68,16 @@ module.exports = function (server) {
                 var teacher = allRooms[room].teacher;
                 allRooms[room].students.push(socket.user);
                 if (teacher) {
-                    console.log('teach socketId: ', teacher.socket)
                     socket.broadcast.to(teacher.socket).emit('student joined', socket.user);
                 }
         	}
 
             if (obj.teacher) {
                 allRooms[room].teacher = socket.user;
-                // console.log('teacher is here: ', allRooms[room].teacher)
                 allRooms[room].students.forEach(function (student) {
-                    console.log('in for each: ', student);
                     io.to(allRooms[room].teacher.socket).emit('student joined', student);
                 });
             }
-            console.log('room: ', allRooms[room]);
         });
 
         socket.on('editing code', function (code) {

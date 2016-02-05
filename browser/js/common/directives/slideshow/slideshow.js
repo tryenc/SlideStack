@@ -64,12 +64,10 @@ app.directive('ssSlideshow', function () {
 
             // handle socket events
             Socket.onSlideChange(function (slideNumber) {
-                console.log('slideNumber', slideNumber);
                 currentTeacherSlide = slideNumber;
                 if ($scope.syncedWithTeacher) {
                     $scope.currentSlide = currentTeacherSlide;
                     $scope.$digest();
-                    console.log("$scope.currentSlide", $scope.currentSlide);
                 }
             })
 
