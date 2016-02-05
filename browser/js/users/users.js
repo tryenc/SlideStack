@@ -25,7 +25,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, UserFactory) {
+app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, ClassFactory, UserFactory) {
 
     $scope.user = user;
 
@@ -55,23 +55,28 @@ app.controller('UserCtrl', function ($scope, $state, user, PresentationFactory, 
         $event.stopPropagation();
     };
 
-    $scope.removeFromClass = function (student, classToRemoveFrom) {
-        //filter class from student classes
+    $scope.updateClasses = (user, classToUpdate) => {
 
-        student.classes = student.classes.filter(function(studentClass){
-            return (studentClass !== classToRemoveFrom);
-        });
+        UserFactory.update(ClassFactory.updateClasses(user, classToUpdate));
 
-        UserFactory.update(student)
-            .then(student => console.log("succesfully removed " + student.name + " from " + classToRemoveFrom));
     };
 
-    $scope.addToClass = function (student, classToAddTo) {
+}).filter('NotEnrolled', () => {
+    return (teacherArray, student) => {
 
-        student.classes.push(classToAddTo);
-
-        UserFactory.update(student)
-            .then(student => console.log("succesfully added " + student.name + " to " + classToAddTo));
+        var teacherArrayCopy = teacherArray.slice();
+        for (var i = 0; i < teacherArrayCopy.length; i++) {
+            var currentTeacher = teacherArrayCopy[i];
+            for (var j = 0; j < student.classes.length; j++) {
+                var studentCurrent = student.classes[j];
+                if (currentTeacher._id === studentCurrent._id) {
+                    teacherArrayCopy.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+        return teacherArrayCopy;
     }
+
 
 });

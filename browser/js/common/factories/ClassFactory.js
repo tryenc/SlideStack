@@ -55,10 +55,11 @@ app.factory('ClassFactory', function($http) {
             for(let i = 0; i < user.classes.length; i++) {
                 if (user.classes[i]._id === classToUpdate._id) {
                     user.classes.splice(i, 1);
-                    return;
+                    return user;
                 }
             }
             user.classes.push(classToUpdate);
+            return user;
         }
 	};
 });
