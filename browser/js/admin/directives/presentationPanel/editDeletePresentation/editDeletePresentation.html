@@ -1,0 +1,40 @@
+<div>
+    <!--Edit Presentation-->
+    <script type="text/ng-template" id="editPresentationModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Edit Presentation</h3>
+        </div>
+        <div class="modal-body">
+            <label>Name</label><input type="text" ng-model="presentation.name"><br>
+            <label>Created On</label>{{presentation.datetime | date: 'medium'}}<br>
+            <select ng-model="presentation.class">
+                <option ng-repeat="singleClass in classes" value="{{singleClass._id}}">{{singleClass.name}}</option>
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+
+        </div>
+    </script>
+
+    <!--Delete Presentation-->
+    <script type="text/ng-template" id="deletePresentationModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Delete Class</h3>
+        </div>
+        <div class="modal-body alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon-warning-sign"><p>Are you sure you want to delete {{presentation.name}}?</p></span>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Delete</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-warning" ng-click="editPresentation()">Edit</button>
+        <button type="button" class="btn btn-danger" ng-click="deletePresentation('sm')">Delete</button>
+    </div>
+
+</div>

@@ -1,0 +1,25 @@
+<div id="studentList">
+    <div class="panel panel-primary">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Students</div>
+
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <th>Name</th>
+            </tr>
+            <tr ng-repeat="student in studentList">
+                <td>
+                    {{ student.name }}
+                    <button
+                        ng-click="callOnStudent(student)"
+                        class="btn btn-default btn-sm">
+                        <span ng-show="!calledOn[student.socket]">Call On</span>
+                        <span ng-show="calledOn[student.socket]">Cancel</span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>

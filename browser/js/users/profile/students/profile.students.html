@@ -1,0 +1,25 @@
+<!-- switch class from panel to card? -->
+<div ng-repeat="student in user.students" class="col-md-4 panel panel-default">
+    <img ng-src="{{ student.imageUrl }}" class="panel-picture">
+    <h4>{{ student.name }}</h4>
+    <ul>
+        <li ng-repeat="class in student.classes">{{ class.name }}
+            <button type="button" class="btn btn-danger btn-circle" ng-click="updateClasses(student, class)">
+            <i class="glyphicon glyphicon-remove glyphicon-remove-ss"></i></button>
+        </li>
+    </ul>
+
+    <span uib-dropdown on-toggle="toggled(open)">
+    <!-- 'uib-dropdown' transforms a node into a dropdown -->
+        <!-- <a href id="simple-dropdown" uib-dropdown-toggle>Add to Class</a> -->
+        <button uib-dropdown-toggle>Add to Class</button>
+        <!-- 'uib-dropdown-toggle' which allows the dropdown to be toggled via click. This directive is optional. -->
+        <ul uib-dropdown-menu>
+        <!-- 'uib-dropdown-menu transforms a node into the popup menu. -->
+            <li ng-repeat="class in user.classes | NotEnrolled:student">
+              <a href ng-click="updateClasses(student, class)">{{ class.name }}</a>
+            </li>
+        </ul>
+    </span>
+    <!--<pre>{{student}}</pre>-->
+</div>

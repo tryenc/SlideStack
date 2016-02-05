@@ -1,0 +1,48 @@
+// color variables
+$green: #57bb89;
+$orange: #f79b60;
+$background: #efede7;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $background;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+html, body {
+    height: 100%;
+}
+
+#main {
+  padding-top: 70px;
+  margin: -50px auto;
+  height: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+#ace-editor {
+    height: 300px;
+}
+
+@import 'directives/main';
+@import 'home/main';
+@import 'about/main';
+@import 'tutorial/main';
+@import 'login/main';
+@import 'presentations/main';
+@import 'admin/admin';
+@import 'teacherView/main';
+@import 'profile/main';
