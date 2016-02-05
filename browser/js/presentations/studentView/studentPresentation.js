@@ -16,7 +16,9 @@ app.config(function ($stateProvider) {
             }
         },
         controller: function ($scope, presentation, Socket, user) {
-            $scope.slides = presentation.markdown.split('$$$');
+
+            $scope.presentation = presentation;
+
             Socket.joinRoom({
                 presentation: presentation._id
             });

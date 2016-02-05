@@ -12,6 +12,7 @@ app.directive('ssSlide', function () {
             scope.prev = ctrl.prevSlide;
             scope.next = ctrl.nextSlide;
 
+            scope.display = ctrl.display;
         }
     }
 });

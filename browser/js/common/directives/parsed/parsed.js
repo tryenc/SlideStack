@@ -2,11 +2,12 @@ app.directive('parsed', function (Parser, $compile) {
     return {
         restrict: 'E',
         template: '<div></div>',
+        require: '^ssSlideshow',
         scope: {
             markdown: '@',
-            display: '='
+            // display: '='
         },
-        link: function (scope, element, attrs) {
+        link: function (scope, element, attrs, ctrl) {
 
             const parseAndAppend = function (content) {
                 element.empty();
@@ -24,6 +25,8 @@ app.directive('parsed', function (Parser, $compile) {
                 if (newVal === oldVal) return;
                 parseAndAppend(newVal, element);
             });
+
+            scope.display = ctrl.display;
         }
     }
 })

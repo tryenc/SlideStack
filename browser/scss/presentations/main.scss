@@ -33,7 +33,7 @@
         width: 100vw;
         height: 100vh;
         margin: 0;
-        .slideshow-container {
+        &.slideshow-container {
             height: 100%!important;
         }
         .slide-container {

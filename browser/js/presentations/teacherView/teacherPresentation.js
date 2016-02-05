@@ -25,8 +25,8 @@ app.config(function ($stateProvider) {
                 $scope.studentList.push(student);
             });
 
-            $scope.presentation = presentation; // might not need this
-            $scope.slides = presentation.markdown.split('$$$');
+            $scope.presentation = presentation;
+            // $scope.slides = presentation.markdown.split('$$$');
 
             Socket.onStudentLeft(studentId => {
                 $scope.studentList = $scope.studentList.filter(student => {

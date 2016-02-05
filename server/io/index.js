@@ -20,7 +20,8 @@ module.exports = function (server) {
 
         //skip if this has already happened
         if (socket.user) return next();
-
+        if (!socket.handshake.session.passport) return next();
+        
         var userId = socket.handshake.session.passport.user;
         User.findById(userId)
             .then(user => {
@@ -53,7 +54,7 @@ module.exports = function (server) {
 
         	room = obj.presentation;
             userId = socket.user._id;
-            
+
             if (!allRooms[room]) allRooms[room] = { students: [] };
 
         	socket.join(room);

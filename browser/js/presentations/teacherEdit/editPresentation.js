@@ -12,12 +12,11 @@ app.config(function ($stateProvider) {
         controller: function ($scope, presentation, PresentationFactory) {
             $scope.presentation = presentation;
 
-            $scope.slides = $scope.presentation.markdown.split('$$$');
-
-            $scope.$watch('presentation.markdown', function (newVal, oldVal) {
-                if (newVal === oldVal) return;
-                $scope.slides = newVal.split('$$$');
-            });
+            // $scope.$watch('presentation.markdown', function (newVal, oldVal) {
+            //     if (newVal === oldVal) return;
+            //     console.log(newVal);
+            //     // $scope.slides = newVal.split('$$$');
+            // });
 
             $scope.save = function (presentation) {
                 PresentationFactory.update(presentation)

@@ -7,12 +7,11 @@
 <h3>Top Of View</h3>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-7" id="teacher-presentation">
-          <div class="slideshow-container" ratio="1.77">
-            <ss-slideshow display="{fullscreen: false, mode: 'teacher'}">
-                <ss-slide ng-repeat="slide in slides">
-                    <parsed display="{mode: 'teacher'}" markdown="{{slide}}"></parsed>
-                </ss-slide>
+        <div class="col-md-7">
+          <div id="teacher-presentation" class="slideshow-container" ratio="1.77">
+            <ss-slideshow
+                display="{fullscreen: false, mode: 'teacher'}"
+                presentation-markdown="{{presentation.markdown}}">
             </ss-slideshow>
           </div>
         </div>

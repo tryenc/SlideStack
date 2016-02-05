@@ -17,14 +17,19 @@
             dont-move-slides>
         </textarea>
     </div>
-    <div id="live-preview" ng-class="{ fullscreen: display.fullscreen }">
-        <div class="slideshow-container" ratio="1.77">
-            <ss-slideshow display="display">
+
+    <div id="live-preview" ng-class="{ fullscreen: display.fullscreen }" class="slideshow-container" ratio="1.77">
+        <!-- <div class="slideshow-container" ratio="1.77"> -->
+            <ss-slideshow
+                display="display"
+                presentation-markdown="{{presentation.markdown}}">
+            </ss-slideshow>
+            <!-- <ss-slideshow display="display">
                 <ss-slide
                     ng-repeat="slide in slides track by $index">
                     <parsed markdown="{{slide}}"></parsed>
                 </ss-slide>
-            </ss-slideshow>
-        </div>
+            </ss-slideshow> -->
+        <!-- </div> -->
     </div>
 </div>

@@ -2,11 +2,22 @@ app.directive('ssSlideshow', function () {
     return {
         restrict: 'E',
         scope: {
-            display: '='
+            display: '=',
+            presentationMarkdown: '@'
         },
         transclude: true,
         templateUrl: 'js/common/directives/slideshow/slideshow.html',
         controller: function ($scope, Socket) {
+
+            $scope.rawSlides = $scope.presentationMarkdown.split('$$$');
+            this.display = $scope.display;
+
+            $scope.$watch('presentationMarkdown', function (newVal, oldVal) {
+                if (newVal === oldVal) return;
+                $scope.rawSlides = newVal.split('$$$');
+                console.log($scope.rawSlides);
+            });
+
             const slides = [];
             $scope.currentSlide = 0;
 
