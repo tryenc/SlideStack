@@ -10,8 +10,9 @@
         <div class="col-md-7" id="teacher-presentation">
           <div class="slideshow-container" ratio="1.77">
             <ss-slideshow display="{fullscreen: false, mode: 'teacher'}">
-                <ss-slide ng-repeat="slide in slides">
-                    <parsed display="{mode: 'teacher'}" markdown="{{slide}}"></parsed>
+                <ss-slide
+                    ng-repeat="slide in slides"
+                    markdown="{{slide}}">
                 </ss-slide>
             </ss-slideshow>
           </div>

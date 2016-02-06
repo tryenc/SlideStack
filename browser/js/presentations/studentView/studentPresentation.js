@@ -23,7 +23,7 @@ app.config(function ($stateProvider) {
 
             $scope.user = user;
 
-            $scope.user.confused = false;
+            if ($scope.user) $scope.user.confused = false;
 
             $scope.toggleConfusion = function(){
                 $scope.user.confused = !$scope.user.confused;
