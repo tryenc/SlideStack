@@ -18,3 +18,14 @@ app.directive('ratio', function () {
         }
     }
 })
+
+app.directive('relativeFont', function() {
+  return {
+      restrict: 'A',
+      link: function (scope, element){
+        const width = element[0].scrollWidth;
+        const height = element[0].scrollHeight;
+        element.css('font-size', (width/75).toString() + 'px');
+      }
+  }
+})

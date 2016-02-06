@@ -21,13 +21,25 @@
     }
 }
 
+#live-preview {
+    font-size: 20px;
+}
+
 #live-preview, #presentation-view, #teacher-presentation {
+    h1 {
+      font-size: 2em;
+    }
+    line-height: 125%;
+    p {
+      margin-bottom: .50%;
+    }
     position: relative;
     background-color: #fdfdfd;
     overflow: hidden;
 
     &.fullscreen {
         position: absolute;
+        font-size: 27px;
         left: 0;
         top: 0;
         width: 100vw;
