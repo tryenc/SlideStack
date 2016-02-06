@@ -2,8 +2,18 @@ app.directive('editor', function (Socket) {
     return {
         restrict: 'E',
         transclude: true,
+        scope: {
+            mode: '@'
+        },
+        require: ['^ssSlideshow', '?^fiddle'],
         templateUrl: 'js/common/directives/editor/editor.html',
         link: function (scope, element, attrs, ctrl, transclude) {
+
+            const slideshowCtrl = ctrl[0];
+            const fiddleCtrl = ctrl[1];
+
+            // If we're not inside a fiddle directive make sure selected is true
+            if (!fiddleCtrl) scope.selected = true;
 
             // Initialize code as empty string to prevent errors
             scope.code = { text: '' };
@@ -15,7 +25,7 @@ app.directive('editor', function (Socket) {
             let teacherCode = '';
 
             // Sharing is false by default for students, true for teachers
-            let sharing = scope.display.mode === 'teacher' ? true : false;
+            let sharing = slideshowCtrl.display.mode === 'teacher' ? true : false;
 
             // If there's any predefined text, load it
             if (transclude().text().trim()) {
@@ -23,13 +33,19 @@ app.directive('editor', function (Socket) {
             }
 
             // Set up Ace editor
-            const editor = window.ace.edit('ace-editor');
+            // Have to give the editor div a unique id
+            const editorDiv = element.children('code-editor')[0];
+            const aceId = 'ace-editor-' + Math.random().toString().slice(2);
+            console.log(aceId);
+            const aceMode = scope.mode || 'javascript';
+            editorDiv.setAttribute('id', aceId);
+            let editor = window.ace.edit(aceId);
             editor.$blockScrolling = Infinity;
-            editor.getSession().setMode("ace/mode/javascript");
+            editor.getSession().setMode("ace/mode/" + aceMode.toLowerCase());
             editor.insert(scope.code.text);
 
             // Listen for typing events in Ace editor
-            const editorDiv = document.getElementById('ace-editor');
+            // const editorDiv = document.getElementById('ace-editor');
             editorDiv.addEventListener('keyup', function (e) {
 
                 scope.code.text = editor.getValue().trim();
@@ -78,6 +94,10 @@ app.directive('editor', function (Socket) {
                 consoleFrame.postMessage(code, '*');
             };
 
+            // Set up tabs when used in fiddle directive
+            if (!fiddleCtrl) return;
+
+            fiddleCtrl.addTab(scope);
         }
     }
 })

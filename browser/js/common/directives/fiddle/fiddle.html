@@ -1,0 +1,14 @@
+<div class="fiddle-container">
+    <div class="fiddle-tabs">
+        <button
+            ng-repeat="tab in tabs"
+            ng-click="select(tab)">
+            {{tab.mode}}
+        </button>
+    </div>
+
+    <editor mode="HTML"></editor>
+    <editor mode="CSS"></editor>
+    <editor mode="JavaScript"></editor>
+    <fiddle-view></fiddle-view>
+</div>
