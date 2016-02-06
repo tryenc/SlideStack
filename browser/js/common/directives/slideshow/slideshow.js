@@ -7,6 +7,10 @@ app.directive('ssSlideshow', function () {
         transclude: true,
         templateUrl: 'js/common/directives/slideshow/slideshow.html',
         controller: function ($scope, Socket) {
+
+            // share display data with inner directives
+            this.display = $scope.display;
+
             const slides = [];
             $scope.currentSlide = 0;
 

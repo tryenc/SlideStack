@@ -1,9 +1,11 @@
-app.directive('ssSlide', function () {
+app.directive('ssSlide', function (Parser, $compile) {
     return {
         restrict: 'E',
-        scope: {},
+        scope: {
+            markdown: '@'
+        },
         templateUrl: 'js/common/directives/slide/slide.html',
-        transclude: true,
+        // transclude: true,
         require: '^ssSlideshow',
         link: function (scope, element, attrs, ctrl, transclude) {
 
@@ -11,6 +13,8 @@ app.directive('ssSlide', function () {
 
             scope.prev = ctrl.prevSlide;
             scope.next = ctrl.nextSlide;
+
+            scope.display = ctrl.display;
 
         }
     }
