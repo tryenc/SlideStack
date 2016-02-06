@@ -73,11 +73,8 @@ app.directive('ssSlideshow', function () {
                 if ($scope.syncedWithTeacher) {
                     $scope.currentSlide = currentTeacherSlide;
                     $scope.$digest();
-                    console.log("$scope.currentSlide", $scope.currentSlide);
                 }
-            })
-
-
+            });
         }
     }
 });
