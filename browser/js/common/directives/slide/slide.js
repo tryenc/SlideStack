@@ -2,7 +2,7 @@ app.directive('ssSlide', function (Parser, $compile) {
     return {
         restrict: 'E',
         scope: {
-            markdown: '@'
+            markdown: '@',
         },
         templateUrl: 'js/common/directives/slide/slide.html',
         // transclude: true,

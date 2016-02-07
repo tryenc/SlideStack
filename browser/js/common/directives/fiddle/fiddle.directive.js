@@ -32,6 +32,10 @@ app.directive('fiddle', function () {
                 $scope.tabs.forEach(tab => tab.selected = false);
                 if (selectedTab.mode === 'View') showPage();
                 selectedTab.selected = true;
+
+                // need to rerender the ace editor when showing the tab
+                if (!selectedTab.editor) return;
+                selectedTab.editor.renderer.updateFull();
             };
 
         }

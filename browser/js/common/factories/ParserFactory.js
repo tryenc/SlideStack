@@ -24,7 +24,7 @@ app.factory('Parser', function (marked) {
                 closing tags for directives that are left open. */
                 if (!openDirectives[line]) {
                     openDirectives[line] = i;
-                    lines[i] = lines[i].replace('@ ', '<').replace(' @', '>');
+                    lines[i] = lines[i].replace('@ ', '<').replace(' @', ' index="{{index}}">');
                 } else {
                     lines[i] = lines[i].replace('@ ', '</').replace(' @', '>');
                     delete openDirectives[line];

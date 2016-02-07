@@ -1,12 +1,12 @@
 <div
     class="code-editor"
-    ng-model="code.text"
     ng-show="selected"
+    ng-click="doSomething()"
     dont-move-slides>
 </div>
 <div>
     <button
-        ng-show="display.mode==='student'"
+        ng-show="display.mode==='student' && selected"
         ng-click="toggleEdit()">
         <span ng-show="!editCode">EDIT</span>
         <span ng-show="editCode">CANCEL</span>
