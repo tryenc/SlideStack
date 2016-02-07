@@ -1,14 +1,12 @@
-app.directive('parsed', function (Parser, $compile) {
+app.directive('parse', function (Parser, $compile) {
     return {
-        restrict: 'E',
-        template: '<div></div>',
-        scope: {
-            markdown: '@',
-            display: '='
-        },
+        restrict: 'A',
+        // scope: {
+        //     markdown: '@parse'
+        // },
         link: function (scope, element, attrs) {
-
             const parseAndAppend = function (content) {
+
                 element.empty();
 
                 if (!content) return;
@@ -24,6 +22,7 @@ app.directive('parsed', function (Parser, $compile) {
                 if (newVal === oldVal) return;
                 parseAndAppend(newVal, element);
             });
+
         }
     }
-})
+});

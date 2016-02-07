@@ -4,8 +4,8 @@
     <div class="slideshow-container" ratio="1.77">
         <ss-slideshow display="{ fullscreen: true, mode: 'student' }">
             <ss-slide
-                ng-repeat="slide in slides track by $index">
-                <parsed display="{ mode: 'student' }" markdown="{{slide}}"></parsed>
+                ng-repeat="slide in slides track by $index"
+                markdown="{{slide}}">
             </ss-slide>
         </ss-slideshow>
     </div>
@@ -19,14 +19,14 @@
  			<textarea placeholder="Type your question here" ng-model="question"></textarea>
         </div>
         <div class="modal-footer">
-        	
+
             <button class="btn btn-primary" type="button" ng-click="submitQuestion(question)">Submit Question</button>
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
     </script>
 
     <button type="button" class="btn btn-default" ng-click="open('sm')">Have a Question?</button>
-    
+
     <div class="toggle-button" ng-class="{'toggle-button-selected': user.confused }">
        <button ng-click="toggleConfusion()"></button>
    	</div>
