@@ -16,6 +16,7 @@ app.directive('ssSlideshow', function () {
 
             this.addSlide = function (slide) {
                 slides.push(slide);
+                slide.index = (slides.length - 1).toString();
                 if (slides.length === 1) slide.selected = true;
             };
 

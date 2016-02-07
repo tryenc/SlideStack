@@ -3,7 +3,8 @@ app.directive('editor', function (Socket) {
         restrict: 'E',
         transclude: true,
         scope: {
-            mode: '@'
+            mode: '@',
+            index: '@'
         },
         require: ['^ssSlideshow', '?^fiddle'],
         templateUrl: 'js/common/directives/editor/editor.html',
@@ -35,14 +36,18 @@ app.directive('editor', function (Socket) {
             // Set up Ace editor
             // Have to give the editor div a unique id
             const editorDiv = element.children('code-editor')[0];
-            const aceId = 'ace-editor-' + Math.random().toString().slice(2);
-            console.log(aceId);
             const aceMode = scope.mode || 'javascript';
+            const aceId = 'ace-editor-' + scope.index + '-' + aceMode;
+            console.log(aceId);
             editorDiv.setAttribute('id', aceId);
             let editor = window.ace.edit(aceId);
             editor.$blockScrolling = Infinity;
             editor.getSession().setMode("ace/mode/" + aceMode.toLowerCase());
             editor.insert(scope.code.text);
+
+            // Attach the editor Id to the code object
+            // Need to send that along with socket event
+            scope.code.editor = aceId;
 
             // Listen for typing events in Ace editor
             // const editorDiv = document.getElementById('ace-editor');
@@ -51,24 +56,25 @@ app.directive('editor', function (Socket) {
                 scope.code.text = editor.getValue().trim();
 
                 // Emit socket event if sharing code
-                if (sharing) Socket.shareCode(scope.code.text);
+                if (sharing) Socket.shareCode(scope.code);
 
             });
 
             // Listen for edit events from sockets
             Socket.onCodeChange(function (newCode) {
+                if (newCode.editor !== scope.code.editor) return;
 
                 // If currently editing, track teacher's changes but don't update
-                if (scope.editCode) return teacherCode = newCode;
+                if (scope.editCode) return teacherCode = newCode.text;
 
-                scope.code.text = newCode;
-                editor.setValue(newCode, 1);
+                scope.code.text = newCode.text;
+                editor.setValue(newCode.text, 1);
             });
 
             // Enable sharing when called on
             Socket.onCalled(function () {
                 sharing = true;
-                Socket.shareCode(scope.code.text);
+                Socket.shareCode(scope.code);
             });
 
             // Cancel sharing when called on ends
@@ -96,7 +102,7 @@ app.directive('editor', function (Socket) {
 
             // Set up tabs when used in fiddle directive
             if (!fiddleCtrl) return;
-
+            scope.editor = editor;
             fiddleCtrl.addTab(scope);
         }
     }
