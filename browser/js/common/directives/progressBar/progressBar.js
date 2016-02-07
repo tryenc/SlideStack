@@ -1,34 +1,41 @@
 /**
  * Created by Jon on 2/5/16.
  */
-app.directive('progressBar', () => {
+app.directive('progressBar', (Socket) => {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/progressBar/progressBar.html',
-        link: (scope, Socket) => {
-
+        scope: {
+          confusion: '='
+        },
+        link: (scope) => {
             scope.max = 200;
 
-            var type;
-            scope.confusionLevel = 100;
+            //console.log("confusion level", scope.confusion.level)
+            scope.type = 'success';
+            //scope.$watch(scope.confusionLevel, )
+            //scope.confusionLevel = 0;
 
-            if (scope.confusionLevel < 25) {
-                type = 'success';
-            } else if (scope.confusionLevel < 50) {
-                type = 'info';
-            } else if (scope.confusionLevel < 75) {
-                type = 'warning';
-            } else {
-                type = 'danger';
-            }
+            scope.$watch('confusion.level', (newVal, oldVal) => {
+                if (newVal == oldVal) return;
 
-            scope.type = type;
-            scope.showWarning = type === 'danger' || type === 'warning';
+                if (scope.confusion.level < 25) {
+                    scope.type = 'success';
+                } else if (scope.confusion.level < 50) {
+                    scope.type = 'info';
+                } else if (scope.confusion.level < 75) {
+                    scope.type = 'warning';
+                } else {
+                    scope.type = 'danger';
+                }
 
-            Socket.onConfusion(data => {
-                //scope.value += data.confusion;
-                scope.confusionLevel++;
+                scope.showWarning = scope.type === 'danger' || scope.type === 'warning';
             });
+
+
+
+
+
         }
     };
 });

@@ -8,14 +8,14 @@ app.config(function ($stateProvider) {
         url: '/presentations/:id/student',
         templateUrl: 'js/presentations/studentView/studentPresentation.html',
         resolve: {
-            presentation: function (PresentationFactory, $stateParams) {
+            presentation: (PresentationFactory, $stateParams) => {
                 return PresentationFactory.fetchById($stateParams.id);
             },
-            user: function (AuthService) {
+            user: (AuthService) => {
                 return AuthService.getLoggedInUser();
             }
         },
-        controller: function ($scope, presentation, Socket, user, $uibModal) {
+        controller: ($scope, presentation, Socket, user, $uibModal) => {
             $scope.slides = presentation.markdown.split('$$$');
             Socket.joinRoom({
                 presentation: presentation._id
@@ -25,12 +25,17 @@ app.config(function ($stateProvider) {
 
             $scope.user.confused = false;
 
-            $scope.toggleConfusion = function(){
-                $scope.user.confused = !$scope.user.confused;
-                Socket.emitConfusion(user);
-            }
+            $scope.toggleConfusion = () => {
+                if(!$scope.user.confused) {
+                    Socket.emitConfusion(user);
+                    $scope.user.confused = true;
+                } else {
+                    Socket.retractConfusion(user);
+                    $scope.user.confused = false;
+                }
+            };
 
-            $scope.open = function (size) {
+            $scope.open = (size) => {
 
                 var modalInstance = $uibModal.open({
                     animation: $scope.animationsEnabled,
@@ -38,28 +43,28 @@ app.config(function ($stateProvider) {
                     controller: 'ModalInstanceCtrl',
                     size: size,
                     resolve: {
-                        user: function () {
+                        user: () => {
                             return $scope.user;
                         }
                     }
                 });
 
-                modalInstance.result.then(function (selectedItem) {
+                modalInstance.result.then(selectedItem => {
                     $scope.selected = selectedItem;
                 }, function () {
-                    $log.info('Modal dismissed at: ' + new Date());
+                    //$log.info('Modal dismissed at: ' + new Date());
                 });
             };
         }
     })
-}).controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, user, Socket) {
+}).controller('ModalInstanceCtrl', ($scope, $uibModalInstance, user, Socket) => {
 
-  $scope.submitQuestion = function (question) {
-    Socket.askQuestion({id: user.id, question: question});
+  $scope.submitQuestion =  (question) => {
+    Socket.askQuestion({user: user, question: question});
     $uibModalInstance.close();
   };
 
-  $scope.cancel = function () {
+  $scope.cancel = () => {
     $uibModalInstance.dismiss('cancel');
   };
 });

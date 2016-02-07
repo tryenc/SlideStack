@@ -10,11 +10,22 @@ app.config(function ($stateProvider) {
             studentList: UserFactory => UserFactory.fetchAll()
         },
         controller: ($scope, presentation, PresentationFactory, Socket) => {
+
             $scope.display =  {
                 mode: 'teacher'
             };
 
+            $scope.currentQuestion = null;
+
             $scope.studentList = [];
+
+            // Student Level of confusion handled in the progress
+            // bar directive
+            $scope.confusion = {
+                level: 0
+            };
+
+            console.log("HIT")
 
             Socket.joinRoom({
                 presentation: presentation._id,
@@ -35,13 +46,26 @@ app.config(function ($stateProvider) {
             });
 
             Socket.questionAsked(studentObj => {
-                console.log("studentObj", studentObj);
+                if (!studentObj.user.name) {
+                    $('#questionBox').append
+                        ('Anonymous: ' + studentObj.question)
+                } else {
+                    $('#questionBox').append
+                        (studentObj.user.name + ': ' + studentObj.question)
+                }
             });
 
-            Socket.onConfusion(studentObj => {
-                console.log("confused student", studentObj);
+            Socket.onConfusion(data => {
+                console.log("Inside the on confusion listener");
+                $scope.confusion.level += 100;
+                $scope.$digest();
             });
 
+            Socket.onRetractConfusion(data => {
+                console.log("Inside the on retract confusion");
+                $scope.confusion.level -= 100;
+                $scope.$digest();
+            });
         }
     });
 });
