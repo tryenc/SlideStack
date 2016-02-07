@@ -40,16 +40,15 @@ app.config(function ($stateProvider) {
             $scope.slides = presentation.markdown.split('$$$');
 
             Socket.onStudentLeft(studentId => {
-                $scope.studentList = $scope.studentList.filter(student => {
-                    return student._id !== studentId;
-                });
+                $scope.studentList = $scope.studentList.filter(student => student._id !== studentId);
                 $scope.$digest();
             });
 
+            // Student asking question to the teacher
             Socket.questionAsked(studentObj => {
-                if (!studentObj.user.anonymous) {
+                if (studentObj.anonymous) {
                     $('#questionBox').append
-                        ('Anonymous: ' + studentObj.question)
+                        ('Anonymous: ' + studentObj.question+ '\n')
                 } else {
                     $('#questionBox').append
                         (studentObj.user.name + ': ' + studentObj.question + '\n')
@@ -57,13 +56,11 @@ app.config(function ($stateProvider) {
             });
 
             Socket.onConfusion(data => {
-                console.log("Inside the on confusion listener");
                 $scope.confusion.level += 100;
                 $scope.$digest();
             });
 
             Socket.onRetractConfusion(data => {
-                console.log("Inside the on retract confusion");
                 $scope.confusion.level -= 100;
                 $scope.$digest();
             });

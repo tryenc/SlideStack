@@ -60,7 +60,7 @@ app.config(function ($stateProvider) {
     })
 }).controller('ModalInstanceCtrl', ($scope, $uibModalInstance, user, Socket) => {
 
-    $scope.anonymous = false;
+  $scope.anonymous = false;
   $scope.submitQuestion =  (question, anonymous) => {
     Socket.askQuestion(
         {user: user, question: question, anonymous: anonymous});
