@@ -7,11 +7,16 @@ app.directive('ssSlideshow', function () {
         transclude: true,
         templateUrl: 'js/common/directives/slideshow/slideshow.html',
         controller: function ($scope, Socket) {
+
+            // share display data with inner directives
+            this.display = $scope.display;
+
             const slides = [];
             $scope.currentSlide = 0;
 
             this.addSlide = function (slide) {
                 slides.push(slide);
+                slide.index = (slides.length - 1).toString();
                 if (slides.length === 1) slide.selected = true;
             };
 
@@ -49,6 +54,19 @@ app.directive('ssSlideshow', function () {
                 }
             });
 
+            // set up event listeners for internal directives to listen for changes to code
+            const listeners = {};
+            this.onCodeChange = function (editor, fn) {
+                listeners[editor] = fn;
+            }
+
+            // track changes to code on all slides
+            this.codeSnippets = {};
+            Socket.onCodeChange(code => {
+                this.codeSnippets[code.editor] = code.text;
+                listeners[code.editor](code.text);
+            });
+
             // controls for student view
             if ($scope.display.mode !== 'student') return;
 
@@ -62,14 +80,15 @@ app.directive('ssSlideshow', function () {
                 $scope.syncedWithTeacher = !$scope.syncedWithTeacher;
             }
 
-            // handle socket events
+            // handle socket slide change events
             Socket.onSlideChange(function (slideNumber) {
                 currentTeacherSlide = slideNumber;
                 if ($scope.syncedWithTeacher) {
                     $scope.currentSlide = currentTeacherSlide;
                     $scope.$digest();
                 }
-            })
+            });
+
 
 
         }

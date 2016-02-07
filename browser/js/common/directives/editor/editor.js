@@ -2,8 +2,19 @@ app.directive('editor', function (Socket) {
     return {
         restrict: 'E',
         transclude: true,
+        scope: {
+            mode: '@',
+            index: '@'
+        },
+        require: ['^ssSlideshow', '?^fiddle'],
         templateUrl: 'js/common/directives/editor/editor.html',
         link: function (scope, element, attrs, ctrl, transclude) {
+
+            const slideshowCtrl = ctrl[0];
+            const fiddleCtrl = ctrl[1];
+
+            // If we're not inside a fiddle directive make sure selected is true
+            if (!fiddleCtrl) scope.selected = true;
 
             // Initialize code as empty string to prevent errors
             scope.code = { text: '' };
@@ -14,8 +25,11 @@ app.directive('editor', function (Socket) {
             // Track teacher's code when students edit their own code
             let teacherCode = '';
 
+            // Get the current display mode
+            scope.display = slideshowCtrl.display;
+
             // Sharing is false by default for students, true for teachers
-            let sharing = scope.display.mode === 'teacher' ? true : false;
+            let sharing = scope.display.mode === 'teacher';
 
             // If there's any predefined text, load it
             if (transclude().text().trim()) {
@@ -23,36 +37,47 @@ app.directive('editor', function (Socket) {
             }
 
             // Set up Ace editor
-            const editor = window.ace.edit('ace-editor');
+            // Have to give the editor div a unique id
+            const editorDiv = element.children('code-editor')[0];
+            const aceMode = scope.mode || 'javascript';
+            const aceId = 'ace-editor-' + scope.index + '-' + aceMode;
+            editorDiv.setAttribute('id', aceId);
+            let editor = window.ace.edit(aceId);
             editor.$blockScrolling = Infinity;
-            editor.getSession().setMode("ace/mode/javascript");
+            editor.getSession().setMode("ace/mode/" + aceMode.toLowerCase());
             editor.insert(scope.code.text);
 
+            // Attach the editor Id to the code object
+            // Need to send that along with socket event
+            scope.code.editor = aceId;
+
+            // Check to see if code for this slide has already been updated
+            if (slideshowCtrl.codeSnippets[aceId]) {
+                scope.code.text = slideshowCtrl.codeSnippets[aceId];
+                editor.setValue(scope.code.text, 1);
+            }
+
             // Listen for typing events in Ace editor
-            const editorDiv = document.getElementById('ace-editor');
-            editorDiv.addEventListener('keyup', function (e) {
+            editor.getSession().on('change', function () {
 
                 scope.code.text = editor.getValue().trim();
 
                 // Emit socket event if sharing code
-                if (sharing) Socket.shareCode(scope.code.text);
+                if (sharing) Socket.shareCode(scope.code);
 
             });
 
-            // Listen for edit events from sockets
-            Socket.onCodeChange(function (newCode) {
+            slideshowCtrl.onCodeChange(aceId, function (newText) {
+                if (scope.editCode) return teacherCode = newText;
 
-                // If currently editing, track teacher's changes but don't update
-                if (scope.editCode) return teacherCode = newCode;
-
-                scope.code.text = newCode;
-                editor.setValue(newCode, 1);
+                scope.code.text = newText;
+                editor.setValue(newText, 1);
             });
 
             // Enable sharing when called on
             Socket.onCalled(function () {
                 sharing = true;
-                Socket.shareCode(scope.code.text);
+                Socket.shareCode(scope.code);
             });
 
             // Cancel sharing when called on ends
@@ -78,6 +103,10 @@ app.directive('editor', function (Socket) {
                 consoleFrame.postMessage(code, '*');
             };
 
+            // Set up tabs when used in fiddle directive
+            if (!fiddleCtrl) return;
+            scope.editor = editor;
+            fiddleCtrl.addTab(scope);
         }
     }
 })
