@@ -25,8 +25,11 @@ app.directive('editor', function (Socket) {
             // Track teacher's code when students edit their own code
             let teacherCode = '';
 
+            // Get the current display mode
+            scope.display = slideshowCtrl.display;
+
             // Sharing is false by default for students, true for teachers
-            let sharing = slideshowCtrl.display.mode === 'teacher' ? true : false;
+            let sharing = scope.display.mode === 'teacher';
 
             // If there's any predefined text, load it
             if (transclude().text().trim()) {
@@ -38,7 +41,6 @@ app.directive('editor', function (Socket) {
             const editorDiv = element.children('code-editor')[0];
             const aceMode = scope.mode || 'javascript';
             const aceId = 'ace-editor-' + scope.index + '-' + aceMode;
-            console.log(aceId);
             editorDiv.setAttribute('id', aceId);
             let editor = window.ace.edit(aceId);
             editor.$blockScrolling = Infinity;
@@ -48,6 +50,12 @@ app.directive('editor', function (Socket) {
             // Attach the editor Id to the code object
             // Need to send that along with socket event
             scope.code.editor = aceId;
+
+            // Check to see if code for this slide has already been updated
+            if (slideshowCtrl.codeSnippets[aceId]) {
+                scope.code.text = slideshowCtrl.codeSnippets[aceId];
+                editor.setValue(scope.code.text, 1);
+            }
 
             // Listen for typing events in Ace editor
             // const editorDiv = document.getElementById('ace-editor');
@@ -60,15 +68,11 @@ app.directive('editor', function (Socket) {
 
             });
 
-            // Listen for edit events from sockets
-            Socket.onCodeChange(function (newCode) {
-                if (newCode.editor !== scope.code.editor) return;
+            slideshowCtrl.onCodeChange(aceId, function (newText) {
+                if (scope.editCode) return teacherCode = newText;
 
-                // If currently editing, track teacher's changes but don't update
-                if (scope.editCode) return teacherCode = newCode.text;
-
-                scope.code.text = newCode.text;
-                editor.setValue(newCode.text, 1);
+                scope.code.text = newText;
+                editor.setValue(newText, 1);
             });
 
             // Enable sharing when called on

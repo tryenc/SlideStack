@@ -6,7 +6,7 @@
 </div>
 <div>
     <button
-        ng-show="display.mode==='student'"
+        ng-show="display.mode==='student' && selected"
         ng-click="toggleEdit()">
         <span ng-show="!editCode">EDIT</span>
         <span ng-show="editCode">CANCEL</span>
