@@ -17,6 +17,7 @@ app.config(function ($stateProvider) {
         },
         controller: ($scope, presentation, Socket, user, $uibModal) => {
             $scope.slides = presentation.markdown.split('$$$');
+
             Socket.joinRoom({
                 presentation: presentation._id
             });
@@ -59,8 +60,10 @@ app.config(function ($stateProvider) {
     })
 }).controller('ModalInstanceCtrl', ($scope, $uibModalInstance, user, Socket) => {
 
-  $scope.submitQuestion =  (question) => {
-    Socket.askQuestion({user: user, question: question});
+    $scope.anonymous = false;
+  $scope.submitQuestion =  (question, anonymous) => {
+    Socket.askQuestion(
+        {user: user, question: question, anonymous: anonymous});
     $uibModalInstance.close();
   };
 

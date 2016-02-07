@@ -25,15 +25,15 @@ app.config(function ($stateProvider) {
                 level: 0
             };
 
-            console.log("HIT")
-
             Socket.joinRoom({
                 presentation: presentation._id,
                 teacher: true
             });
 
             Socket.onStudentJoin(student => {
+                console.log("Student Joined", student);
                 $scope.studentList.push(student);
+                $scope.$digest();
             });
 
             $scope.presentation = presentation; // might not need this
@@ -43,15 +43,16 @@ app.config(function ($stateProvider) {
                 $scope.studentList = $scope.studentList.filter(student => {
                     return student._id !== studentId;
                 });
+                $scope.$digest();
             });
 
             Socket.questionAsked(studentObj => {
-                if (!studentObj.user.name) {
+                if (!studentObj.user.anonymous) {
                     $('#questionBox').append
                         ('Anonymous: ' + studentObj.question)
                 } else {
                     $('#questionBox').append
-                        (studentObj.user.name + ': ' + studentObj.question)
+                        (studentObj.user.name + ': ' + studentObj.question + '\n')
                 }
             });
 
