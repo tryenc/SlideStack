@@ -1,5 +1,6 @@
 // color variables
-$green: #57bb89;
+$button-color: #57bb89;  //green
+$button-font-color: #fff;
 $orange: #f79b60;
 $background: #efede7;
 
@@ -31,6 +32,12 @@ html, body {
 
 .full-height {
     height: 100%;
+}
+
+button {
+  background: $button-color;
+  color: $button-font-color;
+  border: 0;
 }
 
 @import 'directives/main';
