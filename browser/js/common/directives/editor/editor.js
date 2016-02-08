@@ -58,7 +58,7 @@ app.directive('editor', function (Socket) {
             }
 
             // Listen for typing events in Ace editor
-            editor.getSession().on('change', function () {
+            editorDiv.addEventListener('keyup', function () {
 
                 scope.code.text = editor.getValue().trim();
 
