@@ -47,13 +47,17 @@ router.get('/:id', (req, res, next) => {
 
 // Create new user
 router.post('/', (req, res, next) => {
-
     UserModel.create(req.body)
-        .then(newUser => {
-            res.status(201).send(newUser);
+        .then(user => {
+            req.logIn(user, function(loginErr) {
+                if (loginErr) return next(loginErr);
+                // We respond with a response object that has user with _id and email.
+                res.status(200).send(
+                    user.sanitize()
+                );
+            });
         })
         .then(null, next);
-
 });
 
 // Update a user
