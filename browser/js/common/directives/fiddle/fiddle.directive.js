@@ -1,12 +1,16 @@
 app.directive('fiddle', function () {
     return {
         restrict: 'E',
+        transclude: true,
         templateUrl: 'js/common/directives/fiddle/fiddle.html',
-        controller: function ($scope, $element) {
+        controller: function ($scope, $element, $transclude) {
             $scope.tabs = [];
             let viewTab;
             let libraries = '';
 
+            $scope.code = $transclude(function (content) {
+                return content;
+            });
 
             this.addTab = function (tab) {
                 $scope.tabs.push(tab);

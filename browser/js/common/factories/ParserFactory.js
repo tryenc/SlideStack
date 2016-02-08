@@ -11,7 +11,8 @@ app.factory('Parser', function (marked) {
 
     const customParse = function (string) {
         let lines = string.split('\n');
-        let openDirectives = {};
+        let openDirective = false;
+        let fiddleContent = '';
 
         lines.forEach((line, i) => {
 
@@ -23,7 +24,8 @@ app.factory('Parser', function (marked) {
                 us to have nested directives and to automatically add
                 closing tags for directives that are left open. */
                 if (!openDirectives[line]) {
-                    openDirectives[line] = i;
+                    openDirectives[line].line = i;
+                    openDirectives[line].content = '';
                     lines[i] = lines[i].replace('@ ', '<').replace(' @', ' index="{{index}}">');
                 } else {
                     lines[i] = lines[i].replace('@ ', '</').replace(' @', '>');
