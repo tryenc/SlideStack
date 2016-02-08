@@ -31,13 +31,20 @@ router.get('/:id', (req, res, next) => {
 // Create new presentation
 router.post('/', (req, res, next) => {
 
+    let newPres;
+
     PresentationsModel.create(req.body.presentation)
         .then(presentation => {
-            return UserModel.findByIdAndUpdate(req.body.user,
-                {presentations: presentation._id}, {new: true});
+            newPres = presentation;
+            return UserModel.findById(req.body.user);
+        })
+        .then(foundUser => {
+            foundUser.presentations.push(newPres._id);
+            return foundUser.save();
         })
         .then(updatedUser => {
-            res.send(updatedUser);
+            console.log(updatedUser);
+            res.send(newPres);
         })
         .then(null, next);
 
