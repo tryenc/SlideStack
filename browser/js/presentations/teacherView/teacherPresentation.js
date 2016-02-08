@@ -36,7 +36,7 @@ app.config(function ($stateProvider) {
                 $scope.$digest();
             });
 
-            $scope.presentation = presentation; // might not need this
+            $scope.presentation = presentation;
             $scope.slides = presentation.markdown.split('$$$');
 
             Socket.onStudentLeft(studentId => {
