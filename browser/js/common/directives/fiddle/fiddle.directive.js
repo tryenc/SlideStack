@@ -23,6 +23,11 @@ app.directive('fiddle', function () {
                     name: 'JQuery',
                     url: 'https://code.jquery.com/jquery-2.2.0.min.js',
                     checked: false
+                },
+                {
+                    name: 'Bootstrap',
+                    url: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
+                    checked: false
                 }
             ];
 

@@ -1,7 +1,7 @@
 /**
  * Created by Jon on 2/2/16.
  */
-app.directive('ssStudentList', (Socket) => {
+app.directive('ssStudentList', (Socket, $rootScope) => {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/studentList/studentList.html',
@@ -17,6 +17,9 @@ app.directive('ssStudentList', (Socket) => {
                     scope.calledOn[student.socket] = false;
                 }
             };
+
+            // Reset calledOn after slide change
+            $rootScope.$on('slide change', () => scope.calledOn = {});
         }
     };
 });
