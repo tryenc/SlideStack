@@ -42,8 +42,7 @@ router.post('/', (req, res, next) => {
             foundUser.presentations.push(newPres._id);
             return foundUser.save();
         })
-        .then(updatedUser => {
-            console.log(updatedUser);
+        .then(() => {
             res.send(newPres);
         })
         .then(null, next);
