@@ -1,9 +1,8 @@
-/**
- * Created by Jon on 1/27/16.
- */
 const router = require('express').Router();
 const mongoose = require('mongoose');
+const Promise = require('bluebird');
 const UserModel = mongoose.model('User');
+const PresentationModel = mongoose.model('Presentations');
 
 // Get all users
 router.get('/', (req, res, next) => {
@@ -25,6 +24,11 @@ router.get('/:id', (req, res, next) => {
         .populate('classes presentations')
         .then(returnedUser => {
             user = returnedUser;
+            
+
+
+
+            user = returnedUser;
             if(user.isStudent){
                 res.send(user);
             } else {
@@ -44,6 +48,34 @@ router.get('/:id', (req, res, next) => {
         .then(null, next);
 
 });
+
+// router.get('/:id', (req, res, next) => {
+
+//     var user;
+
+//      UserModel.findById(req.params.id)
+//         .populate('classes presentations')
+//         .then(returnedUser => {
+//             user = returnedUser;
+//             if(user.isStudent){
+//                 res.send(user);
+//             } else {
+//                 return user.getStudents()
+//             }
+//         })
+//         .then(students => {
+//             //'toObject' turns 'user', which is a mongoose document,
+//             // into a JS object, which gives us the ability to add properties to it
+//             user = user.toObject();
+
+//             user.students = students;
+//             if(!user.isStudent){
+//                 res.send(user);
+//             }
+//         })
+//         .then(null, next);
+
+// });
 
 // Create new user
 router.post('/', (req, res, next) => {

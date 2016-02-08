@@ -87,58 +87,54 @@ connectToDb.then(function () {
         presentations = [
             {
                 name: 'Shakespeare Shakedown',
-                markdown:'#Heres some markdown about Shakespeare.\n He wrote\n*Romeo and Juliet«\n*Othello\n*MacBeth',
-                class: classes[0]._id,
+                markdown:'# Heres some markdown about Shakespeare.\n He wrote\n*Romeo and Juliet«\n*Othello\n*MacBeth',
+                class: classes[4]._id,
                 theme: 'simple'
             },
             {
-                name: 'How we raped the Native Americans',
-                markdown:'#Heres some markdown about the Native Americans./n We used to call them _indians_',
-                class: classes[1]._id,
+                name: 'The Native Americans',
+                markdown:'# Heres some markdown about the Native Americans.',
+                class: classes[0]._id,
                 theme: 'black'
             },
             {
-                name: 'How to Kill a Mockingbird',
-                markdown:'#Sex in Greek Mythology/n##Everything is about sex drugs and rock and roll./n These people are __worse__ than Disney',
-                class: classes[2]._id
-            },
-            {
-                name: 'Where have all the cowgirls gone',
-                markdown:'My First Presentation, my EG WILDE./n*Birds/n*North By Northwest/n*Psycho',
-                class: classes[3]._id
-            },
-
-            // BREAK OLD //
-
-            {
-                name: 'Communication Breakdown',
-                markdown:'#Led Zeppelin./n He wrote/n* $$$ Stuff and Juliet/n* $$$ Othello/n*Things',
+                name: 'To Kill a Mockingbird',
+                markdown:'# Atticus Finch was a great lawyer, a great father and a great man',
                 class: classes[4]._id
             },
             {
-                name: 'How we saved the Native Americans',
-                markdown:'#Heres some markdown about the Native Americans and how great white people are $$$ ' +
-                    './n We used to call them _slaves_ $$$ This is the last slide',
+                name: 'Advanced Calculus',
+                markdown:'# Advanced Calculus',
                 class: classes[5]._id
             },
             {
-                name: 'Sex and the Greeks',
-                markdown:'#Sex in Greek Mythology/n##Everything that doesnt seem like its about sex is actually about sex./n These people are __worse__ than Disney',
+                name: 'Communication Breakdown',
+                markdown:'# Led Zeppelin.',
+                class: classes[8]._id
+            },
+            {
+                name: 'Compilers and Interpreters',
+                markdown:"#What's going on under the hood",
                 class: classes[6]._id
             },
             {
-                name: 'Tom Sawyer',
-                markdown:'A book about nothing:./n*Birds/n*North By Northwest/n*Psycho',
+                name: 'Pushups',
+                markdown:'# Drop and give me 20!',
                 class: classes[7]._id
             },
             {
-                name: 'A day in life of Morty',
-                markdown:'#Sex in Greek Mythology/n## $$$ ./n These people are __worse__ than Disney',
+                name: 'Huckleberry Finn',
+                markdown:'# Mark Twain and the Anti-Hero',
+                class: classes[4]._id
+            },
+            {
+                name: 'Orson Welles',
+                markdown:"# The Highs and Lows of One of America's Greatest Actors",
                 class: classes[1]._id
             },
             {
-                name: 'Lord of the Flies',
-                markdown:'Everybody dies in the end./n*Birds/n*North By Northwest/n*Psycho',
+                name: 'An American In Paris',
+                markdown:'# Those Parisians sure can dance',
                 class: classes[2]._id
             }
         ];
@@ -164,7 +160,7 @@ connectToDb.then(function () {
                 role: 'student',
                 isStudent: true,
                 isTeacher: false,
-                password: 'B13b3r',
+                password: 'password',
                 classes: [presentations[2].class, presentations[3].class]
             },
             {
@@ -173,7 +169,7 @@ connectToDb.then(function () {
                 role: 'student',
                 isStudent: true,
                 isTeacher: false,
-                password: 'Sloane',
+                password: 'password',
                 classes: [presentations[1].class, presentations[2].class]
             },
             {
@@ -192,7 +188,7 @@ connectToDb.then(function () {
                 role: 'student',
                 isStudent: true,
                 isTeacher: false,
-                password: 'J3nn1f3r',
+                password: 'password',
                 classes: [presentations[3].class, presentations[1].class]
             },
 
@@ -204,7 +200,7 @@ connectToDb.then(function () {
                 role: 'student',
                 isStudent: true,
                 isTeacher: false,
-                password: 'obviousPassword',
+                password: 'password',
                 classes: [presentations[1].class, presentations[2].class],
                 presentations: [presentations[0]._id]
             },
@@ -214,7 +210,7 @@ connectToDb.then(function () {
                 role: 'teacher',
                 isStudent: false,
                 isTeacher: true,
-                password: 'ImNotCreative',
+                password: 'password',
                 classes: [presentations[2].class, presentations[3].class, presentations[4].class, presentations[5].class],
                 presentations: [presentations[2]._id, presentations[4]._id, presentations[6]._id, presentations[8]._id]
             },
@@ -224,7 +220,7 @@ connectToDb.then(function () {
                 role: 'student',
                 isStudent: true,
                 isTeacher: false,
-                password: 'password123',
+                password: 'password',
                 classes: [presentations[4].class, presentations[5].class]
             },
             {
@@ -233,7 +229,7 @@ connectToDb.then(function () {
                 role: 'teacher',
                 isStudent: false,
                 isTeacher: true,
-                password: 'meandering',
+                password: 'password',
                 classes: [presentations[6].class, presentations[5].class],
                 presentations: [presentations[2]._id, presentations[7]._id]
             },
@@ -243,7 +239,7 @@ connectToDb.then(function () {
                 role: 'student',
                 isStudent: true,
                 isTeacher: false,
-                password: 'pileDriver',
+                password: 'password',
                 classes: [presentations[6].class, presentations[7].class, presentations[9].class, presentations[1].class]
             }
 

@@ -51,6 +51,13 @@ app.factory('ClassFactory', function($http) {
             }).then(res => res.data);
         },
 
+        fetchPresentationsByClass: function(classId) {
+        	return $http({
+        		url: '/api/classes/' + classId + '/presentations',
+        		method: 'GET'
+        	}).then(res => res.data);
+        },
+
         updateClasses (user, classToUpdate) {
             for(let i = 0; i < user.classes.length; i++) {
                 if (user.classes[i]._id === classToUpdate._id) {

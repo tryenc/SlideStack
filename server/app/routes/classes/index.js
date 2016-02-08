@@ -5,6 +5,7 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const ClassesModel = mongoose.model('Classes');
 const UserModel = mongoose.model('User');
+const PresentationModel = mongoose.model('Presentations');
 
 // Get all classes
 router.get('/', (req, res, next) => {
@@ -28,17 +29,31 @@ router.get('/:id', (req, res, next) => {
 
 });
 
-// Get a class list of students
-router.get('/:id/students', (req, res, next) => {
-    const id = req.params.id;
+// // Get all students and presentations for a given class
+// router.get('/:classId/studentAndPresentations')
 
-    UserModel.find({ classes: id, isStudent: true})
-        .then(arrayOfStudents => {
-            res.send(arrayOfStudents)
-        })
-        .then(null, next);
 
-});
+// // Get a class list of students
+// router.get('/:id/students', (req, res, next) => {
+//     const id = req.params.id;
+
+//     UserModel.find({ classes: id, isStudent: true})
+//         .then(arrayOfStudents => {
+//             res.send(arrayOfStudents)
+//         })
+//         .then(null, next);
+// });
+
+// // Get a list of presentations for a given class
+// router.get('/:classId/presentations', (req, res, next) => {
+//     const classId = req.params.classId;
+
+//     PresentationModel.find({ class: classId })
+//         .then(arrayOfClasses => {
+//             res.send(arrayOfClasses)
+//         })
+//         .then(null, next);
+// });
 
 // Create new class
 router.post('/', (req, res, next) => {
