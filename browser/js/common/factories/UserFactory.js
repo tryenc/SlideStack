@@ -1,11 +1,19 @@
-app.factory('UserFactory', function($http) {
+app.factory('UserFactory', function($http, AuthService) {
 
 	return {
-		create (newUser) {
+		// create (newUser) {
+		// 	return $http({
+		// 		url: '/api/users/',
+		// 		method: 'POST',
+		// 		data: newUser
+		// 	})
+		// 	.then(res => res.data);
+		// },
+		signup: function(user){
 			return $http({
 				url: '/api/users/',
 				method: 'POST',
-				data: newUser
+				data: user
 			})
 			.then(res => res.data);
 		},
