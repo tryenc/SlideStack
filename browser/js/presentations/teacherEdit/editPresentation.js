@@ -21,9 +21,8 @@ app.config(function ($stateProvider) {
 
             $scope.save = function (presentation) {
                 PresentationFactory.update(presentation)
-                    .then(updatedPres => console.log(updatedPres))
                     .then(null, err => $scope.error = err);
-            }
+            };
 
             $scope.display = {
                 fullscreen: false,

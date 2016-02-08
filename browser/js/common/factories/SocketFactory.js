@@ -1,52 +1,23 @@
-app.factory('Socket', function () {
+app.factory('Socket', () => {
     if (!window.io) throw new Error('socket.io not found!');
     var socket = window.io(window.location.origin)
     return {
-      changeSlide: function(newIdx){
-        socket.emit('teacher slide change', newIdx)
-      },
-      onSlideChange: function(fn){
-        socket.on('slide change', fn);
-      },
-      shareCode: function(code){
-        socket.emit('editing code', code);
-      },
-      onCodeChange: function(fn){
-        socket.on('code change', fn);
-      },
-      onCalled: function(fn){
-        socket.on('called', fn);
-      },
-      onNotCalled: function(fn){
-        socket.on('not called', fn);
-      },
-      joinRoom: function(obj){
-        socket.emit('request join', obj);
-      },
-      onStudentJoin: function(fn){
-        socket.on('student joined', fn);
-      },
-      onStudentLeft: function(fn){
-        socket.on('somebody left', fn);
-      },
-      callOn: function(id){
-        socket.emit('call on', id);
-      },
-      endCallOn: function(id){
-        socket.emit('end call on', id);
-      },
-      askQuestion: function(data){
-        socket.emit('question', data);
-      },
-      questionAsked: function(fn){
-        socket.on('question asked', fn);
-      },
-      emitConfusion: function(student){
-        socket.emit('confusion', student);
-      },
-      onConfusion: function(fn){
-        socket.on('student confused', fn);
-      }
-
-    };
+        changeSlide: newIdx => socket.emit('teacher slide change', newIdx),
+        onSlideChange: fn => socket.on('slide change', fn),
+        shareCode: code => socket.emit('editing code', code),
+        onCodeChange: fn => socket.on('code change', fn),
+        onCalled: fn => socket.on('called', fn),
+        onNotCalled: fn => socket.on('not called', fn),
+        joinRoom: obj => socket.emit('request join', obj),
+        onStudentJoin: fn => socket.on('student joined', fn),
+        onStudentLeft: fn => socket.on('somebody left', fn),
+        callOn: id => socket.emit('call on', id),
+        endCallOn: id => socket.emit('end call on', id),
+        askQuestion: data => socket.emit('question', data),
+        questionAsked: fn => socket.on('question asked', fn),
+        emitConfusion: student => socket.emit('confusion', student),
+        onConfusion: fn => socket.on('student confused', fn),
+        retractConfusion: student => socket.emit('understand', student),
+        onRetractConfusion: fn => socket.on('student understands', fn)
+    }
 });

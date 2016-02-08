@@ -19,13 +19,21 @@
         </div>
           <div class="col-md-5">
               <div class="row">
-                  <teacher-timer></teacher-timer>
+                  <progress-bar confusion="confusion"></progress-bar>
+              </div>
+              <div class="row">
+                  <!--<teacher-timer></teacher-timer>-->
+                  <!--Commented out for space-->
               </div>
               <div class="row">
                   <ss-student-list></ss-student-list>
               </div>
+              <div class="row">
+                  <textarea id='questionBox' rows="10" cols="50">{{currentQuestion}}</textarea>
+              </div>
           </div>
-        <progress-bar></progress-bar>
+
+
     </div>
 </div>
 </body>

@@ -11,8 +11,6 @@ app.directive('ratio', function () {
 
             if (Number.isNaN(ratio)) return;
 
-            console.log('ratio: ', ratio);
-            console.log('width: ', width);
             console.dir(element[0]);
             element.css('height', (width / ratio).toString() + 'px');
         }
