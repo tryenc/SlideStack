@@ -5,6 +5,30 @@
             ng-click="select(tab)">
             {{tab.mode}}
         </button>
+        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+            <button id="btn-append-to-body" type="button" uib-dropdown-toggle>
+                Libraries <span class="caret"></span>
+            </button>
+            <ul uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                <li
+                    role="menuitem"
+                    ng-repeat="lib in libraries"
+                    ng-click="lib.checked = !lib.checked">
+                    <a href="#">{{lib.name}}</a>
+                </li>
+
+                <li class="divider"></li>
+                <li role="menuitem">
+                    <input
+                        type="text"
+                        class="form-control"
+                        ng-model="newLib.url"
+                        ng-click="$event.stopPropagation()"
+                        placeholder="Enter a CDN link">
+                    <a href="#" ng-click="addLibrary(newLib)">Add</a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <editor mode="HTML" index="{{index}}"></editor>
