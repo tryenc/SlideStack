@@ -1,14 +1,14 @@
 app.directive('editor', function (Socket) {
     return {
         restrict: 'E',
-        transclude: true,
         scope: {
             mode: '@',
-            index: '@'
+            index: '@',
+            content: '@'
         },
         require: ['^ssSlideshow', '?^fiddle'],
         templateUrl: 'js/common/directives/editor/editor.html',
-        link: function (scope, element, attrs, ctrl, transclude) {
+        link: function (scope, element, attrs, ctrl) {
 
             const slideshowCtrl = ctrl[0];
             const fiddleCtrl = ctrl[1];
@@ -16,8 +16,8 @@ app.directive('editor', function (Socket) {
             // If we're not inside a fiddle directive make sure selected is true
             if (!fiddleCtrl) scope.selected = true;
 
-            // Initialize code as empty string to prevent errors
-            scope.code = { text: '' };
+            // Initialize code with whatever has been passed in to directive, or empty string
+            scope.code = { text: scope.content || '' };
 
             // editCode is false - this only effects students
             scope.editCode = false;
@@ -30,11 +30,6 @@ app.directive('editor', function (Socket) {
 
             // Sharing is false by default for students, true for teachers
             scope.sharing = scope.display.mode === 'teacher';
-
-            // If there's any predefined text, load it
-            if (transclude().text().trim()) {
-                scope.code.text = transclude().text().trim();
-            }
 
             // Set up Ace editor
             // Have to give the editor div a unique id

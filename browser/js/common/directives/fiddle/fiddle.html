@@ -1,7 +1,4 @@
 <div class="fiddle-container">
-    <pre>
-        {{code}}
-    </pre>
     <div class="fiddle-tabs">
         <button
             ng-repeat="tab in tabs"
@@ -34,8 +31,8 @@
         </div>
     </div>
 
-    <editor mode="HTML" index="{{index}}"></editor>
-    <editor mode="CSS" index="{{index}}"></editor>
-    <editor mode="JavaScript" index="{{index}}"></editor>
+    <editor mode="HTML" index="{{index}}" content="{{content.html}}"></editor>
+    <editor mode="CSS" index="{{index}}" content="{{content.css}}"></editor>
+    <editor mode="JavaScript" index="{{index}}" content="{{content.js}}"></editor>
     <fiddle-view></fiddle-view>
 </div>
