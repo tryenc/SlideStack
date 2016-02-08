@@ -1,5 +1,6 @@
 // color variables
-$green: #57bb89;
+$button-color: #57bb89;  //green
+$button-font-color: #fff;
 $orange: #f79b60;
 $background: #efede7;
 
@@ -33,6 +34,12 @@ html, body {
     height: 100%;
 }
 
+button {
+  background: $button-color;
+  color: $button-font-color;
+  border: 0;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
@@ -42,3 +49,4 @@ html, body {
 @import 'admin/admin';
 @import 'teacherView/main';
 @import 'profile/main';
+@import 'themes/main';

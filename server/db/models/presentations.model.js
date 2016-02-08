@@ -23,6 +23,10 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classes'
     },
+    theme: {
+        type: String,
+        default: 'simple'
+    },
     imageUrl: {
         type: String,
         default: 'https://cdn4.iconfinder.com/data/icons/business-management-2/256/Presentation-512.png'

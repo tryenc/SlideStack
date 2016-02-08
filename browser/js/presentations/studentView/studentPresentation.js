@@ -16,6 +16,7 @@ app.config(function ($stateProvider) {
             }
         },
         controller: ($scope, presentation, Socket, user, $uibModal) => {
+            $scope.presentation = presentation;
             $scope.slides = presentation.markdown.split('$$$');
 
             Socket.joinRoom({

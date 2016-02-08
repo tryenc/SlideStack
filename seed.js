@@ -92,12 +92,14 @@ connectToDb.then(function () {
             {
                 name: 'Shakespeare Shakedown',
                 markdown:'#Heres some markdown about Shakespeare.\n He wrote\n*Romeo and Juliet«\n*Othello\n*MacBeth',
-                class: classes[0]._id
+                class: classes[0]._id,
+                theme: 'simple'
             },
             {
                 name: 'How we raped the Native Americans',
                 markdown:'#Heres some markdown about the Native Americans./n We used to call them _indians_',
-                class: classes[1]._id
+                class: classes[1]._id,
+                theme: 'black'
             },
             {
                 name: 'How to Kill a Mockingbird',

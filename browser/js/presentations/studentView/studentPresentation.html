@@ -1,8 +1,10 @@
 <!--Fullscreen Student VIEW -->
 
 <div id="presentation-view" class="fullscreen">
-    <div class="slideshow-container" ratio="1.77">
-        <ss-slideshow display="{ fullscreen: true, mode: 'student' }">
+    <div class="slideshow-container clearfix" ratio="1.77">
+        <!-- ng-class="{ 'classA': expressionA, 'classB': expressionB }" -->
+        <!-- <ss-slideshow display="{ fullscreen: true, mode: 'student' }" ng-class="{ 'simple': presentation.theme === 'simple', 'black': presentation.theme === 'black'}"> -->
+        <ss-slideshow display="{ fullscreen: true, mode: 'student' }" ng-class="presentation.theme">
             <ss-slide
                 ng-repeat="slide in slides track by $index"
                 markdown="{{slide}}">
