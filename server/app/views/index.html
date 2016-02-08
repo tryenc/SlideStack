@@ -19,8 +19,8 @@
     <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
     <script src="/main.js"></script>
 </head>
-<body ng-app="FullstackGeneratedApp">
-    <navbar></navbar>
+<body ng-app="FullstackGeneratedApp" ng-controller="navbarCntrl">
+    <navbar ng-if="!isState()"></navbar>
     <div id="main" ui-view></div>
 </body>
 </html>

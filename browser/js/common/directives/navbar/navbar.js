@@ -4,6 +4,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         restrict: 'E',
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
+        controller: "navbarCntrl",
         link: function (scope) {
 
             scope.items = [
@@ -47,3 +48,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
     };
 
 });
+
+app.controller('navbarCntrl', function ($scope, $state) {
+  $scope.isState = function(){
+    return $state.is('home');
+  }
+
+})
