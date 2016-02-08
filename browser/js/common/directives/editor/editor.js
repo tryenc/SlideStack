@@ -29,7 +29,7 @@ app.directive('editor', function (Socket) {
             scope.display = slideshowCtrl.display;
 
             // Sharing is false by default for students, true for teachers
-            let sharing = scope.display.mode === 'teacher';
+            scope.sharing = scope.display.mode === 'teacher';
 
             // If there's any predefined text, load it
             if (transclude().text().trim()) {
@@ -63,7 +63,7 @@ app.directive('editor', function (Socket) {
                 scope.code.text = editor.getValue().trim();
 
                 // Emit socket event if sharing code
-                if (sharing) Socket.shareCode(scope.code);
+                if (scope.sharing) Socket.shareCode(scope.code);
 
             });
 
@@ -76,13 +76,15 @@ app.directive('editor', function (Socket) {
 
             // Enable sharing when called on
             Socket.onCalled(function () {
-                sharing = true;
+                scope.sharing = true;
                 Socket.shareCode(scope.code);
+                scope.$digest();
             });
 
-            // Cancel sharing when called on ends
+            // Cancel scope.sharing when called on ends
             Socket.onNotCalled(function () {
-                sharing = false;
+                scope.sharing = false;
+                scope.$digest();
             });
 
             // Toggle edit mode

@@ -91,8 +91,6 @@ app.directive('ssSlideshow', function ($rootScope) {
                 }
             });
 
-
-
         }
     }
 });
