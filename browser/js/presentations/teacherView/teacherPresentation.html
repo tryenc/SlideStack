@@ -4,36 +4,32 @@
     <title>Teacher View</title>
 </head>
 <body>
-<h3>Top Of View</h3>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-7" id="teacher-presentation">
-          <div class="slideshow-container" ratio="1.77">
-            <ss-slideshow display="{fullscreen: false, mode: 'teacher'}">
-                <ss-slide
-                    ng-repeat="slide in slides"
-                    markdown="{{slide}}">
-                </ss-slide>
-            </ss-slideshow>
-          </div>
+        <div class="col-md-9">
+
+            <div id="teacher-presentation">
+              <div class="slideshow-container" ratio="1.77">
+                <ss-slideshow display="{fullscreen: false, mode: 'teacher'}">
+                    <ss-slide
+                        ng-repeat="slide in slides"
+                        markdown="{{slide}}">
+                    </ss-slide>
+                </ss-slideshow>
+              </div>
+            </div>
         </div>
-          <div class="col-md-5">
-              <div class="row">
-                  <progress-bar confusion="confusion"></progress-bar>
-              </div>
-              <div class="row">
-                  <!--<teacher-timer></teacher-timer>-->
-                  <!--Commented out for space-->
-              </div>
-              <div class="row">
-                  <ss-student-list></ss-student-list>
-              </div>
-              <div class="row">
-                  <textarea id='questionBox' rows="10" cols="50">{{currentQuestion}}</textarea>
-              </div>
-          </div>
+        <div class="col-md-3">
 
-
+            <div class="teacher-tools">
+                <teacher-timer></teacher-timer>
+                <div>
+                    <textarea id='questionBox' rows="10" cols="50" class="form-control">{{currentQuestion}}</textarea>
+                    <progress-bar confusion="confusion"></progress-bar>
+                </div>
+                <ss-student-list></ss-student-list>
+            </div>
+        </div>
     </div>
 </div>
 </body>
