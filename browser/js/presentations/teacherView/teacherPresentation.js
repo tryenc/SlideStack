@@ -9,11 +9,13 @@ app.config(function ($stateProvider) {
             },
             studentList: UserFactory => UserFactory.fetchAll()
         },
-        controller: ($scope, presentation, PresentationFactory, Socket) => {
+        controller: ($scope, $state, presentation, PresentationFactory, Socket) => {
 
             $scope.display =  {
                 mode: 'teacher'
             };
+
+
 
             $scope.currentQuestion = null;
 
@@ -37,6 +39,11 @@ app.config(function ($stateProvider) {
             });
 
             $scope.presentation = presentation;
+
+            $scope.goToEdit = function(){
+              $state.go('editPres', { id: $scope.presentation._id });
+            }
+
             $scope.slides = presentation.markdown.split('$$$');
 
             Socket.onStudentLeft(studentId => {
