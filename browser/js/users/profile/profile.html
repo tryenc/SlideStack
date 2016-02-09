@@ -1,5 +1,5 @@
 <div class="container">
-    
+
     <img ng-src="{{user.imageUrl}}" class="profile-picture">
     <h3 class="profile-name">{{ user.name }}</h3>
     <h4>{{ user.role }}</h4>
@@ -11,6 +11,6 @@
             <li role="students" ui-sref-active="active" ng-if="user.isTeacher"><a ui-sref="user.students">Students</a></li>
         </ul>
         <ui-view></ui-view>
-    
+
     </div>
 </div>

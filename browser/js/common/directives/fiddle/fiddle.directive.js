@@ -2,11 +2,36 @@ app.directive('fiddle', function () {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/fiddle/fiddle.html',
-        controller: function ($scope, $element) {
+        controller: function ($scope, $element, $transclude) {
             $scope.tabs = [];
             let viewTab;
             let libraries = '';
 
+            const getContent = function () {
+                let content = {
+                    html: '',
+                    css: '',
+                    js: ''
+                };
+                let currentType;
+                let allContent = $element.attr('content') || '';
+
+                console.log('all content: ', allContent);
+
+                allContent.split('\n').forEach(line => {
+                    console.log('line: ', line)
+                    if (/html=|css=|js=/.test(line)) {
+                        currentType = line.replace('=', '').toLowerCase();
+                    } else if (line) {
+                        content[currentType] += line + '\n';
+                    }
+                });
+
+                return content;
+            }
+
+            $scope.content = getContent();
+            console.log($scope.content);
 
             this.addTab = function (tab) {
                 $scope.tabs.push(tab);
@@ -22,6 +47,11 @@ app.directive('fiddle', function () {
                 {
                     name: 'JQuery',
                     url: 'https://code.jquery.com/jquery-2.2.0.min.js',
+                    checked: false
+                },
+                {
+                    name: 'Bootstrap',
+                    url: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
                     checked: false
                 }
             ];

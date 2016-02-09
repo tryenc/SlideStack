@@ -1,4 +1,4 @@
 
-<small><em>Object (changes type based on value)</em></small>
-<uib-progressbar class="progress-striped active" value="confusionLevel" type="{{type}}">{{type}} <i ng-show="showWarning">!!! Watch out !!!</i></uib-progressbar>
-<pre>{{confusion.level}}</pre>
+<uib-progressbar class="progress" value="confusion.level" max="100" type="{{type}}">
+    <i ng-show="showWarning">!!! Everybody is lost !!!</i>
+</uib-progressbar>

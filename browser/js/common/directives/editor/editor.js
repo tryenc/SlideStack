@@ -1,14 +1,14 @@
 app.directive('editor', function (Socket) {
     return {
         restrict: 'E',
-        transclude: true,
         scope: {
             mode: '@',
-            index: '@'
+            index: '@',
+            content: '@'
         },
         require: ['^ssSlideshow', '?^fiddle'],
         templateUrl: 'js/common/directives/editor/editor.html',
-        link: function (scope, element, attrs, ctrl, transclude) {
+        link: function (scope, element, attrs, ctrl) {
 
             const slideshowCtrl = ctrl[0];
             const fiddleCtrl = ctrl[1];
@@ -16,25 +16,20 @@ app.directive('editor', function (Socket) {
             // If we're not inside a fiddle directive make sure selected is true
             if (!fiddleCtrl) scope.selected = true;
 
-            // Initialize code as empty string to prevent errors
-            scope.code = { text: '' };
+            // Initialize code with whatever has been passed in to directive, or empty string
+            scope.code = { text: scope.content || '' };
 
             // editCode is false - this only effects students
             scope.editCode = false;
 
             // Track teacher's code when students edit their own code
-            let teacherCode = '';
+            let teacherCode = scope.code.text;
 
             // Get the current display mode
             scope.display = slideshowCtrl.display;
 
             // Sharing is false by default for students, true for teachers
-            let sharing = scope.display.mode === 'teacher';
-
-            // If there's any predefined text, load it
-            if (transclude().text().trim()) {
-                scope.code.text = transclude().text().trim();
-            }
+            scope.sharing = scope.display.mode === 'teacher';
 
             // Set up Ace editor
             // Have to give the editor div a unique id
@@ -62,13 +57,19 @@ app.directive('editor', function (Socket) {
 
                 scope.code.text = editor.getValue().trim();
 
+                console.log(scope.code.text);
+
                 // Emit socket event if sharing code
-                if (sharing) Socket.shareCode(scope.code);
+                if (scope.sharing) Socket.shareCode(scope.code);
 
             });
 
             slideshowCtrl.onCodeChange(aceId, function (newText) {
-                if (scope.editCode) return teacherCode = newText;
+                if (scope.editCode) {
+                    teacherCode = newText;
+                    console.log('teacherCode: ', teacherCode);
+                    return;
+                }
 
                 scope.code.text = newText;
                 editor.setValue(newText, 1);
@@ -76,18 +77,21 @@ app.directive('editor', function (Socket) {
 
             // Enable sharing when called on
             Socket.onCalled(function () {
-                sharing = true;
+                scope.sharing = true;
                 Socket.shareCode(scope.code);
+                scope.$digest();
             });
 
-            // Cancel sharing when called on ends
+            // Cancel scope.sharing when called on ends
             Socket.onNotCalled(function () {
-                sharing = false;
+                scope.sharing = false;
+                scope.$digest();
             });
 
             // Toggle edit mode
             scope.toggleEdit = function () {
                 if (scope.editCode) {
+                    console.log('teacher code: ', teacherCode);
                     scope.code.text = teacherCode;
                     editor.setValue(scope.code.text, 1);
                 }

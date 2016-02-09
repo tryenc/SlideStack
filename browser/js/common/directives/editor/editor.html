@@ -6,10 +6,14 @@
 </div>
 <div>
     <button
-        ng-show="display.mode==='student' && selected"
+        ng-show="display.mode==='student' && selected && !sharing"
         ng-click="toggleEdit()">
         <span ng-show="!editCode">EDIT</span>
         <span ng-show="editCode">CANCEL</span>
+    </button>
+    <button
+        ng-show="display.mode==='student' && sharing">
+        SHARING CODE!
     </button>
 </div>
 <div class="buttons" ng-if="consolePresent">

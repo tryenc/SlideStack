@@ -1,4 +1,4 @@
-app.directive('ssSlideshow', function () {
+app.directive('ssSlideshow', function ($rootScope) {
     return {
         restrict: 'E',
         scope: {
@@ -49,6 +49,8 @@ app.directive('ssSlideshow', function () {
                 slides[oldIdx].selected = false;
                 slides[newIdx].selected = true;
 
+                $rootScope.$broadcast('slide change', newIdx);
+
                 if ($scope.display.mode === 'teacher') {
                     Socket.changeSlide(newIdx)
                 }
@@ -88,8 +90,6 @@ app.directive('ssSlideshow', function () {
                     $scope.$digest();
                 }
             });
-
-
 
         }
     }
