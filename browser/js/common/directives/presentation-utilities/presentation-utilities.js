@@ -21,4 +21,26 @@ app.directive('ratio', function () {
             });
         }
     }
+});
+
+app.directive('relativeSizes', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, el, attrs) {
+
+            const container = el[0];
+            const setSizes = function () {
+                let windowWidth = document.body.clientWidth;
+                let containerWidth = container.clientWidth;
+                let ratio = containerWidth / windowWidth;
+                let fontSize = 36 * ratio;
+
+                el[0].style.fontSize = fontSize.toString() + 'px';
+            }
+
+            setSizes();
+
+            // Resize when container size changes - how????
+        }
+    }
 })
