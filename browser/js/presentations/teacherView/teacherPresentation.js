@@ -63,12 +63,12 @@ app.config(function ($stateProvider) {
             });
 
             Socket.onConfusion(data => {
-                $scope.confusion.level += 100;
+                $scope.confusion.level += ((1 / $scope.studentList.length)*100);
                 $scope.$digest();
             });
 
             Socket.onRetractConfusion(data => {
-                $scope.confusion.level -= 100;
+                $scope.confusion.level -= ((1 / $scope.studentList.length)*100);
                 $scope.$digest();
             });
         }

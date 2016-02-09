@@ -18,6 +18,7 @@ app.directive('progressBar', (Socket) => {
 
             scope.$watch('confusion.level', (newVal, oldVal) => {
                 if (newVal == oldVal) return;
+                console.log("confusionLevel:", scope.confusion.level);
 
                 if (scope.confusion.level < 25) {
                     scope.type = 'success';
