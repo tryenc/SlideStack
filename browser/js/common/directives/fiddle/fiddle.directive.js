@@ -8,15 +8,21 @@ app.directive('fiddle', function () {
             let libraries = '';
 
             const getContent = function () {
-                let content = {};
+                let content = {
+                    html: '',
+                    css: '',
+                    js: ''
+                };
                 let currentType;
-                let allContent = $element.attr('content');
+                let allContent = $element.attr('content') || '';
+
+                console.log('all content: ', allContent);
 
                 allContent.split('\n').forEach(line => {
+                    console.log('line: ', line)
                     if (/html=|css=|js=/.test(line)) {
-                        currentType = line.replace('=', '');
-                        content[currentType] = '';
-                    } else {
+                        currentType = line.replace('=', '').toLowerCase();
+                    } else if (line) {
                         content[currentType] += line + '\n';
                     }
                 });
