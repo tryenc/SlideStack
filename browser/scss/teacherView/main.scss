@@ -1,5 +1,5 @@
 #studentList {
-  padding: 20px 20px;
+  width: 100%;
 
   button {
     float: right;
@@ -8,15 +8,22 @@
     text-align: left;
   }
   .panel {
-    width: 50%;
+    width: 100%;
     margin: auto;
     //float: right;
   }
 }
 
 #teacherTimer {
-  padding: 10px;
-  margin: 30px 100px 10px 150px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1, h4 {
+        margin: 0;
+        font-family: 'Helvetica Neue';
+        font-weight: 300;
+    }
 }
 
 .slide-container {
@@ -26,5 +33,14 @@
     bottom: 0;
     padding: 50px;
     margin: 300px 100px 0px 0px;
+    font-size: 24px;
   }
+}
+
+.teacher-tools {
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 992px) {
+        flex-direction: row;
+    }
 }

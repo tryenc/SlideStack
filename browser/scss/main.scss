@@ -4,8 +4,20 @@ $button-font-color: #fff;
 $orange: #f79b60;
 $background: #efede7;
 
+// font variables
+$sans-font: 'Raleway', sans-serif;
+$serif-font: 'Josefin Slab', serif;
+
 * {
   box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+    font-family: $sans-font;
+}
+
+p {
+    font-family: $serif-font;
 }
 
 body {

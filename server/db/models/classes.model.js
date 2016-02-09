@@ -21,4 +21,9 @@ var schema = new mongoose.Schema({
     }
 });
 
+schema.pre('findOne', function (next) {
+    console.log('pre hook: ', this._id);
+    next();
+});
+
 mongoose.model('Classes', schema);
