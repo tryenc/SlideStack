@@ -33,10 +33,6 @@ app.directive('progressBar', (Socket) => {
                 scope.showWarning = scope.type === 'danger' || scope.type === 'warning';
             });
 
-
-
-
-
         }
     };
 });
