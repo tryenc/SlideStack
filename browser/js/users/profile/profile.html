@@ -1,5 +1,5 @@
 <div class="container">
-    
+
     <img ng-src="{{user.imageUrl}}" class="profile-picture">
     <h3 class="profile-name">{{ user.name }}</h3>
     <h4>{{ user.role }}</h4>
@@ -8,9 +8,9 @@
         <ul class="nav nav-tabs">
             <li role="classes" ui-sref-active="active"><a ui-sref="user.classes">Classes</a></li>
             <li role="presentations" ui-sref-active="active"><a ui-sref="user.presentations">Presentations</a></li>
-            <li role="students" ui-sref-active="active"><a ui-sref="user.students">Students</a></li>
+            <li role="students" ui-sref-active="active" ng-show="user.isTeacher"><a ui-sref="user.students">Students</a></li>
         </ul>
         <ui-view></ui-view>
-    
+
     </div>
 </div>

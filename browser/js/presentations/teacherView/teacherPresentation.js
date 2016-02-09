@@ -4,12 +4,12 @@ app.config(function ($stateProvider) {
         url: '/presentations/:id/teacher',
         templateUrl: 'js/presentations/teacherView/teacherPresentation.html',
         resolve: {
-            presentation: (PresentationFactory, $stateParams) => {
-                return PresentationFactory.fetchById($stateParams.id);
-            },
+            presentation: (PresentationFactory, $stateParams) => PresentationFactory.fetchById($stateParams.id),
             studentList: UserFactory => UserFactory.fetchAll()
         },
         controller: ($scope, presentation, PresentationFactory, Socket) => {
+
+            console.log("presentation",presentation);
 
             $scope.display =  {
                 mode: 'teacher'

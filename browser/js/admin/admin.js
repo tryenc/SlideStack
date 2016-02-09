@@ -1,22 +1,18 @@
 /**
  * Created by Jon on 1/29/16.
  */
-app.config($stateProvider => {
+app.config( ($stateProvider, $urlRouterProvider) => {
+   $urlRouterProvider.when('/admin', '/admin/classes');
    $stateProvider
        .state('admin', {
            url: '/admin',
            templateUrl: 'js/admin/admin.html',
            controller: 'AdminCtrl',
+           abstract: true,
            resolve: {
-               presentations: PresentationFactory => {
-                   return PresentationFactory.fetchAll();
-               },
-               users: UserFactory => {
-                   return UserFactory.fetchAll();
-               },
-               classes: ClassFactory => {
-                   return ClassFactory.fetchAll();
-               }
+               presentations: PresentationFactory => PresentationFactory.fetchAll(),
+               users: UserFactory => UserFactory.fetchAll(),
+               classes: ClassFactory => ClassFactory.fetchAll()
            }
        })
        .state('admin.presentations', {

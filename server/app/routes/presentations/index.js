@@ -22,6 +22,8 @@ router.get('/:id', (req, res, next) => {
 
     PresentationsModel.findById(req.params.id).populate('class')
         .then(presentation => {
+            if(presentation) console.log(presentation)
+            else console.log("NOT FOUND")
             res.send(presentation);
         })
         .then(null, next);
