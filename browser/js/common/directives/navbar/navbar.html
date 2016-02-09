@@ -7,6 +7,34 @@
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
+
+            <!-- Add a new presentation -->
+            <li ng-show="user && user.isTeacher">
+                <div ng-show="newPresMenu">
+                    <form ng-submit="createPresentation(newPres)">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input
+                                type="text"
+                                ng-model="newPres.name"
+                                class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Class</label>
+                            <select
+                                ng-options="class._id as class.name for class in user.classes"
+                                ng-model="newPres.class">
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+
+            </li>
+
+            <li ng-show="user && user.isAdmin">
+                <a ui-sref-active="active" ui-sref="admin"></a>
+            </li>
         </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <div ng-show="user" class="welcome">

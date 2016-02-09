@@ -23,7 +23,7 @@ app.directive('editor', function (Socket) {
             scope.editCode = false;
 
             // Track teacher's code when students edit their own code
-            let teacherCode = '';
+            let teacherCode = scope.code.text;
 
             // Get the current display mode
             scope.display = slideshowCtrl.display;
@@ -65,7 +65,11 @@ app.directive('editor', function (Socket) {
             });
 
             slideshowCtrl.onCodeChange(aceId, function (newText) {
-                if (scope.editCode) return teacherCode = newText;
+                if (scope.editCode) {
+                    teacherCode = newText;
+                    console.log('teacherCode: ', teacherCode);
+                    return;
+                }
 
                 scope.code.text = newText;
                 editor.setValue(newText, 1);
@@ -87,6 +91,7 @@ app.directive('editor', function (Socket) {
             // Toggle edit mode
             scope.toggleEdit = function () {
                 if (scope.editCode) {
+                    console.log('teacher code: ', teacherCode);
                     scope.code.text = teacherCode;
                     editor.setValue(scope.code.text, 1);
                 }
