@@ -1,2 +1,12 @@
-<button ui-sref="signup">Sign Up</button>
-<button ui-sref="login">Log In</button>
+<div ng-if="!user" class="homeDiv">
+  <button class="signBtn" ui-sref="signup">Sign Up</button>
+  <button class="logBtn" ui-sref="login">Log In</button>
+  <img src="js/common/directives/fullstack-logo/viewmaster.png"/>
+  <h1>SlideStack</h1>
+</div>
+
+<div ng-if="user" ng-click="goToProfile(user)" class="homeDiv">
+  <h2>Welcome, {{ user.name }}!</h2>
+  <img src="js/common/directives/fullstack-logo/viewmaster.png" />
+  <h1>SlideStack</h1>
+</div>
