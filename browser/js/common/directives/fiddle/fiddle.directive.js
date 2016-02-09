@@ -2,14 +2,63 @@ app.directive('fiddle', function () {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/fiddle/fiddle.html',
-        controller: function ($scope, $element) {
+        controller: function ($scope, $element, $transclude) {
             $scope.tabs = [];
             let viewTab;
+            let libraries = '';
 
+            const getContent = function () {
+                let content = {};
+                let currentType;
+                let allContent = $element.attr('content');
+
+                allContent.split('\n').forEach(line => {
+                    if (/html=|css=|js=/.test(line)) {
+                        currentType = line.replace('=', '');
+                        content[currentType] = '';
+                    } else {
+                        content[currentType] += line + '\n';
+                    }
+                });
+
+                return content;
+            }
+
+            $scope.content = getContent();
+            console.log($scope.content);
 
             this.addTab = function (tab) {
                 $scope.tabs.push(tab);
                 if ($scope.tabs.length === 1) tab.selected = true;
+            };
+
+            $scope.libraries = [
+                {
+                    name: 'Angular',
+                    url: 'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js',
+                    checked: false
+                },
+                {
+                    name: 'JQuery',
+                    url: 'https://code.jquery.com/jquery-2.2.0.min.js',
+                    checked: false
+                },
+                {
+                    name: 'Bootstrap',
+                    url: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
+                    checked: false
+                }
+            ];
+
+            // TODO do this for CSS libraries too
+            $scope.addLibrary = function (newLib) {
+                newLib.name = newLib.url.match(
+                    /(?:\/)[\w*\d*\.*\-*\_*]*\.(js|css)$/
+                )[0].slice(1);
+
+                newLib.checked = true;
+                $scope.libraries.push(newLib);
+                $scope.newLib = {};
             };
 
             const showPage = function () {
@@ -17,8 +66,22 @@ app.directive('fiddle', function () {
                 let css = $scope.tabs[1].code.text;
                 let js = $scope.tabs[2].code.text;
 
+                let scriptLibs = '';
+                let styleLibs = '';
+
+                $scope.libraries.forEach(lib => {
+                    if (lib.checked && /\.js$/.test(lib.url)) {
+                        scriptLibs += '<script src="' + lib.url + '"></script>';
+                    }
+                    if (lib.checked && /\.css$/.test(lib.url)) {
+                        styleLibs += '<link rel="stylesheet" href="' + lib.url + '">'
+                    }
+                });
+
                 html = '<head>' +
+                           styleLibs +
                            '<style>' + css + '</style>' +
+                           scriptLibs +
                        '</head>' +
                        '<body>' +
                            html +
@@ -26,7 +89,7 @@ app.directive('fiddle', function () {
                        '</body>';
 
                 $element.find('iframe').attr('srcdoc', html);
-            }
+            };
 
             $scope.select = function (selectedTab) {
                 $scope.tabs.forEach(tab => tab.selected = false);

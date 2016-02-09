@@ -8,13 +8,12 @@ app.directive('teacherTimer', function () {
 
 app.controller('timerCtrl', function ($scope, $interval) {
       $scope.ms = 0
-      $scope.date = new Date().toLocaleTimeString();
+      $scope.date = new Date();
       $scope.reset = function(){
         $scope.ms = 0;
       };
       $interval(function(){
-        var date = new Date();
-        $scope.date = date.toLocaleTimeString();
+        $scope.date = new Date();
         $scope.ms+=1000;
       },1000)
 });

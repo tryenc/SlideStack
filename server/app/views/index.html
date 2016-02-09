@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <base href="/" />
-    <title>Fullstack Academy Generated Application</title>
+    <title>Slide Stack</title>
     <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Raleway:300|Josefin+Slab'>
     <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/style.css" />
@@ -19,8 +19,8 @@
     <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
     <script src="/main.js"></script>
 </head>
-<body ng-app="FullstackGeneratedApp">
-    <navbar></navbar>
+<body ng-app="FullstackGeneratedApp" ng-controller="navbarCntrl">
+    <navbar ng-if="!isState()"></navbar>
     <div id="main" ui-view></div>
 </body>
 </html>

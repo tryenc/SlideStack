@@ -12,6 +12,7 @@ app.factory('Parser', function (marked) {
     const customParse = function (string) {
         let lines = string.split('\n');
         let openDirectives = {};
+        let fiddleContent = '';
 
         lines.forEach((line, i) => {
 
@@ -23,19 +24,44 @@ app.factory('Parser', function (marked) {
                 us to have nested directives and to automatically add
                 closing tags for directives that are left open. */
                 if (!openDirectives[line]) {
-                    openDirectives[line] = i;
-                    lines[i] = lines[i].replace('@ ', '<').replace(' @', ' index="{{index}}">');
+                    openDirectives[line] = {
+                        lineIdx: i,
+                        content: ''
+                    };
+
+                    // lines[i] = lines[i].replace('@ ', '<').replace(' @', ' index="{{index}}">');
                 } else {
+
+                    // Create the opening directive tag, with the content passed in
+                    let openingLine = openDirectives[line].lineIdx;
+                    let content = openDirectives[line].content;
+
+                    // Pass the content in to the directive tag
+                    lines[openingLine] = lines[openingLine].replace('@ ', '<').replace(' @', ' index="{{index}}" content="' + content + '">');
+
+                    // Delete the content from the lines in between opening and closing tags
+                    for (let j = openingLine + 1; j < i; j++) {
+                        lines[j] = '';
+                    }
+
+                    // Add the closing tag
                     lines[i] = lines[i].replace('@ ', '</').replace(' @', '>');
+
                     delete openDirectives[line];
                 }
+            } else {
+
+                // If there are open directives track the content
+                Object.keys(openDirectives).forEach(key => {
+                    openDirectives[key].content += line + '\n';
+                });
             }
         });
 
         // Close any directives without closing tags
         Object.keys(openDirectives).forEach(key => {
-            let i = openDirectives[key]
-            lines[i] = lines[i] + key.replace('@ ', '</').replace(' @', '>');
+            let i = openDirectives[key].lineIdx;
+            lines[i] = lines[i].replace('@ ', '<').replace(' @', '>') + lines[i].replace('@ ', '</').replace(' @', '>');
         });
 
         return lines.join('\n');

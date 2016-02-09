@@ -49,10 +49,6 @@ var classes = [
         description: 'See name'
     },
     {
-        name: 'American History',
-        description: 'The history of the United States spanning from the Native Americans to present day'
-    },
-    {
         name: 'Math',
         description: 'An introduction to the laws that govern all things big and small'
     },
@@ -92,12 +88,14 @@ connectToDb.then(function () {
             {
                 name: 'Shakespeare Shakedown',
                 markdown:'#Heres some markdown about Shakespeare.\n He wrote\n*Romeo and Juliet«\n*Othello\n*MacBeth',
-                class: classes[0]._id
+                class: classes[0]._id,
+                theme: 'simple'
             },
             {
                 name: 'How we raped the Native Americans',
                 markdown:'#Heres some markdown about the Native Americans./n We used to call them _indians_',
-                class: classes[1]._id
+                class: classes[1]._id,
+                theme: 'black'
             },
             {
                 name: 'How to Kill a Mockingbird',
@@ -136,12 +134,12 @@ connectToDb.then(function () {
             {
                 name: 'A day in life of Morty',
                 markdown:'#Sex in Greek Mythology/n## $$$ ./n These people are __worse__ than Disney',
-                class: classes[8]._id
+                class: classes[1]._id
             },
             {
                 name: 'Lord of the Flies',
                 markdown:'Everybody dies in the end./n*Birds/n*North By Northwest/n*Psycho',
-                class: classes[9]._id
+                class: classes[2]._id
             }
         ];
 

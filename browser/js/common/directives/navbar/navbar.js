@@ -4,14 +4,17 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         restrict: 'E',
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
+        controller: "navbarCntrl",
         link: function (scope) {
 
             scope.items = [
-                { label: 'Home', state: 'home' },
+                // { label: 'Home', state: 'home' },
                 { label: 'About', state: 'about' },
                 { label: 'Documentation', state: 'docs' },
                 { label: 'Members Only', state: 'membersOnly', auth: true },
-                { label: 'Admin', state: 'admin' } //remove for final
+                { label: 'Help', state: 'docs' },
+                // { label: 'Teacher View', state: 'teacherView', auth: true },
+                { label: 'Admin', state: 'admin' }
             ];
 
             scope.user = null;
@@ -47,3 +50,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
     };
 
 });
+
+app.controller('navbarCntrl', function ($scope, $state) {
+  $scope.isState = function(){
+    return $state.is('home');
+  }
+
+})
