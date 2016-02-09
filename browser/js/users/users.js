@@ -1,7 +1,7 @@
 app.config(function ($stateProvider, $urlRouterProvider) {
 
     // THIS BREAKS WHEN GIVEN A BROKEN USER ID
-    //$urlRouterProvider.when('/users/:id', '/users/:id/classes');
+    $urlRouterProvider.when('/users/:id', '/users/:id/classes');
     $stateProvider
     .state('user', {
         url: '/users/:id',

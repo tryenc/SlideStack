@@ -24,7 +24,7 @@ app.config(function ($stateProvider) {
             // Student Level of confusion handled in the progress
             // bar directive
             $scope.confusion = {
-                level: 0
+                level: 1
             };
 
             Socket.joinRoom({
@@ -63,13 +63,14 @@ app.config(function ($stateProvider) {
             });
 
             Socket.onConfusion(data => {
-                $scope.confusion.level += 100;
+                $scope.confusion.level += (100 / $scope.studentList.length);
                 $scope.$digest();
             });
 
             Socket.onRetractConfusion(data => {
-                $scope.confusion.level -= 100;
+                $scope.confusion.level -= (100 / $scope.studentList.length);
                 $scope.$digest();
+
             });
         }
     });
