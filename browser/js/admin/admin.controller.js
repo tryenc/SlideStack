@@ -1,11 +1,7 @@
 app.controller('AdminCtrl', ($scope, presentations, users, classes) => {
-    $scope.teachers = users.filter(user => {
-        return user.isTeacher;
-    });
+    $scope.teachers = users.filter(user => user.isTeacher);
 
-    $scope.students = users.filter(user => {
-        return user.isStudent;
-    });
+    $scope.students = users.filter(user => user.isStudent);
 
     $scope.classes = classes;
 
