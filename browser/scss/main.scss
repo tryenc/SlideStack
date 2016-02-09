@@ -46,6 +46,10 @@ html, body {
     height: 100%;
 }
 
+.green {
+    color: $button-color;
+}
+
 button {
   background: $button-color;
   color: $button-font-color;

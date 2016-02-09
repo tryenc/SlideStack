@@ -5,6 +5,11 @@ navbar {
   border-bottom: 1px solid black;
   box-shadow: 1px 1px 14px -3px black;
   height: 40px;
+  font-family: $sans-font;
+
+  .green {
+      color: $button-color;
+  }
 
   .container {
     width: 100%;
@@ -45,18 +50,12 @@ navbar {
     outline: none !important;
   }
 
-  .welcome {
-    float: right;
-    margin-top: 12px;
-    span {
-      color: black;
-      font-size: 16px;
-      margin-right: 5px;
-    }
-    a {
-      color: #f30046;
-      cursor: pointer;
-    }
-  }
 
+    .welcome {
+      float: right;
+      margin-top: 12px;
+      span {
+          font-size: 18px;
+      }
+    }
 }
