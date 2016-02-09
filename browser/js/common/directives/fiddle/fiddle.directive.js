@@ -2,11 +2,30 @@ app.directive('fiddle', function () {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/fiddle/fiddle.html',
-        controller: function ($scope, $element) {
+        controller: function ($scope, $element, $transclude) {
             $scope.tabs = [];
             let viewTab;
             let libraries = '';
 
+            const getContent = function () {
+                let content = {};
+                let currentType;
+                let allContent = $element.attr('content');
+
+                allContent.split('\n').forEach(line => {
+                    if (/html=|css=|js=/.test(line)) {
+                        currentType = line.replace('=', '');
+                        content[currentType] = '';
+                    } else {
+                        content[currentType] += line + '\n';
+                    }
+                });
+
+                return content;
+            }
+
+            $scope.content = getContent();
+            console.log($scope.content);
 
             this.addTab = function (tab) {
                 $scope.tabs.push(tab);
