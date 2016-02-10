@@ -1,11 +1,6 @@
 app.directive('questionSidebar', function ($rootScope, $state, Socket, AuthService) {
     return {
         restrict: 'E',
-        // scope: {
-        //     // peers: '=',
-        //     // user: '=',
-        //     // file: '=',
-        // },
         templateUrl: 'js/common/directives/question-sidebar/question-sidebar.html',
         link: function (scope, element, attrs) {
             scope.expanded = false;
@@ -21,14 +16,13 @@ app.directive('questionSidebar', function ($rootScope, $state, Socket, AuthServi
             });
 
             scope.expand = function () {
-
                 if (scope.expanded){
                   element.css('width', '50px');
-                  element.css('height', '10vh');
+                  element.css('height', '40px');
                 }
                 else{
-                  element.css('width', '250px');
-                  element.css('height', '75vh');
+                  element.css('width', '400px');
+                  element.css('height', '500px');
                 }
                 scope.expanded = !scope.expanded;
             };

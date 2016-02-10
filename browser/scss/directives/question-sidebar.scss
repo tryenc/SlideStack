@@ -1,17 +1,18 @@
 question-sidebar {
   background-color: white;
   position: absolute;
-  padding: 20px 10px 0 0;
+
   right: 0;
   top: 20;
   color: $button-color;
-  height: 10vh;
+  height: 40px;
   width: 50px;
   text-align: left;
   z-index: 10;
   -webkit-transition: left 0.5s;
   transition: left 0.5s;
-
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
   #expand-left {
       width: 100%;
   }
@@ -20,7 +21,7 @@ question-sidebar {
   }
 
   span {
-      margin: 10px 0 10px 10px;
+      margin: 5px 0 10px 10px;
       // font-family: $title-font;
       // color: $accent;
       vertical-align: middle;
@@ -30,6 +31,7 @@ question-sidebar {
 
   span.glyphicon {
       font-size: 30px;
+
 
       // color: $light;
   }

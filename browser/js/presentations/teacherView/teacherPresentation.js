@@ -51,17 +51,6 @@ app.config(function ($stateProvider) {
                 $scope.$digest();
             });
 
-            // // Student asking question to the teacher
-            // Socket.questionAsked(studentObj => {
-            //     if (studentObj.anonymous) {
-            //         $('#questionBox').append
-            //             ('Anonymous: ' + studentObj.question+ '\n')
-            //     } else {
-            //         $('#questionBox').append
-            //             (studentObj.user.name + ': ' + studentObj.question + '\n')
-            //     }
-            // });
-
             Socket.onConfusion(data => {
                 $scope.confusion.level += (100 / $scope.studentList.length);
                 $scope.$digest();
