@@ -35,13 +35,17 @@ app.directive('relativeSizes', function () {
             const container = el[0];
             const setSizes = function () {
                 let ratio = container.clientWidth / document.body.clientWidth;
-                // let fontSize = 36 * offset * ratio;
-                let fontSize = 36 * ratio;
+                let fontSize = 36 * offset * ratio;
+                // let fontSize = 36 * ratio;
 
                 el[0].style.fontSize = fontSize.toString() + 'px';
             }
 
             setSizes();
+
+            window.addEventListener('resize', function () {
+                setSizes();
+            });
 
             // Resize when container size changes - how????
         }
