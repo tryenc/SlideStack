@@ -23,8 +23,26 @@
 
 #live-preview, #presentation-view, #teacher-presentation {
     position: relative;
-    background-color: #fdfdfd;
     overflow: hidden;
+
+
+    .slideshow-container {
+        border: solid 1px gray;
+        background-color: #fdfdfd;
+        overflow: hidden;
+    }
+
+    .slide-controls {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .slide-container {
+        height: 100%;
+        width: 100%;
+
+    }
 
     &.fullscreen {
         position: absolute;
@@ -52,31 +70,6 @@
                 opacity: 1;
             }
         }
-    }
-
-    .slideshow-container {
-        border: solid 1px gray;
-        overflow: hidden;
-    }
-
-    .slide-controls {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-    }
-
-    .slide-container {
-        height: 100%;
-        width: 100%;
-
-        /* the parsed element will always be the main container holding all of the slide content */
-    //     parsed {
-    //         height: 100%;
-    //         display: flex;
-    //         padding: 2% 5%;
-    //         flex-direction: column;
-    //         background-color: white;
-    //     }
     }
 }
 
