@@ -28,17 +28,24 @@ app.directive('relativeSizes', function () {
         restrict: 'A',
         link: function (scope, el, attrs) {
 
+            const baseWidth = 1336;
+            const windowWidth = document.body.clientWidth;
+            const offset = windowWidth / baseWidth;
+
             const container = el[0];
             const setSizes = function () {
-                let windowWidth = document.body.clientWidth;
-                let containerWidth = container.clientWidth;
-                let ratio = containerWidth / windowWidth;
-                let fontSize = 36 * ratio;
+                let ratio = container.clientWidth / document.body.clientWidth;
+                let fontSize = 36 * offset * ratio;
+                // let fontSize = 36 * ratio;
 
                 el[0].style.fontSize = fontSize.toString() + 'px';
             }
 
             setSizes();
+
+            window.addEventListener('resize', function () {
+                setSizes();
+            });
 
             // Resize when container size changes - how????
         }

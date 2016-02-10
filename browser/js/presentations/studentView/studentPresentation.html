@@ -12,7 +12,7 @@
         </ss-slideshow>
     </div>
 </div>
-<div style="z-index:2; position:absolute;">
+<div class="questionModal">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
             <h3 class="modal-title">Have a Question?</h3>
@@ -26,7 +26,7 @@
             <button class="btn btn-primary" type="button"
                     ng-click="submitQuestion(question, anonymous)">Submit Question</button>
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-            
+
         </div>
     </script>
 
