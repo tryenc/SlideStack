@@ -25,9 +25,39 @@
     }
     p {
         font-size: 1em;
-        margin: 1em 0 0 0;
+        margin: 0.5em 0 0 0;
     }
     button {
         font-size: 0.5em;
+    }
+
+    editor {
+        width: 50em;
+        .code-editor {
+            width: 50em;
+            height: 18em;
+            margin-left: 20px;
+        }
+        .buttons {
+            margin-left: 20px;
+        }
+    }
+
+    console {
+        iframe {
+            width: 25em;
+            height: 7em;
+        }
+    }
+
+    fiddle {
+        .code-editor {
+            height: 30em;
+            width: 55em;
+        }
+        iframe {
+            height: 30em;
+            width: 27em;
+        }
     }
 }

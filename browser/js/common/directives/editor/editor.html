@@ -4,19 +4,17 @@
     ng-click="doSomething()"
     dont-move-slides>
 </div>
-<div>
-    <button
+<div class="buttons" ng-if="consolePresent">
+        <button
         ng-show="display.mode==='student' && selected && !sharing"
         ng-click="toggleEdit()">
         <span ng-show="!editCode">EDIT</span>
         <span ng-show="editCode">CANCEL</span>
     </button>
     <button
-        ng-show="display.mode==='student' && sharing">
-        SHARING CODE!
+    ng-show="display.mode==='student' && sharing">
+    SHARING CODE!
     </button>
-</div>
-<div class="buttons" ng-if="consolePresent">
     <button ng-click="runCode(code.text)">RUN CODE</button>
     <button ng-click="runCode()">CLEAR CONSOLE</button>
 </div>
