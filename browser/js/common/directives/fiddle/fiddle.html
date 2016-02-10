@@ -13,23 +13,24 @@
             <button id="btn-append-to-body" type="button" uib-dropdown-toggle>
                 Libraries <span class="caret"></span>
             </button>
-            <ul uib-dropdown-menu role="menu" class="dropdown-menu-right" aria-labelledby="btn-append-to-body">
+            <ul uib-dropdown-menu role="menu" class="dropdown-menu-right lib-list" aria-labelledby="btn-append-to-body">
                 <li
                     role="menuitem"
                     ng-repeat="lib in libraries"
-                    ng-click="lib.checked = !lib.checked">
-                    <a href="#">{{lib.name}}</a>
+                    ng-click="lib.checked = !lib.checked"
+                    ng-class="{ active: lib.checked }">
+                    {{lib.name}}
                 </li>
 
                 <li class="divider"></li>
-                <li role="menuitem">
+                <li role="menuitem" class="new-lib">
                     <input
                         type="text"
                         class="form-control"
                         ng-model="newLib.url"
                         ng-click="$event.stopPropagation()"
                         placeholder="Enter a CDN link">
-                    <a href="#" ng-click="addLibrary(newLib)">Add</a>
+                    <span ng-click="addLibrary(newLib)">Add</span>
                 </li>
             </ul>
         </div>

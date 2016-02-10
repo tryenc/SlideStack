@@ -8,6 +8,7 @@ fiddle {
         iframe {
             height: 13em;
             width: 28em;
+            border: solid 1px gray;
         }
 //
         .fiddle-controls {
@@ -27,10 +28,38 @@ fiddle {
                     }
                 }
             }
+
         }
 //
         .code-editor {
             height: 26em;
         }
+    }
+}
+
+.lib-list {
+    font-size: 2em;
+    font-family: $serif-font;
+    li {
+        padding: 4px 16px;
+        cursor: pointer;
+        &:hover {
+            background-color: darken($background, 2);
+        }
+        &.active {
+            background-color: $orange;
+            color: white;
+        }
+        &.divider {
+            padding: 0;
+        }
+        &.divider, &.new-lib {
+            &:hover {
+                background-color: inherit;
+            }
+        }
+    }
+    input {
+        margin: 0 0 6px 0;
     }
 }
