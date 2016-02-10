@@ -80,6 +80,16 @@
     }
 }
 
+#studentList {
+  .panel-heading {
+    background: $button-color;
+    border-color: $button-color;
+  }
+  .panel-primary {
+    border-color: $button-color;
+  }
+}
+
 .questionModal {
 
   .fa-question {
