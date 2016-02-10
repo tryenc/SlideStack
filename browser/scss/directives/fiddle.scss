@@ -3,13 +3,12 @@ fiddle {
 //
         // padding: 20px;
         width: 28em;
+        height: 14em;
         // height: 12em;
-//         iframe {
-//             background-color: white;
-//             width: 90%;
-//             height: 90%;
-//             margin-left: 20px;
-//         }
+        iframe {
+            height: 13em;
+            width: 28em;
+        }
 //
         .fiddle-controls {
             // margin-left: 20px;
@@ -17,9 +16,8 @@ fiddle {
             justify-content: space-between;
         }
 //
-//         .code-editor {
-//             width: 90%;
-//             height: 90%;
-//         }
+        .code-editor {
+            height: 26em;
+        }
     }
 }
