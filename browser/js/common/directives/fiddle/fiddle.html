@@ -4,7 +4,8 @@
         <div class="fiddle-tabs">
             <button
                 ng-repeat="tab in tabs"
-                ng-click="select(tab)">
+                ng-click="select(tab)"
+                ng-class="{ active: tab.selected }">
                 {{tab.mode}}
             </button>
         </div>
