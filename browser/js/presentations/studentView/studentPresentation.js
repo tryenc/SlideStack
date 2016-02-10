@@ -53,7 +53,6 @@ app.config(function ($stateProvider) {
     $scope.user = user;
 
     $scope.toggleConfusion = () => {
-        console.log("Hit toggle")
         if (!$scope.user.confused) {
             Socket.emitConfusion(user);
             $scope.user.confused = true;

@@ -81,6 +81,7 @@
 }
 
 .questionModal {
+
   .fa-question {
     //font-size: 2.5em;
     color: $button-color;
@@ -92,8 +93,8 @@
   right: 200px;
 }
 
-#confusion {
-
+#cancel {
+  background: $orange;
 }
 
 .toggle-button { background-color: green; margin: 8px 20px; border-radius: 20px; border: 2px solid #D0D0D0 ; height: 30px; cursor: pointer; width: 50px; position: relative; display: inline-block; user-select: none; -webkit-user-select: none; -ms-user-select: none; -moz-user-select: none; }
