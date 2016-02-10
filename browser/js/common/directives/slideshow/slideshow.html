@@ -3,17 +3,17 @@
 <div class="slide-controls">
 
     <div ng-if="display.mode === 'edit'">
-        <button ng-click="display.fullscreen = !display.fullscreen">Fullscreen</button>
-        <button ng-click="prev()">Previous</button>
-        <button ng-click="next()">Next</button>
+        <button ng-click="display.fullscreen = !display.fullscreen" class="glyphicon glyphicon-fullscreen"></button>
+        <button ng-click="prev()" class="glyphicon glyphicon-step-backward"></button>
+        <button ng-click="next()" class="glyphicon glyphicon-step-forward"></button>
     </div>
 
     <div ng-if="display.mode !== 'edit'">
         <button ng-click="toggleSync()">
-            <span ng-show="syncedWithTeacher">Pause</span>
-            <span ng-show="!syncedWithTeacher">Resume</span>
+            <span ng-show="syncedWithTeacher" class="glyphicon glyphicon-pause"></span>
+            <span ng-show="!syncedWithTeacher" class="glyphicon glyphicon-play"></span>
         </button>
-        <button ng-click="prev()" ng-disabled="syncedWithTeacher">Prev</button>
-        <button ng-click="next()" ng-disabled="syncedWithTeacher">Next</button>
+        <button ng-click="prev()" ng-disabled="syncedWithTeacher" class="glyphicon glyphicon-step-backward"></button>
+        <button ng-click="next()" ng-disabled="syncedWithTeacher" class="glyphicon glyphicon-step-forward"></button>
     </div>
 </div>

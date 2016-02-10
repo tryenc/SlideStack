@@ -44,7 +44,9 @@ app.directive('relativeSizes', function () {
             setSizes();
 
             window.addEventListener('resize', function () {
+                console.log("el[0].style.fontSize", el[0].style.fontSize);
                 setSizes();
+                scope.$digest();
             });
 
             // Resize when container size changes - how????
