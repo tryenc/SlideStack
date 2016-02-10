@@ -39,6 +39,8 @@ app.directive('editor', function (Socket) {
             editorDiv.setAttribute('id', aceId);
             let editor = window.ace.edit(aceId);
             editor.$blockScrolling = Infinity;
+            editor.setTheme('ace/theme/twilight');
+            editorDiv.style.fontSize = '0.5em';
             editor.getSession().setMode("ace/mode/" + aceMode.toLowerCase());
             editor.insert(scope.code.text);
 
