@@ -27,16 +27,6 @@ app.config(function ($stateProvider) {
 
             if ($scope.user) $scope.user.confused = false;
 
-            $scope.toggleConfusion = () => {
-                if(!$scope.user.confused) {
-                    Socket.emitConfusion(user);
-                    $scope.user.confused = true;
-                } else {
-                    Socket.retractConfusion(user);
-                    $scope.user.confused = false;
-                }
-            };
-
             $scope.open = (size) => {
 
                 var modalInstance = $uibModal.open({
@@ -60,15 +50,27 @@ app.config(function ($stateProvider) {
         }
     })
 }).controller('ModalInstanceCtrl', ($scope, $uibModalInstance, user, Socket) => {
+    $scope.user = user;
 
-  $scope.anonymous = false;
-  $scope.submitQuestion =  (question, anonymous) => {
-    Socket.askQuestion(
-        {user: user, question: question, anonymous: anonymous});
-    $uibModalInstance.close();
-  };
+    $scope.toggleConfusion = () => {
+        console.log("Hit toggle")
+        if (!$scope.user.confused) {
+            Socket.emitConfusion(user);
+            $scope.user.confused = true;
+        } else {
+            Socket.retractConfusion(user);
+            $scope.user.confused = false;
+        }
+    };
 
-  $scope.cancel = () => {
-    $uibModalInstance.dismiss('cancel');
-  };
+    $scope.anonymous = false;
+    $scope.submitQuestion = (question, anonymous) => {
+        Socket.askQuestion(
+            {user: user, question: question, anonymous: anonymous});
+        $uibModalInstance.close();
+    };
+
+    $scope.cancel = () => {
+        $uibModalInstance.dismiss('cancel');
+    };
 });

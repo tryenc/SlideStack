@@ -19,6 +19,9 @@
         </div>
         <div class="modal-body">
  			<textarea placeholder="Type your question here" ng-model="question"></textarea>
+            <div id="confusion" class="toggle-button" ng-class="{'toggle-button-selected': user.confused }" ng-click="toggleConfusion()">
+            <button></button>
+            </div>
         </div>
         <div class="modal-footer">
             <label>Ask Anonymously</label>
@@ -30,10 +33,15 @@
         </div>
     </script>
 
-    <button type="button" class="btn btn-default" ng-click="open('sm')">Have a Question?</button>
 
-    <div class="toggle-button" ng-class="{'toggle-button-selected': user.confused }" ng-click="toggleConfusion()">
-       <button></button>
-   	</div>
+    <span><i class="fa fa-question fa-3x" ng-click="open('sm')"></i></span>
+    <!--<button type="button" ng-click="open('sm')">-->
+
+    <!--</button>-->
+
+
+    <!--<div class="toggle-button" ng-class="{'toggle-button-selected': user.confused }" ng-click="toggleConfusion()">-->
+       <!--<button></button>-->
+   	<!--</div>-->
 
 </div>
