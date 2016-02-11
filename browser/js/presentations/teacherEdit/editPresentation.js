@@ -20,6 +20,7 @@ app.config(function ($stateProvider) {
             });
 
             $scope.save = function (presentation) {
+                console.log("called")
                 PresentationFactory.update(presentation)
                     .then(null, err => $scope.error = err);
             };
@@ -28,6 +29,8 @@ app.config(function ($stateProvider) {
                 fullscreen: false,
                 mode: 'edit'
             }
+
+            $scope.themes = ["simple", "black"];
         }
     });
 });

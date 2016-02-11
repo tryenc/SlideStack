@@ -147,33 +147,3 @@ ss-slideshow {
 .toggle-button button { cursor: pointer; outline: 0; display:block; position: absolute; left: 0; top: 0; border-radius: 100%; width: 30px; height: 30px; background-color: white; float: left; margin: -3px 0 0 -3px; border: 2px solid #D0D0D0 ; transition: left 0.3s; }
 .toggle-button-selected { background-color: red; border: 2px solid #7DA652 ; }
 .toggle-button-selected button { left: 26px; top: 0; margin: 0; border: none; width: 24px; height: 24px; box-shadow: 0 0 4px rgba(0,0,0,0.1); }
-//
-// #presentation-view {
-//     &.fullscreen {
-//         position: absolute;
-//         left: 0;
-//         top: 0;
-//         width: 100vw;
-//         height: 100vh;
-//         margin: 0;
-//         .slideshow-container {
-//             height: 100%!important;
-//         }
-//         .slide-container {
-//             position: absolute;
-//         }
-//
-//         // Animations
-//         .fade-on-change {
-//             transition: opacity ease 0.5s;
-//
-//             &.ng-enter, &.ng-leave.ng-leave-active {
-//                 opacity: 0;
-//             }
-//
-//             &.ng-leave, &.ng-enter.ng-enter-active {
-//                 opacity: 1;
-//             }
-//         }
-//     }
-// }
