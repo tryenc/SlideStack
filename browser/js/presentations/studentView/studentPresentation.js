@@ -30,7 +30,7 @@ app.config(function ($stateProvider) {
             $scope.open = (size) => {
 
                 var modalInstance = $uibModal.open({
-                    animation: $scope.animationsEnabled,
+                    animation: true,
                     templateUrl: 'myModalContent.html',
                     controller: 'ModalInstanceCtrl',
                     size: size,

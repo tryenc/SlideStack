@@ -4,10 +4,11 @@
     <title>Teacher View</title>
 </head>
 <body>
+
 <div class="container-fluid">
+  <question-sidebar></question-sidebar>
     <div class="row">
         <div class="col-md-9">
-
             <div id="teacher-presentation">
               <div class="slideshow-container" ratio="1.77" relative-sizes>
                 <ss-slideshow display="{fullscreen: false, mode: 'teacher'}">
@@ -25,7 +26,6 @@
             <div class="teacher-tools">
                 <teacher-timer></teacher-timer>
                 <div>
-                    <textarea id='questionBox' rows="10" cols="50" class="form-control">{{currentQuestion}}</textarea>
                     <progress-bar confusion="confusion"></progress-bar>
                 </div>
                 <ss-student-list></ss-student-list>
