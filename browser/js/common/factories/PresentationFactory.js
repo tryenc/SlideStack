@@ -1,10 +1,10 @@
 app.factory('PresentationFactory', function ($http) {
     return {
-        create (newPres, userId) {
+        create (newPres) {
             return $http({
                 url: '/api/presentations/',
                 method: 'POST',
-                data: {presentation: newPres, user: userId}
+                data: newPres
             })
             .then(res => res.data);
         },
@@ -14,12 +14,20 @@ app.factory('PresentationFactory', function ($http) {
                 url: '/api/presentations/',
                 method: 'GET'
             })
-                .then(res => res.data);
+            .then(res => res.data);
         },
 
         fetchById (id) {
             return $http({
                 url: '/api/presentations/' + id,
+                method: 'GET'
+            })
+            .then(res => res.data);
+        },
+
+        fetchByOwner (userId) {
+            return $http({
+                url: '/api/users/' + userId + '/presentations',
                 method: 'GET'
             })
             .then(res => res.data);

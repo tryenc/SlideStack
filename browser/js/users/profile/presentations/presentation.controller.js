@@ -1,9 +1,10 @@
-app.controller('PresentationTabCtrl', ($scope, PresentationFactory, $state) => {
+app.controller('PresentationTabCtrl', ($scope, PresentationFactory, $state, user, presentations) => {
     $scope.newPresMenu = false;
+    $scope.presentations = presentations;
 
     $scope.createPresentation = function (newPres) {
-        PresentationFactory.create(newPres, $scope.user._id)
+        newPres.owner = user._id;
+        PresentationFactory.create(newPres)
             .then(createdPres => $state.go('editPres', { id: createdPres._id }))
     };
 });
-

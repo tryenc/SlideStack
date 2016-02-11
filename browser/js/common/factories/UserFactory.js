@@ -1,14 +1,14 @@
 app.factory('UserFactory', function($http, AuthService) {
 
 	return {
-		 create (newUser) {
-		 	return $http({
-		 		url: '/api/users/',
-		 		method: 'POST',
-		 		data: newUser
-		 	})
-		 	.then(res => res.data);
-		 },
+		//  create (newUser) {
+		//  	return $http({
+		//  		url: '/api/users/',
+		//  		method: 'POST',
+		//  		data: newUser
+		//  	})
+		//  	.then(res => res.data);
+		//  },
 		signup: function(user){
 			return $http({
 				url: '/api/users/',

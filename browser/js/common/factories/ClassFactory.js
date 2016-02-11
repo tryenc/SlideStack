@@ -27,6 +27,14 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
+		fetchByTeacher (teacherId) {
+			return $http({
+				url: '/api/users/' + teacherId + '/classes',
+				method: 'GET'
+			})
+			.then(res => res.data);
+		},
+
 		update (classToUpdate) {
 			return $http({
 				url: '/api/classes/' + classToUpdate._id,
@@ -42,24 +50,6 @@ app.factory('ClassFactory', function($http) {
 				method: 'DELETE'
 			})
 			.then(res => res.data);
-		},
-
-        fetchStudentsByClass: function(classId) {
-            return $http({
-                url: '/api/classes/' + classId + '/students',
-                method: 'GET'
-            }).then(res => res.data);
-        },
-
-        updateClasses (user, classToUpdate) {
-            for(let i = 0; i < user.classes.length; i++) {
-                if (user.classes[i]._id === classToUpdate._id) {
-                    user.classes.splice(i, 1);
-                    return user;
-                }
-            }
-            user.classes.push(classToUpdate);
-            return user;
-        }
+		}
 	};
 });

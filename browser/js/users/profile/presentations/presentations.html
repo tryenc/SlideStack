@@ -1,5 +1,30 @@
+<button
+    ng-click="newPresMenu = !newPresMenu"
+    class="btn">
+    New Presentation
+</button>
+<div ng-show="newPresMenu">
+    <form ng-submit="createPresentation(newPres)">
+        <div class="form-group">
+            <label>Title</label>
+            <input
+                type="text"
+                ng-model="newPres.name"
+                class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Class</label>
+            <select
+                ng-options="class._id as class.name for class in user.classes"
+                ng-model="newPres.class">
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
 <div class="well">
-    <div ng-repeat="presentation in user.presentations" class="col-md-4 panel panel-default">
+    <div ng-repeat="presentation in presentations">
         <h4>{{ presentation.name }}</h4>
         <button class="btn" ui-sref="viewPres({ id: presentation._id })">
             View
@@ -11,29 +36,5 @@
             Edit
         </button>
 
-    </div>
-    <button
-        ng-click="newPresMenu = !newPresMenu"
-        class="btn">
-        New Presentation
-    </button>
-    <div ng-show="newPresMenu">
-        <form ng-submit="createPresentation(newPres)">
-            <div class="form-group">
-                <label>Title</label>
-                <input
-                    type="text"
-                    ng-model="newPres.name"
-                    class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Class</label>
-                <select
-                    ng-options="class._id as class.name for class in user.classes"
-                    ng-model="newPres.class">
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Create</button>
-        </form>
     </div>
 </div>

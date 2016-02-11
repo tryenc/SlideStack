@@ -1,17 +1,40 @@
+<button
+    ng-click="newClassMenu = !newClassMenu"
+    class="btn">
+    Create A New Class
+</button>
+<div ng-show="newClassMenu">
+    <form ng-submit="createClass(newClass)">
+        <div class="form-group">
+            <label>Name</label>
+            <input
+                type="text"
+                ng-model="newClass.name"
+                class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea
+                ng-model="newClass.description">
+            </textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
+
 <div>
     <uib-accordion id="a1">
-        <uib-accordion-group ng-repeat="class in user.classes" heading="{{class.name}}">
+        <uib-accordion-group ng-repeat="class in classes" heading="{{class.name}}">
             <uib-accordion>
 
-                <div ng-show="user.isTeacher">
-                    <uib-accordion-group heading="Students">
-                        <div ng-repeat="student in class.students">
-                            <a ng-href="/users/{{student._id}}">
-                                {{student.name}}
-                            </a>
-                        </div>
-                    </uib-accordion-group>
-                </div>
+                <uib-accordion-group heading="Students">
+                    <div ng-repeat="student in class.students">
+                        <a ng-href="/users/{{student._id}}">
+                            {{student.name}}
+                        </a>
+                    </div>
+                </uib-accordion-group>
 
                 <uib-accordion-group heading="Presentations">
                     <div ng-repeat="pres in user.presentations">
