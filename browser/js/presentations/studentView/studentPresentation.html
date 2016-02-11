@@ -1,7 +1,7 @@
 <!--Fullscreen Student VIEW -->
 
 <div id="presentation-view" class="fullscreen">
-    <div class="slideshow-container clearfix" ratio="1.77">
+    <div class="slideshow-container clearfix" ratio="1.77" relative-sizes>
         <!-- ng-class="{ 'classA': expressionA, 'classB': expressionB }" -->
         <!-- <ss-slideshow display="{ fullscreen: true, mode: 'student' }" ng-class="{ 'simple': presentation.theme === 'simple', 'black': presentation.theme === 'black'}"> -->
         <ss-slideshow display="{ fullscreen: true, mode: 'student' }" ng-class="presentation.theme">
@@ -12,28 +12,37 @@
         </ss-slideshow>
     </div>
 </div>
-<div style="z-index:2; position:absolute;">
+<div class="questionModal">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
             <h3 class="modal-title">Have a Question?</h3>
         </div>
         <div class="modal-body">
  			<textarea placeholder="Type your question here" ng-model="question"></textarea>
+            <h3>Confused?</h3>
+            <div id="confusion" class="toggle-button" ng-class="{'toggle-button-selected': user.confused }" ng-click="toggleConfusion()">
+                <button></button>
+            </div>
         </div>
         <div class="modal-footer">
             <label>Ask Anonymously</label>
             <input type="checkbox" ng-model="anonymous">
-            <button class="btn btn-primary" type="button"
+            <button class="btn" type="button"
                     ng-click="submitQuestion(question, anonymous)">Submit Question</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-            
+            <button class="btn" class="cancel" type="button" ng-click="cancel()">Cancel</button>
+
         </div>
     </script>
 
-    <button type="button" class="btn btn-default" ng-click="open('sm')">Have a Question?</button>
 
-    <div class="toggle-button" ng-class="{'toggle-button-selected': user.confused }" ng-click="toggleConfusion()">
-       <button></button>
-   	</div>
+    <span><i class="fa fa-question fa-3x" ng-click="open('sm')"></i></span>
+    <!--<button type="button" ng-click="open('sm')">-->
+
+    <!--</button>-->
+
+
+    <!--<div class="toggle-button" ng-class="{'toggle-button-selected': user.confused }" ng-click="toggleConfusion()">-->
+       <!--<button></button>-->
+   	<!--</div>-->
 
 </div>

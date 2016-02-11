@@ -56,6 +56,9 @@ button {
   border: 0;
 }
 
+.btn:focus,.btn:active {
+  outline: none !important;
+}
 
 
 @import 'directives/main';
