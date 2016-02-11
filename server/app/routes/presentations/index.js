@@ -9,7 +9,7 @@ const UserModel = mongoose.model('Users');
 // Get all presentations
 router.get('/', (req, res, next) => {
 
-    PresentationsModel.find().populate('class')
+    PresentationsModel.find().populate('class owner')
         .then(presentations => {
             res.send(presentations);
         })
@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 // Get a presentation by _id
 router.get('/:id', (req, res, next) => {
 
-    PresentationsModel.findById(req.params.id).populate('class')
+    PresentationsModel.findById(req.params.id).populate('class owner')
         .then(presentation => {
             res.send(presentation);
         })
@@ -31,22 +31,9 @@ router.get('/:id', (req, res, next) => {
 // Create new presentation
 router.post('/', (req, res, next) => {
 
-    let newPres;
-
-    PresentationsModel.create(req.body.presentation)
-        .then(presentation => {
-            newPres = presentation;
-            return UserModel.findById(req.body.user);
-        })
-        .then(foundUser => {
-            foundUser.presentations.push(newPres._id);
-            return foundUser.save();
-        })
-        .then(() => {
-            res.send(newPres);
-        })
+    PresentationsModel.create(req.body)
+        .then(presentation => res.json(presentation))
         .then(null, next);
-
 });
 
 // Update a presentation

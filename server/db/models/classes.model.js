@@ -29,9 +29,8 @@ var schema = new mongoose.Schema({
     }
 });
 
-schema.pre('findOne', function (next) {
-    console.log('pre hook: ', this._id);
-    next();
-});
+schema.statics.findClassesByTeacher = function (userId) {
+    return this.find({ teacher: userId });
+}
 
 mongoose.model('Classes', schema);

@@ -4,6 +4,8 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const UserModel = mongoose.model('Users');
+const ClassModel = mongoose.model('Classes');
+const PresentationModel = mongoose.model('Presentations');
 const _ = require('lodash');
 
 router.param('id', function (req, res, next, id) {
@@ -48,6 +50,21 @@ router.post('/', (req, res, next) => {
                 );
             });
         })
+        .then(null, next);
+});
+
+// Get all classes a user teaches
+router.get('/:id/classes', function (req, res, next) {
+    ClassModel.findClassesByTeacher(req.params.id)
+        .then(classes => res.json(classes))
+        .then(null, next);
+});
+
+// Get all presentations a user owns
+router.get('/:id/presentations', function (req, res, next) {
+    console.log('user Id: ', req.params.id)
+    PresentationModel.findPresentationsByOwner(req.params.id)
+        .then(presentations => res.json(presentations))
         .then(null, next);
 });
 

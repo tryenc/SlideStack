@@ -10,6 +10,7 @@ const UserModel = mongoose.model('Users');
 router.get('/', (req, res, next) => {
 
     ClassesModel.find().exec()
+        .populate('teacher students')
         .then(classes => {
             res.send(classes);
         })
@@ -21,24 +22,25 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
 
     ClassesModel.findById(req.params.id).exec()
+        .populate('teacher students')
         .then(oneClass => {
             res.send(oneClass);
         })
         .then(null, next);
 
 });
-
-// Get a class list of students
-router.get('/:id/students', (req, res, next) => {
-    const id = req.params.id;
-
-    UserModel.find({ classes: id, isStudent: true})
-        .then(arrayOfStudents => {
-            res.send(arrayOfStudents)
-        })
-        .then(null, next);
-
-});
+//
+// // Get a class list of students
+// router.get('/:id/students', (req, res, next) => {
+//     const id = req.params.id;
+//
+//     UserModel.find({ classes: id, isStudent: true})
+//         .then(arrayOfStudents => {
+//             res.send(arrayOfStudents)
+//         })
+//         .then(null, next);
+//
+// });
 
 // Create new class
 router.post('/', (req, res, next) => {
