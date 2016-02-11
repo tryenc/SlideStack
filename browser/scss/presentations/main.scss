@@ -83,6 +83,18 @@
   }
 }
 
+.studentListItem {
+  //background-color: red;
+  //font-weight: bold;
+  .glyphicon-exclamation-sign {
+    float: left;
+    color: $orange;
+  }
+  .buttonOrange {
+    background: $orange;
+  }
+}
+
 .questionModal {
 
   .fa-question {
