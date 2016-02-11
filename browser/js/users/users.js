@@ -26,8 +26,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('user.classes', {
-        url: '/classes',
+    .state('user.teacherClasses', {
+        url: '/teacherClasses',
         templateUrl: 'js/users/profile/classes/classes.html',
         controller: 'ClassesTabCtrl',
         resolve: {
@@ -36,9 +36,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('user.students', {
-        url: '/students',
-        templateUrl: 'js/users/profile/students/students.html',
-        controller: 'StudentsTabCtrl'
+    .state('user.studentClasses', {
+        url: '/studentClasses',
+        templateUrl: 'js/users/profile/students/student.html',
+        controller: 'StudentsTabCtrl',
+        resolve: {
+            classes: function(ClassFactory, user) {
+                return ClassFactory.fetchByStudent(user._id);
+            }
+        }
     });
 });

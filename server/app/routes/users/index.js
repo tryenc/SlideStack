@@ -53,12 +53,6 @@ router.post('/', (req, res, next) => {
         .then(null, next);
 });
 
-// Get all classes a user teaches
-router.get('/:id/classes', function (req, res, next) {
-    ClassModel.findClassesByTeacher(req.params.id)
-        .then(classes => res.json(classes))
-        .then(null, next);
-});
 
 // Get all presentations a user owns
 router.get('/:id/presentations', function (req, res, next) {
