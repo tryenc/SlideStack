@@ -1,0 +1,13 @@
+<div id="left-menu">
+    <div
+        id="expand-right"
+        ng-click="expand()">
+        <span
+            class="fa fa-question"
+            ng-class="{ rotated: expanded }">
+        </span>
+    </div>
+    <div>
+        <div ng-hide="!expanded" id='questionBox'></div>
+    </div>
+</div>

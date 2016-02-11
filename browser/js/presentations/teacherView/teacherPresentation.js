@@ -14,9 +14,7 @@ app.config(function ($stateProvider) {
             $scope.display =  {
                 mode: 'teacher'
             };
-
-
-
+            
             $scope.currentQuestion = null;
 
             $scope.studentList = [];
@@ -49,17 +47,6 @@ app.config(function ($stateProvider) {
             Socket.onStudentLeft(studentId => {
                 $scope.studentList = $scope.studentList.filter(student => student._id !== studentId);
                 $scope.$digest();
-            });
-
-            // Student asking question to the teacher
-            Socket.questionAsked(studentObj => {
-                if (studentObj.anonymous) {
-                    $('#questionBox').append
-                        ('Anonymous: ' + studentObj.question+ '\n')
-                } else {
-                    $('#questionBox').append
-                        (studentObj.user.name + ': ' + studentObj.question + '\n')
-                }
             });
 
             Socket.onConfusion(data => {
