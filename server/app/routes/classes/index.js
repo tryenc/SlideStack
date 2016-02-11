@@ -10,18 +10,6 @@ const PresentationModel = mongoose.model('Presentations');
 // Get all classes
 router.get('/', (req, res, next) => {
 
-    ClassesModel.find()
-        .populate('teacher students')
-        .then(classes => {
-            res.send(classes);
-        })
-        .then(null, next);
-
-});
-
-// Get a class by _id
-router.get('/:id', (req, res, next) => {
-
     var classes = ClassesModel.findById(req.params.id)
         .populate('teacher students');
     var presentations = PresentationModel.findPresentationsByClass(req.params.id);
@@ -33,7 +21,8 @@ router.get('/:id', (req, res, next) => {
     })
     .then(null, next);
 });
-//
+
+
 // // Get a class list of students
 // router.get('/:id/students', (req, res, next) => {
 //     const id = req.params.id;
@@ -46,6 +35,20 @@ router.get('/:id', (req, res, next) => {
 //
 // });
 
+// Get all classes a user teaches
+router.get('/teacher/:userId', function (req, res, next) {
+    ClassesModel.findClassesByTeacher(req.params.userId)
+        .then(classes => res.json(classes))
+        .then(null, next);
+});
+
+// Get all classes a user is a student in
+router.get('/student/:userId', function (req, res, next) {
+    ClassesModel.findClassesByStudents(req.params.userId)
+        .then(classes => res.json(classes))
+        .then(null, next);
+});
+
 // Create new class
 router.post('/', (req, res, next) => {
 
@@ -57,12 +60,24 @@ router.post('/', (req, res, next) => {
 
 });
 
+// Get a class by _id
+router.get('/:id', (req, res, next) => {
+
+    ClassesModel.findById(req.params.id)
+        .populate('teacher students')
+        .then(oneClass => {
+            res.send(oneClass);
+        })
+        .then(null, next);
+
+});
+
 // Update a class
 router.put('/:id', (req, res, next) => {
 
     ClassesModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
-    }).exec()
+    })
         .then(updatedClass => {
             res.send(updatedClass);
         })
@@ -73,7 +88,7 @@ router.put('/:id', (req, res, next) => {
 // Delete a class
 router.delete('/:id', (req, res, next) => {
 
-    ClassesModel.findByIdAndRemove(req.params.id).exec()
+    ClassesModel.findByIdAndRemove(req.params.id)
         .then(deletedClass => {
             res.send(deletedClass);
         })
