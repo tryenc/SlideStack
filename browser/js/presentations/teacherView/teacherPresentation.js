@@ -14,9 +14,7 @@ app.config(function ($stateProvider) {
             $scope.display =  {
                 mode: 'teacher'
             };
-
-
-
+            
             $scope.currentQuestion = null;
 
             $scope.studentList = [];
