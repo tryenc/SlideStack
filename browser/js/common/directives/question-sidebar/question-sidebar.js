@@ -14,13 +14,11 @@ app.directive('questionSidebar', function ($rootScope, $state, Socket, AuthServi
                     $('#questionBox').append
                         (studentObj.user.name + ': ' + studentObj.question + "<br>")
                 }
-                newQuestionAsked = true;
+                if (!scope.expanded){
+                  element.css('background-color', 'red');
+                }
             });
 
-            if(newQuestionAsked){
-              element.css('background-color', 'red');
-              newQuestionAsked = false;
-            }
             scope.expand = function () {
                 if (scope.expanded){
                   element.css('width', '50px');
@@ -30,6 +28,7 @@ app.directive('questionSidebar', function ($rootScope, $state, Socket, AuthServi
                 else{
                   element.css('width', '400px');
                   element.css('height', '500px');
+                  element.css('background-color', 'white');
                 }
                 scope.expanded = !scope.expanded;
             };
