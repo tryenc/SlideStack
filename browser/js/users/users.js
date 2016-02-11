@@ -13,6 +13,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         resolve: {
             user: function (UserFactory, $stateParams) {
                 return UserFactory.fetchById($stateParams.id);
+            },
+            classes: function (ClassFactory, user) {
+                return ClassFactory.fetchByTeacher(user._id);
             }
         }
     })
@@ -24,6 +27,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             presentations: function (PresentationFactory, user) {
                 return PresentationFactory.fetchByOwner(user._id);
             }
+
         }
     })
     .state('user.classes', {

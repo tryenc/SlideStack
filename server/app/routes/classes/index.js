@@ -5,11 +5,12 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const ClassesModel = mongoose.model('Classes');
 const UserModel = mongoose.model('Users');
+const PresentationModel = mongoose.model('Presentations');
 
 // Get all classes
 router.get('/', (req, res, next) => {
 
-    ClassesModel.find().exec()
+    ClassesModel.find()
         .populate('teacher students')
         .then(classes => {
             res.send(classes);
@@ -21,13 +22,16 @@ router.get('/', (req, res, next) => {
 // Get a class by _id
 router.get('/:id', (req, res, next) => {
 
-    ClassesModel.findById(req.params.id).exec()
-        .populate('teacher students')
-        .then(oneClass => {
-            res.send(oneClass);
-        })
-        .then(null, next);
-
+    var classes = ClassesModel.findById(req.params.id)
+        .populate('teacher students');
+    var presentations = PresentationModel.findPresentationsByClass(req.params.id);
+    Promise.all([classes, presentations])
+    .then(results => {
+      var foundClass = results[0];
+      var presentations = results[1];
+      res.send({foundClass: foundClass, presentations: presentations})
+    })
+    .then(null, next);
 });
 //
 // // Get a class list of students
