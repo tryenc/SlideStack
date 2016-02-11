@@ -27,8 +27,8 @@
         </textarea>
     </div>
     <div id="live-preview" ng-class="{ fullscreen: display.fullscreen }">
-        <div class="slideshow-container" ratio="1.77" relative-sizes>
-            <ss-slideshow display="display" ng-class="presentation.theme">
+        <div class="slideshow-container" ratio="1.77" relative-sizes ng-class="presentation.theme">
+            <ss-slideshow display="display">
                 <ss-slide
                     ng-repeat="slide in slides track by $index"
                     markdown="{{slide}}">

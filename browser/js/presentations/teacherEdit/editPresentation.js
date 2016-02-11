@@ -30,7 +30,7 @@ app.config(function ($stateProvider) {
                 mode: 'edit'
             }
 
-            $scope.themes = ["simple", "black"];
+            $scope.themes = ["simple", "black", "sky", "solarized"];
         }
     });
 });

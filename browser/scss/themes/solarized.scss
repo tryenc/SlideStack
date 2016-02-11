@@ -1,0 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic);
+
+$serif-font: 'Merriweather', serif;
+$sans-serif-font: "Lato", sans-serif;
+$serif-font-color: #586e75;
+$sans-serif-font-color: #657b83;
+
+.solarized {
+	&.slideshow-container {
+		background-color: #fdf6e3;
+		@for $i from 1 through 6 {
+			h#{$i} {
+				font-family: $serif-font;
+				text-transform: uppercase;
+				color: $serif-font-color;
+			}
+		}
+		p {
+			font-family: $sans-serif-font;
+			color: $sans-serif-font-color;
+		}
+
+	}
+}
