@@ -12,7 +12,7 @@
 
                 <td class="studentListItem" >
                     <span class="glyphicon glyphicon-exclamation-sign" ng-show="calledOn[student.socket]"></span>
-                    <span style="text-align: center; margin: 0 auto">{{ student.name }}</span>
+                    <span>{{ student.name }}</span>
                     <button ng-click="callOnStudent(student)"
                             class="btn btn-default btn-sm">
                         <!--ng-class="{buttonOrange: calledOn[student.socket]}" -->
@@ -23,8 +23,5 @@
                 </td>
             </tr>
         </table>
-
     </div>
 </div>
-
-<!---->
