@@ -13,6 +13,7 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('classCtrl', function ($scope, $state, currClass) {
+
     $scope.className = currClass.foundClass.name;
     $scope.image = currClass.foundClass.imageUrl;
     $scope.teacher = currClass.foundClass.teacher;

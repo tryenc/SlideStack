@@ -10,6 +10,16 @@ const PresentationModel = mongoose.model('Presentations');
 // Get all classes
 router.get('/', (req, res, next) => {
 
+    ClassesModel.find()
+        .populate('teacher students')
+        .then(classes => {
+            res.send(classes);
+        })
+        .then(null, next);
+
+});
+
+router.get('/:id', (req, res, next) => {
     var classes = ClassesModel.findById(req.params.id)
         .populate('teacher students');
     var presentations = PresentationModel.findPresentationsByClass(req.params.id);
@@ -23,17 +33,6 @@ router.get('/', (req, res, next) => {
 });
 
 
-// // Get a class list of students
-// router.get('/:id/students', (req, res, next) => {
-//     const id = req.params.id;
-//
-//     UserModel.find({ classes: id, isStudent: true})
-//         .then(arrayOfStudents => {
-//             res.send(arrayOfStudents)
-//         })
-//         .then(null, next);
-//
-// });
 
 // Get all classes a user teaches
 router.get('/teacher/:userId', function (req, res, next) {
