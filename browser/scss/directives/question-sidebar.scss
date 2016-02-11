@@ -1,0 +1,74 @@
+question-sidebar {
+  background-color: white;
+  position: absolute;
+
+  right: 0;
+  top: 20;
+  color: $button-color;
+  height: 40px;
+  width: 50px;
+  text-align: left;
+  z-index: 10;
+  -webkit-transition: left 0.5s;
+  transition: left 0.5s;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  #expand-left {
+      width: 100%;
+  }
+
+  #questionBox {
+      margin-left: 50px;
+      font-size: 20px;
+  }
+
+  span {
+      margin: 5px 0 10px 10px;
+      vertical-align: middle;
+      font-size: 18px;
+      cursor: pointer;
+  }
+
+  span.fa {
+      font-size: 30px;
+  }
+
+  #expand-right span {
+      -webkit-transition: transform 0.5s;
+      transition: transform 0.5s;
+      // color: $accent;
+  }
+
+}
+
+.rotated {
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+ul {
+  list-style: none;
+
+  span {
+      // font-family: $text-font;
+
+  }
+}
+
+
+hr {
+  margin: 4px 0 8px 0;
+}
+
+.list-container {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.4s;
+  -webkit-transition: max-height 0.4s;
+
+  &.expandeddown {
+      max-height: 200px;
+  }
+}
