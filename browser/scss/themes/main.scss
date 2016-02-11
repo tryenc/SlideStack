@@ -5,7 +5,7 @@
 .slideshow-container {
 
     font-size: 36px;
-    padding: 0 2em;
+    padding: 0.5em 2em;
 
     h1 {
         font-size: 3em;
@@ -28,36 +28,29 @@
         margin: 0.5em 0 0 0;
     }
     button {
-        font-size: 0.5em;
+        font-size: 18px;
     }
 
-    editor {
-        width: 50em;
-        .code-editor {
-            width: 50em;
-            height: 18em;
-            margin-left: 20px;
-        }
-        .buttons {
-            margin-left: 20px;
-        }
-    }
-
-    console {
-        iframe {
-            width: 25em;
-            height: 7em;
-        }
-    }
+    // editor {
+    //     // width: 50px;
+    //     .code-editor {
+    //         width: 50em;
+    //         height: 18em;
+    //         margin-left: 20px;
+    //     }
+    //     .buttons {
+    //         margin-left: 20px;
+    //     }
+    // }
 
     fiddle {
-        .code-editor {
-            height: 30em;
-            width: 55em;
-        }
-        iframe {
-            height: 30em;
-            width: 27em;
-        }
+        // .code-editor {
+        //     height: 30em;
+        //     width: 55em;
+        // }
+        // iframe {
+        //     height: 30em;
+        //     width: 27em;
+        // }
     }
 }
