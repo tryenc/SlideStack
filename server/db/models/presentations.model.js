@@ -41,4 +41,8 @@ schema.statics.findPresentationsByOwner = function (userId) {
     return this.find({ owner: userId });
 };
 
+schema.statics.findPresentationsByClass = function (classId) {
+    return this.find({ class: classId });
+};
+
 mongoose.model('Presentations', schema);

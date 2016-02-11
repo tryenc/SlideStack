@@ -31,6 +31,10 @@ var schema = new mongoose.Schema({
 
 schema.statics.findClassesByTeacher = function (userId) {
     return this.find({ teacher: userId });
-}
+};
+
+schema.statics.findClassesByStudents = function (userId) {
+    return this.find({ students: {$in: [userId]} });
+};
 
 mongoose.model('Classes', schema);

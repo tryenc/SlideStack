@@ -13,6 +13,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         resolve: {
             user: function (UserFactory, $stateParams) {
                 return UserFactory.fetchById($stateParams.id);
+            },
+            classes: function (ClassFactory, user) {
+                return ClassFactory.fetchByTeacher(user._id);
             }
         }
     })
@@ -24,10 +27,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             presentations: function (PresentationFactory, user) {
                 return PresentationFactory.fetchByOwner(user._id);
             }
+
         }
     })
-    .state('user.classes', {
-        url: '/classes',
+    .state('user.teacherClasses', {
+        url: '/teacherClasses',
         templateUrl: 'js/users/profile/classes/classes.html',
         controller: 'ClassesTabCtrl',
         resolve: {
@@ -36,9 +40,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('user.students', {
-        url: '/students',
-        templateUrl: 'js/users/profile/students/students.html',
-        controller: 'StudentsTabCtrl'
+    .state('user.studentClasses', {
+        url: '/studentClasses',
+        templateUrl: 'js/users/profile/students/student.html',
+        controller: 'StudentsTabCtrl',
+        resolve: {
+            classes: function(ClassFactory, user) {
+                return ClassFactory.fetchByStudent(user._id);
+            }
+        }
     });
 });

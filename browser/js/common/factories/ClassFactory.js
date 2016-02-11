@@ -27,13 +27,21 @@ app.factory('ClassFactory', function($http) {
 			.then(res => res.data);
 		},
 
-		fetchByTeacher (teacherId) {
+		fetchByTeacher (userId) {
 			return $http({
-				url: '/api/users/' + teacherId + '/classes',
+                url: '/api/classes/teacher/' + userId,
 				method: 'GET'
 			})
 			.then(res => res.data);
 		},
+
+    fetchByStudent (userId) {
+        return $http({
+            url: '/api/classes/student/' + userId,
+            method: 'GET'
+        })
+        .then(res => res.data);
+    },
 
 		update (classToUpdate) {
 			return $http({

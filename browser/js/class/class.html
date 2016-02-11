@@ -1,0 +1,26 @@
+<h1> {{ className }} </h1>
+<div class="panel">
+    <ul class="nav nav-tabs">
+        <li role="presentations" ng-click="presOpen()" ui-sref-active="active"><a>Presentations</a></li>
+        <li role="students" ng-click="studOpen()" ui-sref-active="active"><a>Students</a></li>
+    </ul>
+    <div class="well">
+        <div ng-show="isPresOpen" ng-repeat="presentation in presentations">
+            <h4>{{ presentation.name }}</h4>
+            <button class="btn" ui-sref="viewPres({ id: presentation._id })">
+                View
+            </button>
+            <button class="btn" ui-sref="teacherPres({ id: presentation._id })">
+                Present
+            </button>
+            <button class="btn" ui-sref="editPres({ id: presentation._id })">
+                Edit
+            </button>
+        </div>
+
+        <div ng-show="isStudOpen" ng-repeat="student in students">
+            <h4>{{ student.name }}</h4>
+        </div>
+    </div>
+
+</div>
