@@ -5,18 +5,22 @@
 
         <!-- Table -->
         <table class="table">
+
             <tr ng-repeat="student in studentList">
-                <td>
-                    {{ student.name }}
-                    <button
-                        ng-click="callOnStudent(student)"
-                        class="btn btn-default btn-sm">
+
+
+                <td class="studentListItem" >
+                    <span class="glyphicon glyphicon-exclamation-sign" ng-show="calledOn[student.socket]"></span>
+                    <span>{{ student.name }}</span>
+                    <button ng-click="callOnStudent(student)"
+                            class="btn btn-default btn-sm">
+                        <!--ng-class="{buttonOrange: calledOn[student.socket]}" -->
+                            <!--Causes the row to 'bounce' ? -->
                         <span ng-show="!calledOn[student.socket]">Call On</span>
                         <span ng-show="calledOn[student.socket]">Cancel</span>
                     </button>
                 </td>
             </tr>
         </table>
-
     </div>
 </div>

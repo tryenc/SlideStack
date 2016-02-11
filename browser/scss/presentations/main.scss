@@ -28,8 +28,29 @@ ss-slideshow {
 
 #live-preview, #presentation-view, #teacher-presentation {
     position: relative;
-    background-color: #fdfdfd;
     overflow: hidden;
+
+
+    .slideshow-container {
+        border: solid 1px gray;
+        background-color: #fdfdfd;
+        overflow: hidden;
+    }
+
+    .slide-controls {
+        position: absolute;
+        // bottom: 10px;
+        // right: 10px;
+        top: 50%;
+        width: 100%;
+        left: .1px;
+    }
+
+    .slide-container {
+        height: 100%;
+        width: 100%;
+
+    }
 
     &.fullscreen {
         position: absolute;
@@ -58,41 +79,49 @@ ss-slideshow {
             }
         }
     }
-
-    .slideshow-container {
-        border: solid 1px gray;
-        overflow: hidden;
-    }
-
-    .slide-controls {
-        position: absolute;
-        // bottom: 10px;
-        // right: 10px;
-        top: 50%;
-        width: 100%;
-        left: .1px;
-    }
-
-    .slide-container {
-        height: 100%;
-        width: 100%;
-
-        /* the parsed element will always be the main container holding all of the slide content */
-    //     parsed {
-    //         height: 100%;
-    //         display: flex;
-    //         padding: 2% 5%;
-    //         flex-direction: column;
-    //         background-color: white;
-    //     }
-    }
 }
 
+#studentList {
+  .panel-heading {
+    background: $button-color;
+    border-color: $button-color;
+  }
+  .panel-primary {
+    border-color: $button-color;
+  }
+}
+
+.studentListItem {
+  //background-color: red;
+  //font-weight: bold;
+  .glyphicon-exclamation-sign {
+    float: left;
+    color: $orange;
+  }
+  .buttonOrange { // Might be nice if the button didnt fly all over the screen?
+    background: $orange;
+  }
+}
+
+//.confusion {
+//  padding: 0px;
+//}
+
 .questionModal {
+
+  .fa-question {
+    //font-size: 2.5em;
+    color: $button-color;
+    cursor: pointer;
+    //cursor: hand;
+  }
   position: absolute;
-  z-index: 2;
-  right: 0px;
-  padding: 40px
+  bottom: 10px;
+  right: 200px;
+}
+
+.cancel {
+  background: $orange;
 }
 
 .previous {
@@ -113,7 +142,8 @@ ss-slideshow {
     background: transparent;
     color: $button-color;
 }
-.toggle-button { background-color: green; margin: 5px 0; border-radius: 20px; border: 2px solid #D0D0D0 ; height: 24px; cursor: pointer; width: 50px; position: relative; display: inline-block; user-select: none; -webkit-user-select: none; -ms-user-select: none; -moz-user-select: none; }
+
+.toggle-button { background-color: green; margin: 0px 80px; border-radius: 20px; border: 2px solid #D0D0D0 ; height: 30px; cursor: pointer; width: 50px; position: relative; display: inline-block; user-select: none; -webkit-user-select: none; -ms-user-select: none; -moz-user-select: none; }
 .toggle-button button { cursor: pointer; outline: 0; display:block; position: absolute; left: 0; top: 0; border-radius: 100%; width: 30px; height: 30px; background-color: white; float: left; margin: -3px 0 0 -3px; border: 2px solid #D0D0D0 ; transition: left 0.3s; }
 .toggle-button-selected { background-color: red; border: 2px solid #7DA652 ; }
 .toggle-button-selected button { left: 26px; top: 0; margin: 0; border: none; width: 24px; height: 24px; box-shadow: 0 0 4px rgba(0,0,0,0.1); }
