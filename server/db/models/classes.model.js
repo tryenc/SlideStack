@@ -15,6 +15,14 @@ var schema = new mongoose.Schema({
     description: {
         type: String
     },
+    teacher: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
+    },
+    students: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
+    }],
     imageUrl: {
     	type: String,
     	default: 'https://s3.amazonaws.com/lbc-content/images/classes-icon.png'

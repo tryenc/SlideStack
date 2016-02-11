@@ -23,6 +23,10 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classes'
     },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'    
+    },
     theme: {
         type: String,
         default: 'simple'

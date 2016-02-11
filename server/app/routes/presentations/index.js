@@ -4,7 +4,7 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const PresentationsModel = mongoose.model('Presentations');
-const UserModel = mongoose.model('User');
+const UserModel = mongoose.model('Users');
 
 // Get all presentations
 router.get('/', (req, res, next) => {
