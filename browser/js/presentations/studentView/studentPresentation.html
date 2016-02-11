@@ -19,8 +19,9 @@
         </div>
         <div class="modal-body">
  			<textarea placeholder="Type your question here" ng-model="question"></textarea>
+            <h3>Confused?</h3>
             <div id="confusion" class="toggle-button" ng-class="{'toggle-button-selected': user.confused }" ng-click="toggleConfusion()">
-            <button></button>
+                <button></button>
             </div>
         </div>
         <div class="modal-footer">
@@ -28,7 +29,7 @@
             <input type="checkbox" ng-model="anonymous">
             <button class="btn" type="button"
                     ng-click="submitQuestion(question, anonymous)">Submit Question</button>
-            <button class="btn" id="cancel" type="button" ng-click="cancel()">Cancel</button>
+            <button class="btn" class="cancel" type="button" ng-click="cancel()">Cancel</button>
 
         </div>
     </script>

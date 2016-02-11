@@ -1,7 +1,7 @@
 navbar {
 
   display: block;
-  background: white;
+  background: none;
   border-bottom: 1px solid black;
   box-shadow: 1px 1px 14px -3px black;
   height: 40px;
@@ -45,8 +45,8 @@ navbar {
   .login-button {
     float: right;
     border: 1px solid black;
-    margin-top: 10px;
-    background: none;
+    margin-top: 3px;
+    background: $button-color ;
     outline: none !important;
   }
 
