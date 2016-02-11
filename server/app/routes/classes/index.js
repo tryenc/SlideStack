@@ -44,7 +44,9 @@ router.get('/teacher/:userId', function (req, res, next) {
 // Get all classes a user is a student in
 router.get('/student/:userId', function (req, res, next) {
     ClassesModel.findClassesByStudents(req.params.userId)
-        .then(classes => res.json(classes))
+        .then(classes => {
+          res.json(classes)
+        })
         .then(null, next);
 });
 

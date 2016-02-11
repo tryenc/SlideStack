@@ -2,19 +2,10 @@
  * Created by Jon on 2/5/16.
  */
 //
-//app.controller('StudentsTabCtrl', ($scope, UserFactory, ClassFactory) => {
-//
-//    $scope.toggleDropdown = function($event) {
-//        $event.preventDefault();
-//        $event.stopPropagation();
-//    };
-//
-//    $scope.updateClasses = (user, classToUpdate) => {
-//
-//        UserFactory.update(ClassFactory.updateClasses(user, classToUpdate));
-//
-//    };
-//})
+app.controller('StudentsTabCtrl', ($scope, UserFactory, ClassFactory, classes) => {
+  $scope.classes = classes;
+
+})
 //
 //// Filter for teacher/student dropdown showing only available classes
 //.filter('NotEnrolled', () => {
