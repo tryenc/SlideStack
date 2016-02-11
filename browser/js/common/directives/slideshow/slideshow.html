@@ -9,11 +9,14 @@
     </div>
 
     <div ng-if="display.mode !== 'edit'">
-        <button ng-click="toggleSync()">
+        <!-- PREV -->
+        <button ng-click="prev()" ng-disabled="syncedWithTeacher" class="previous"><span class="glyphicon glyphicon-triangle-left"></span></button>
+        <!-- NEXT -->
+        <button ng-click="next()" ng-disabled="syncedWithTeacher" class="next"><span class="glyphicon glyphicon-triangle-right"></span></button>
+        <!-- PAUSE/RESUME -->
+        <button ng-if="display.mode !== 'teacher'" ng-click="toggleSync()">
             <span ng-show="syncedWithTeacher" class="glyphicon glyphicon-pause"></span>
             <span ng-show="!syncedWithTeacher" class="glyphicon glyphicon-play"></span>
         </button>
-        <button ng-click="prev()" ng-disabled="syncedWithTeacher" class="glyphicon glyphicon-step-backward"></button>
-        <button ng-click="next()" ng-disabled="syncedWithTeacher" class="glyphicon glyphicon-step-forward"></button>
     </div>
 </div>

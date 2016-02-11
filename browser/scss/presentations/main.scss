@@ -21,6 +21,11 @@
     }
 }
 
+ss-slideshow {
+    display: block;
+    @include clearfix;
+}
+
 #live-preview, #presentation-view, #teacher-presentation {
     position: relative;
     background-color: #fdfdfd;
@@ -61,8 +66,11 @@
 
     .slide-controls {
         position: absolute;
-        bottom: 10px;
-        right: 10px;
+        // bottom: 10px;
+        // right: 10px;
+        top: 50%;
+        width: 100%;
+        left: .1px;
     }
 
     .slide-container {
@@ -87,6 +95,24 @@
   padding: 40px
 }
 
+.previous {
+    float: left;
+    -webkit-appearance: none;
+    outline: none;
+    border: 0;
+    background: transparent;
+    color: $button-color;
+    font-size:4em;
+}
+
+.next {
+    float: right;
+    -webkit-appearance: none;
+    outline: none;
+    border: 0;
+    background: transparent;
+    color: $button-color;
+}
 .toggle-button { background-color: green; margin: 5px 0; border-radius: 20px; border: 2px solid #D0D0D0 ; height: 24px; cursor: pointer; width: 50px; position: relative; display: inline-block; user-select: none; -webkit-user-select: none; -ms-user-select: none; -moz-user-select: none; }
 .toggle-button button { cursor: pointer; outline: 0; display:block; position: absolute; left: 0; top: 0; border-radius: 100%; width: 30px; height: 30px; background-color: white; float: left; margin: -3px 0 0 -3px; border: 2px solid #D0D0D0 ; transition: left 0.3s; }
 .toggle-button-selected { background-color: red; border: 2px solid #7DA652 ; }
