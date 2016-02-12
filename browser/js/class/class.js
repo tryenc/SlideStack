@@ -1,5 +1,8 @@
-app.config(function ($stateProvider) {
-    $stateProvider.state('class', {
+app.config(function ($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.when('/classes/:id', '/classes/:id/presentations');
+    $stateProvider
+    .state('class', {
         url: '/classes/:id',
         templateUrl: 'js/class/class.html',
         controller: 'classCtrl',
@@ -8,63 +11,23 @@ app.config(function ($stateProvider) {
               return ClassFactory.fetchById($stateParams.id);
           }
         }
-    });
+    })
+    .state('class.presentations', {
+        url: '/presentations',
+        templateUrl: 'js/class/classPresentations/classPresentations.html',
+        controller: 'classPresCtrl'
+    })
+    .state('class.students', {
+        url: '/students',
+        templateUrl: 'js/class/classStudents/classStudents.html',
+        controller: 'classStudsCtrl'
+    })
 
 });
 
 app.controller('classCtrl', function ($scope, $state, currClass, UserFactory, ClassFactory) {
-
-    $scope.className = currClass.foundClass.name;
-    $scope.image = currClass.foundClass.imageUrl;
-    $scope.teacher = currClass.foundClass.teacher;
-    $scope.description = currClass.foundClass.description;
-    $scope.students = currClass.foundClass.students;
-    $scope.presentations = currClass.presentations;
-
-    $scope.isStudOpen = false
-    $scope.isPresOpen = true;
-    $scope.presOpen = function(){
-      $scope.isPresOpen = true;
-      $scope.isStudOpen = false
-    }
-    $scope.studOpen = function(){
-      $scope.isPresOpen = false;
-      $scope.isStudOpen = true;
-    }
-
-    $scope.findByName = function(query){
-      UserFactory.findByName(query)
-      .then(foundUsers => {
-        if (foundUsers.length === 0){
-          //display error
-        }
-        $scope.foundUsers = foundUsers;
-      })
-    }
-    //creates list of student IDs
-    var studentIds = $scope.students.map(function(student){
-      return student._id;
-    })
-
-    $scope.addToClass = function(studentId){
-      studentIds.push(studentId);
-      var newStudents = {students: studentIds};
-      ClassFactory.update(currClass.foundClass._id, newStudents)
-      .then(function(){
-        $state.reload();
-      });
-    }
-
-    $scope.deleteStudent = function(studentId){
-      studentIds = studentIds.filter(function(student){
-          return student != studentId;
-      })
-      var newStudents = {students: studentIds};
-      ClassFactory.update(currClass.foundClass._id, newStudents)
-      .then(function(){
-        $state.reload();
-      });
-    }
-
-
+  $scope.className = currClass.foundClass.name;
+  $scope.image = currClass.foundClass.imageUrl;
+  $scope.teacher = currClass.foundClass.teacher;
+  $scope.description = currClass.foundClass.description;
 });
