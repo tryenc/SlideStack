@@ -4,5 +4,5 @@ app.controller('classPresCtrl', function ($scope, $state, currClass, UserFactory
     $scope.delete = function (presentation) {
         PresentationFactory.delete(presentation)
             .then($state.reload());
-    }
+    };
 });
