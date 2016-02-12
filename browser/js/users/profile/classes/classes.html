@@ -1,32 +1,35 @@
-<button
-    ng-click="newClassMenu = !newClassMenu"
-    class="btn">
-    Create A New Class
-</button>
-<div ng-show="newClassMenu">
-    <form ng-submit="createClass(newClass)">
-        <div class="form-group">
-            <label>Name</label>
-            <input
-                type="text"
-                ng-model="newClass.name"
-                class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Description</label>
-            <textarea
-                ng-model="newClass.description">
-            </textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Create</button>
-    </form>
-</div>
+<div class="profileClass">
+    <button
+        ng-click="newClassMenu = !newClassMenu"
+        class="btn">
+        Create A New Class
+    </button>
+    <div ng-show="newClassMenu" >
+        <form ng-submit="createClass(newClass)">
+            <div class="form-group">
+                <label>Name</label>
+                <input
+                    type="text"
+                    ng-model="newClass.name"
+                    class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Description</label><br>
+                <textarea
+                    ng-model="newClass.description">
+                </textarea>
+            </div>
+            <button type="submit" class="btn">Create</button>
+        </form>
+    </div>
 
-<div class="well">
-    <div ng-repeat="class in classes">
-       <li>
-           <a ui-sref="class({id: class._id})">Click To View Class</a>
-       </li>
+    <div>
+        <div ng-repeat="class in classes" ui-sref="class({id: class._id})">
+            <li class="classList">
+                <h4>{{class.name}}</h4>
+                <p>{{class.description}}</p>
+            </li>
+        </div>
     </div>
 </div>
 
