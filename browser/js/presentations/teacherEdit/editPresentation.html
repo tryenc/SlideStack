@@ -8,9 +8,18 @@
             <button
                 class="btn pull-right"
                 ng-click="save(presentation)">
-                Save
+                <span class="glyphicon glyphicon-floppy-save"></span>
             </button>
         </div>
+<!-- THEMES AREA -->
+
+        <label for="theme">Change Theme</label>
+        <select name="theme" ng-model="presentation.theme">
+            <option ng-repeat="theme in themes" value="{{ theme }}" ng-click="save(presentation)">
+                {{ theme }}
+            </option>
+        </select>
+
         <textarea
             ng-model="presentation.markdown"
             enable-tabs
@@ -18,7 +27,7 @@
         </textarea>
     </div>
     <div id="live-preview" ng-class="{ fullscreen: display.fullscreen }">
-        <div class="slideshow-container" ratio="1.77" relative-sizes>
+        <div class="slideshow-container" ratio="1.77" relative-sizes ng-class="presentation.theme">
             <ss-slideshow display="display">
                 <ss-slide
                     ng-repeat="slide in slides track by $index"

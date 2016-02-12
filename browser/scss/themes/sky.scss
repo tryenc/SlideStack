@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond);
+
+$serif-font: "EB Garamond", serif;
+$sans-serif-font: "Quicksand", sans-serif;
+
+.sky {
+	&.slideshow-container {
+		background: #add9e4;
+		background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #add9e4));
+		background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+		background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+		background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+		background: radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+		background-color: #f7fbfc;
+	}
+		@for $i from 1 through 6 {
+		h#{$i} {
+			font-family: $serif-font;
+		}
+		p {
+			font-family: $sans-serif-font;
+		}
+	}
+}

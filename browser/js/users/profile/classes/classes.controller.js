@@ -19,5 +19,5 @@ app.controller('ClassesTabCtrl', ($scope, $state, user, ClassFactory, classes) =
         newClass.teacher = user._id;
         ClassFactory.create(newClass)
             .then($state.reload());
-    }
+    };
 });
