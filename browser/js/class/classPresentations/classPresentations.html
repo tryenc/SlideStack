@@ -1,0 +1,12 @@
+<div ng-repeat="presentation in presentations">
+    <h4>{{ presentation.name }}</h4>
+    <button class="btn" ui-sref="viewPres({ id: presentation._id })">
+        View
+    </button>
+    <button class="btn" ui-sref="teacherPres({ id: presentation._id })">
+        Present
+    </button>
+    <button class="btn" ui-sref="editPres({ id: presentation._id })">
+        Edit
+    </button>
+</div>
