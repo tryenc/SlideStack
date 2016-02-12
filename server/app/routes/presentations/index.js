@@ -22,7 +22,9 @@ router.param('id', function (req, res, next, id) {
 });
 
 const ensureOwner = function (req, res, next) {
-    if (req.user.isAdmin || req.presentation.owner === req.user._id) {
+    console.log('owner: ', req.presentation.owner._id);
+    console.log('userId: ', req.user._id);
+    if (req.user.isAdmin || req.presentation.owner._id.toString() === req.user._id.toString()) {
         next();
     } else {
         const err = new Error('Not authorized');

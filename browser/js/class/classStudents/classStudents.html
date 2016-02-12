@@ -2,7 +2,12 @@
 
     <div ng-repeat="student in students">
         <h4>{{ student.name }}</h4>
-        <button class="btn" ng-click="deleteStudent(student._id)">Remove</button>
+        <button
+            class="btn"
+            ng-click="deleteStudent(student._id)"
+            ng-show="loggedInUser._id === teacher._id">
+            Remove
+        </button>
     </div>
 
     <div ng-show="loggedInUser._id === teacher._id">

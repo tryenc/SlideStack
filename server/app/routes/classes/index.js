@@ -7,15 +7,18 @@ const ClassesModel = mongoose.model('Classes');
 const UserModel = mongoose.model('Users');
 const PresentationModel = mongoose.model('Presentations');
 
-const ensureOwner = function (req, res, next) {
-    if (req.user.isAdmin || req.user._id === req.params.id) {
-        next();
-    } else {
-        const err = new Error('Not authorized');
-        err.status = 401;
-        next(err);
-    }
-}
+// TODO add authentication for class/teachers
+// const ensureOwner = function (req, res, next) {
+//     console.log(req.user._id);
+//     console.log(req.params.id);
+//     if (req.user.isAdmin || req.user._id.toString() === req.params.id.toString()) {
+//         next();
+//     } else {
+//         const err = new Error('Not authorized');
+//         err.status = 401;
+//         next(err);
+//     }
+// }
 
 // Get all classes
 router.get('/', (req, res, next) => {
@@ -72,7 +75,7 @@ router.post('/', (req, res, next) => {
 });
 
 // Update a class
-router.put('/:id', ensureOwner, (req, res, next) => {
+router.put('/:id', (req, res, next) => {
     //console.log("req.body:", )
     ClassesModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
@@ -85,7 +88,7 @@ router.put('/:id', ensureOwner, (req, res, next) => {
 });
 
 // Delete a class
-router.delete('/:id', ensureOwner, (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
 
     ClassesModel.findByIdAndRemove(req.params.id)
         .then(deletedClass => {
