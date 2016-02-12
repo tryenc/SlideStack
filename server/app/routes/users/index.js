@@ -1,12 +1,8 @@
-/**
- * Created by Jon on 1/27/16.
- */
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const UserModel = mongoose.model('Users');
 const ClassModel = mongoose.model('Classes');
 const PresentationModel = mongoose.model('Presentations');
-const _ = require('lodash');
 
 router.param('id', function (req, res, next, id) {
     UserModel.findById(id)
@@ -37,6 +33,7 @@ router.get('/', (req, res, next) => {
 });
 
 // Get a user by _id
+
 router.get('/:id', (req, res, next) => {
     res.status(200).json(req.returnedUser);
 });

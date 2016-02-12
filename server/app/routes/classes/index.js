@@ -45,8 +45,6 @@ router.get('/:id', (req, res, next) => {
     .then(null, next);
 });
 
-
-
 // Get all classes a user teaches
 router.get('/teacher/:userId', function (req, res, next) {
     ClassesModel.findClassesByTeacher(req.params.userId)
@@ -71,7 +69,6 @@ router.post('/', (req, res, next) => {
             res.status(201).send(newClass);
         })
         .then(null, next);
-
 });
 
 // Update a class
@@ -84,7 +81,6 @@ router.put('/:id', (req, res, next) => {
             res.send(updatedClass);
         })
         .then(null, next);
-
 });
 
 // Delete a class
@@ -95,7 +91,6 @@ router.delete('/:id', (req, res, next) => {
             res.send(deletedClass);
         })
         .then(null, next);
-
 });
 
 module.exports = router;
