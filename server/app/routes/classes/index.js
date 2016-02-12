@@ -75,7 +75,7 @@ router.get('/:id', (req, res, next) => {
 
 // Update a class
 router.put('/:id', (req, res, next) => {
-
+    //console.log("req.body:", )
     ClassesModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     })
