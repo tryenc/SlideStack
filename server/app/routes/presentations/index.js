@@ -6,6 +6,31 @@ const mongoose = require('mongoose');
 const PresentationsModel = mongoose.model('Presentations');
 const UserModel = mongoose.model('Users');
 
+router.param('id', function (req, res, next, id) {
+    PresentationsModel.findById(id)
+        .populate('class owner')
+        .then(presentation => {
+            if (!presentation) {
+                const err = new Error('Presentation not found');
+                err.status = 404;
+                return next(err);
+            }
+            req.presentation = presentation;
+            next();
+        })
+        .then(null, next);
+});
+
+const ensureOwner = function (req, res, next) {
+    if (req.user.isAdmin || req.presentation.owner === req.user._id) {
+        next();
+    } else {
+        const err = new Error('Not authorized');
+        err.status = 401;
+        next(err);
+    }
+}
+
 // Get all presentations
 router.get('/', (req, res, next) => {
 
@@ -19,13 +44,7 @@ router.get('/', (req, res, next) => {
 
 // Get a presentation by _id
 router.get('/:id', (req, res, next) => {
-
-    PresentationsModel.findById(req.params.id).populate('class owner')
-        .then(presentation => {
-            res.send(presentation);
-        })
-        .then(null, next);
-
+    res.json(req.presentation);
 });
 
 // Create new presentation
@@ -37,7 +56,7 @@ router.post('/', (req, res, next) => {
 });
 
 // Update a presentation
-router.put('/:id', (req, res, next) => {
+router.put('/:id', ensureOwner, (req, res, next) => {
 
     PresentationsModel.findByIdAndUpdate(req.params.id,
             req.body, { new: true }).exec()
@@ -49,7 +68,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 // Delete a presentation
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', ensureOwner, (req, res, next) => {
 
     PresentationsModel.findByIdAndRemove(req.params.id).exec()
         .then(deletedPresentation => {

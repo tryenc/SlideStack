@@ -7,6 +7,16 @@ const ClassesModel = mongoose.model('Classes');
 const UserModel = mongoose.model('Users');
 const PresentationModel = mongoose.model('Presentations');
 
+const ensureOwner = function (req, res, next) {
+    if (req.user.isAdmin || req.user._id === req.params.id) {
+        next();
+    } else {
+        const err = new Error('Not authorized');
+        err.status = 401;
+        next(err);
+    }
+}
+
 // Get all classes
 router.get('/', (req, res, next) => {
 
@@ -61,21 +71,9 @@ router.post('/', (req, res, next) => {
 
 });
 
-// Get a class by _id
-router.get('/:id', (req, res, next) => {
-
-    ClassesModel.findById(req.params.id)
-        .populate('teacher students')
-        .then(oneClass => {
-            res.send(oneClass);
-        })
-        .then(null, next);
-
-});
-
 // Update a class
-router.put('/:id', (req, res, next) => {
-
+router.put('/:id', ensureOwner, (req, res, next) => {
+    //console.log("req.body:", )
     ClassesModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     })
@@ -87,7 +85,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 // Delete a class
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', ensureOwner, (req, res, next) => {
 
     ClassesModel.findByIdAndRemove(req.params.id)
         .then(deletedClass => {
