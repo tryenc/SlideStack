@@ -24,8 +24,11 @@ router.param('id', function (req, res, next, id) {
 
 // Get all users
 router.get('/', (req, res, next) => {
-
-    UserModel.find().populate('classes')
+  console.log("req.query:", req.query);
+    if(req.query.name){
+      req.query.name = new RegExp(req.query.name, "gi");
+    }
+    UserModel.find(req.query).populate('classes')
         .then(users => {
             res.send(users);
         })

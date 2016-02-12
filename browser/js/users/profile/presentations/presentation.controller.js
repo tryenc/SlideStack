@@ -7,4 +7,9 @@ app.controller('PresentationTabCtrl', ($scope, PresentationFactory, $state, user
         PresentationFactory.create(newPres)
             .then(createdPres => $state.go('editPres', { id: createdPres._id }))
     };
+    $scope.delete = function (presentation) {
+        PresentationFactory.delete(presentation)
+            .then($state.reload());
+    };
+
 });

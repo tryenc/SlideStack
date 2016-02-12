@@ -43,11 +43,11 @@ app.factory('ClassFactory', function($http) {
         .then(res => res.data);
     },
 
-		update (classToUpdate) {
+		update (classId, updates) {
 			return $http({
-				url: '/api/classes/' + classToUpdate._id,
+				url: '/api/classes/' + classId,
 				method: 'PUT',
-				data: classToUpdate
+				data: updates
 			})
 			.then(res => res.data);
 		},

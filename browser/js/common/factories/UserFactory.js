@@ -34,6 +34,15 @@ app.factory('UserFactory', function($http, AuthService) {
 			.then(res => res.data);
 		},
 
+		findByName (query) {
+			return $http({
+				url: '/api/users/',
+				method: 'GET',
+				params: query
+			})
+			.then(res => res.data);
+		},
+
 		update (user) {
 			return $http({
 				url: '/api/users/' + user._id,

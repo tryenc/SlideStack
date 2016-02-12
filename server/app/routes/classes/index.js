@@ -7,6 +7,19 @@ const ClassesModel = mongoose.model('Classes');
 const UserModel = mongoose.model('Users');
 const PresentationModel = mongoose.model('Presentations');
 
+// TODO add authentication for class/teachers
+// const ensureOwner = function (req, res, next) {
+//     console.log(req.user._id);
+//     console.log(req.params.id);
+//     if (req.user.isAdmin || req.user._id.toString() === req.params.id.toString()) {
+//         next();
+//     } else {
+//         const err = new Error('Not authorized');
+//         err.status = 401;
+//         next(err);
+//     }
+// }
+
 // Get all classes
 router.get('/', (req, res, next) => {
 
@@ -61,21 +74,9 @@ router.post('/', (req, res, next) => {
 
 });
 
-// Get a class by _id
-router.get('/:id', (req, res, next) => {
-
-    ClassesModel.findById(req.params.id)
-        .populate('teacher students')
-        .then(oneClass => {
-            res.send(oneClass);
-        })
-        .then(null, next);
-
-});
-
 // Update a class
 router.put('/:id', (req, res, next) => {
-
+    //console.log("req.body:", )
     ClassesModel.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     })
