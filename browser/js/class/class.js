@@ -9,6 +9,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         resolve: {
           currClass: function(ClassFactory, $stateParams){
               return ClassFactory.fetchById($stateParams.id);
+          },
+          loggedInUser: function (AuthService) {
+              return AuthService.getLoggedInUser();
           }
         }
     })
@@ -25,9 +28,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 });
 
-app.controller('classCtrl', function ($scope, $state, currClass, UserFactory, ClassFactory) {
+app.controller('classCtrl', function ($scope, $state, currClass, loggedInUser, UserFactory, ClassFactory) {
   $scope.className = currClass.foundClass.name;
   $scope.image = currClass.foundClass.imageUrl;
   $scope.teacher = currClass.foundClass.teacher;
   $scope.description = currClass.foundClass.description;
+  $scope.loggedInUser = loggedInUser;
 });

@@ -4,7 +4,9 @@ app.controller('classStudsCtrl', function ($scope, $state, currClass, UserFactor
   $scope.teacher = currClass.foundClass.teacher;
   $scope.description = currClass.foundClass.description;
   $scope.students = currClass.foundClass.students;
-  
+
+  console.log('scope.teacher: ', $scope.teacher);
+
   $scope.findByName = function(query){
     UserFactory.findByName(query)
     .then(foundUsers => {
