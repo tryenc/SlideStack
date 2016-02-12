@@ -14,28 +14,14 @@ var schema = new mongoose.Schema({
     email: {
         type: String
     },
-    role: {
-        type: String,
-        enum: ['student', 'teacher']
-    },
     imageUrl: {
         type: String,
         default: 'https://tracker.moodle.org/secure/attachment/30912/f3.png'
     },
-    isStudent: {
-        type: Boolean
+    isAdmin: {
+        type: Boolean,
+        default: false
     },
-    isTeacher : {
-        type: Boolean
-    },
-    classes: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Classes'
-    }],
-    presentations: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Presentations'
-    }],
     password: {
         type: String
     },
@@ -63,7 +49,7 @@ schema.methods.sanitize = function () {
 
 // get all of a teacher's students, aka query for all users that have the same class and filter by isTeacher = true
 schema.methods.getStudents = function() {
-    return mongoose.model('User').find({
+    return mongoose.model('Users').find({
         classes: { $in: this.classes },
         isStudent: true
     }).populate('classes');
@@ -100,4 +86,4 @@ schema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
-mongoose.model('User', schema);
+mongoose.model('Users', schema);

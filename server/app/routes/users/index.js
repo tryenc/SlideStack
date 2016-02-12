@@ -1,13 +1,30 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const UserModel = mongoose.model('User');
+const UserModel = mongoose.model('Users');
+const ClassModel = mongoose.model('Classes');
 const PresentationModel = mongoose.model('Presentations');
+
+router.param('id', function (req, res, next, id) {
+    UserModel.findById(id)
+        .then(user => {
+            if (!user) {
+                let err = new Error('User not found');
+                err.status = 404;
+                return next(err);
+            }
+            req.returnedUser = user;
+            next();
+        })
+        .then(null, next);
+});
 
 // Get all users
 router.get('/', (req, res, next) => {
-
-    UserModel.find().populate('classes')
+  console.log("req.query:", req.query);
+    if(req.query.name){
+      req.query.name = new RegExp(req.query.name, "gi");
+    }
+    UserModel.find(req.query).populate('classes')
         .then(users => {
             res.send(users);
         })
@@ -18,31 +35,7 @@ router.get('/', (req, res, next) => {
 // Get a user by _id
 
 router.get('/:id', (req, res, next) => {
-
-    var user;
-
-     UserModel.findById(req.params.id)
-        .populate('classes presentations')
-        .then(returnedUser => {
-            user = returnedUser;
-            if(user.isStudent){
-                res.send(user);
-            } else {
-                return user.getStudents()
-            }
-        })
-        .then(students => {
-            //'toObject' turns 'user', which is a mongoose document,
-            // into a JS object, which gives us the ability to add properties to it
-            user = user.toObject();
-
-            user.students = students;
-            if(!user.isStudent){
-                res.send(user);
-            }
-        })
-        .then(null, next);
-
+    res.status(200).json(req.returnedUser);
 });
 
 // Create new user
@@ -60,29 +53,31 @@ router.post('/', (req, res, next) => {
         .then(null, next);
 });
 
+
+// Get all presentations a user owns
+router.get('/:id/presentations', function (req, res, next) {
+    console.log('user Id: ', req.params.id)
+    PresentationModel.findPresentationsByOwner(req.params.id)
+        .then(presentations => res.json(presentations))
+        .then(null, next);
+});
+
 // Update a user
 router.put('/:id', (req, res, next) => {
 
-    UserModel.findByIdAndUpdate(req.params.id, req.body, {
-        new: true
-    }).populate('classes')
-        .then(updatedUser => {
-            console.log(updatedUser);
-            res.send(updatedUser);
-        })
-        .then(null, next);
+    Object.keys(req.body).forEach(key => {
+        req.returnedUser[key] = req.body[key];
+    });
 
+    req.returnedUser.save()
+        .then(user => res.status(200).json(user))
+        .then(null, next);
 });
 
 // Delete a user
 router.delete('/:id', (req, res, next) => {
-
-    UserModel.findByIdAndRemove(req.params.id)
-        .then(deletedUser => {
-            res.send(deletedUser);
-        })
-        .then(null, next);
-
+    req.returnedUser.remove()
+        .then(() => res.status(204).send());
 });
 
 module.exports = router;

@@ -23,6 +23,10 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classes'
     },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
+    },
     theme: {
         type: String,
         default: 'simple'
@@ -32,5 +36,13 @@ var schema = new mongoose.Schema({
         default: 'https://cdn4.iconfinder.com/data/icons/business-management-2/256/Presentation-512.png'
     }
 });
+
+schema.statics.findPresentationsByOwner = function (userId) {
+    return this.find({ owner: userId });
+};
+
+schema.statics.findPresentationsByClass = function (classId) {
+    return this.find({ class: classId });
+};
 
 mongoose.model('Presentations', schema);

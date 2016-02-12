@@ -1,14 +1,14 @@
 app.factory('UserFactory', function($http, AuthService) {
 
 	return {
-		 create (newUser) {
-		 	return $http({
-		 		url: '/api/users/',
-		 		method: 'POST',
-		 		data: newUser
-		 	})
-		 	.then(res => res.data);
-		 },
+		//  create (newUser) {
+		//  	return $http({
+		//  		url: '/api/users/',
+		//  		method: 'POST',
+		//  		data: newUser
+		//  	})
+		//  	.then(res => res.data);
+		//  },
 		signup: function(user){
 			return $http({
 				url: '/api/users/',
@@ -30,6 +30,15 @@ app.factory('UserFactory', function($http, AuthService) {
 			return $http({
 				url: '/api/users/',
 				method: 'GET'
+			})
+			.then(res => res.data);
+		},
+
+		findByName (query) {
+			return $http({
+				url: '/api/users/',
+				method: 'GET',
+				params: query
 			})
 			.then(res => res.data);
 		},

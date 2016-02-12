@@ -3,7 +3,7 @@ var socketio = require('socket.io');
 var session = require('../app/configure/authentication/session');
 var sharedSession = require('express-socket.io-session');
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User = mongoose.model('Users');
 var io = null;
 
 module.exports = function (server) {

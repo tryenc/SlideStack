@@ -15,15 +15,26 @@ var schema = new mongoose.Schema({
     description: {
         type: String
     },
+    teacher: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
+    },
+    students: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
+    }],
     imageUrl: {
     	type: String,
     	default: 'https://s3.amazonaws.com/lbc-content/images/classes-icon.png'
     }
 });
 
-schema.pre('findOne', function (next) {
-    console.log('pre hook: ', this._id);
-    next();
-});
+schema.statics.findClassesByTeacher = function (userId) {
+    return this.find({ teacher: userId });
+};
+
+schema.statics.findClassesByStudents = function (userId) {
+    return this.find({ students: {$in: [userId]} });
+};
 
 mongoose.model('Classes', schema);
