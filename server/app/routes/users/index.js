@@ -1,9 +1,8 @@
-/**
- * Created by Jon on 1/27/16.
- */
 const router = require('express').Router();
 const mongoose = require('mongoose');
+const Promise = require('bluebird');
 const UserModel = mongoose.model('User');
+const PresentationModel = mongoose.model('Presentations');
 
 // Get all users
 router.get('/', (req, res, next) => {
@@ -17,6 +16,7 @@ router.get('/', (req, res, next) => {
 });
 
 // Get a user by _id
+
 router.get('/:id', (req, res, next) => {
 
     var user;

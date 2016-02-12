@@ -12,7 +12,7 @@ $serif-font: 'Josefin Slab', serif;
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, button, div {
     font-family: $sans-font;
 }
 
@@ -56,9 +56,14 @@ button {
   border: 0;
 }
 
+.form-control, .panel-heading, .panel {
+  border-radius: 0;
+}
+
 .btn:focus,.btn:active {
   outline: none !important;
 }
+
 
 
 @import 'directives/main';
