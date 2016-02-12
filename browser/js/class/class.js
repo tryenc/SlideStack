@@ -12,7 +12,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('classCtrl', function ($scope, $state, currClass) {
+app.controller('classCtrl', function ($scope, $state, currClass, UserFactory) {
 
     $scope.className = currClass.foundClass.name;
     $scope.image = currClass.foundClass.imageUrl;
@@ -30,6 +30,16 @@ app.controller('classCtrl', function ($scope, $state, currClass) {
     $scope.studOpen = function(){
       $scope.isPresOpen = false;
       $scope.isStudOpen = true;
+    }
+
+    $scope.findByName = function(query){
+      UserFactory.findByName(query)
+      .then(foundUsers => {
+        if (foundUsers.length === 0){
+          //display error
+        }
+        $scope.foundUsers = foundUsers;
+      })
     }
 
 

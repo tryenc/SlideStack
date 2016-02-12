@@ -17,9 +17,19 @@
                 Edit
             </button>
         </div>
-
-        <div ng-show="isStudOpen" ng-repeat="student in students">
-            <h4>{{ student.name }}</h4>
+        <div ng-show="isStudOpen" >
+          <div ng-repeat="student in students">
+              <h4>{{ student.name }}</h4>
+          </div>
+          <form ng-submit="findByName(searchQuery)">
+            <input type="text" ng-model="searchQuery.name" class="form-control">
+            <button type="submit" class="btn">Search</button>
+          </form>
+          <div ng-repeat="user in foundUsers">
+            <p> {{user.name}} </p>
+            <p> {{user.email}} </p>
+            <button class="btn">Add To Class</button>
+          </div>
         </div>
     </div>
 
