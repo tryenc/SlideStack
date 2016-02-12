@@ -20,6 +20,7 @@
         <div ng-show="isStudOpen" >
           <div ng-repeat="student in students">
               <h4>{{ student.name }}</h4>
+              <button class="btn" ng-click="deleteStudent(student._id)">Remove</button>
           </div>
           <form ng-submit="findByName(searchQuery)">
             <input type="text" ng-model="searchQuery.name" class="form-control">
@@ -28,7 +29,7 @@
           <div ng-repeat="user in foundUsers">
             <p> {{user.name}} </p>
             <p> {{user.email}} </p>
-            <button class="btn">Add To Class</button>
+            <button class="btn" ng-click="addToClass(user._id)">Add To Class</button>
           </div>
         </div>
     </div>

@@ -12,7 +12,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('classCtrl', function ($scope, $state, currClass, UserFactory) {
+app.controller('classCtrl', function ($scope, $state, currClass, UserFactory, ClassFactory) {
 
     $scope.className = currClass.foundClass.name;
     $scope.image = currClass.foundClass.imageUrl;
@@ -40,6 +40,30 @@ app.controller('classCtrl', function ($scope, $state, currClass, UserFactory) {
         }
         $scope.foundUsers = foundUsers;
       })
+    }
+    //creates list of student IDs
+    var studentIds = $scope.students.map(function(student){
+      return student._id;
+    })
+
+    $scope.addToClass = function(studentId){
+      studentIds.push(studentId);
+      var newStudents = {students: studentIds};
+      ClassFactory.update(currClass.foundClass._id, newStudents)
+      .then(function(){
+        $state.reload();
+      });
+    }
+
+    $scope.deleteStudent = function(studentId){
+      studentIds = studentIds.filter(function(student){
+          return student != studentId;
+      })
+      var newStudents = {students: studentIds};
+      ClassFactory.update(currClass.foundClass._id, newStudents)
+      .then(function(){
+        $state.reload();
+      });
     }
 
 
