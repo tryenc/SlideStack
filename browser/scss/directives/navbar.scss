@@ -1,7 +1,7 @@
 navbar {
 
   display: block;
-  background: none;
+  background-color: $white;
   border-bottom: 1px solid black;
   box-shadow: 1px 1px 14px -3px black;
   height: 40px;
@@ -16,7 +16,7 @@ navbar {
     padding: 0 30px;
   }
 
-  fullstack-logo {
+  slidestack-logo {
     margin-top: 5px;
     margin-right: 20px;
     width: 40px;
@@ -30,6 +30,9 @@ navbar {
   .nav > li > a {
     cursor: pointer;
     transition: color 0.2s;
+    padding-top: 10px;
+    font-family: $serif-font;
+    font-weight: 300;
     &.active {
       color: darken(#f31214, 10%);
     }
@@ -42,10 +45,11 @@ navbar {
     }
   }
 
-  .login-button {
+  .login-button, .logout-button {
     float: right;
     border: 1px solid black;
-    margin-top: 3px;
+    margin-top: -8px;
+    padding: 5px 12px;
     background: $button-color ;
     outline: none !important;
   }

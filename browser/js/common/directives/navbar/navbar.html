@@ -1,66 +1,20 @@
 <nav>
     <div class="container">
         <div class="navbar-header">
-            <fullstack-logo></fullstack-logo>
+            <slidestack-logo></slidestack-logo>
         </div>
         <ul class="nav navbar-nav">
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
-
-            <!-- Add a new presentation -->
-            <li ng-show="user && user.isTeacher">
-                <div ng-show="newPresMenu">
-                    <form ng-submit="createPresentation(newPres)">
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input
-                                type="text"
-                                ng-model="newPres.name"
-                                class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Class</label>
-                            <select
-                                ng-options="class._id as class.name for class in user.classes"
-                                ng-model="newPres.class">
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Create</button>
-                    </form>
-                </div>
-
-            </li>
-
             <li ng-show="user && user.isAdmin">
                 <a ui-sref-active="active" ui-sref="admin"></a>
             </li>
         </ul>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <div ng-show="user" class="welcome">
-
-            <!-- Dropdown for profile actions -->
-            <div class="btn-group" uib-dropdown dropdown-append-to-body>
-                <a uib-dropdown-toggle href="#" class="green">
-                    <span class="glyphicon glyphicon-user green"></span>
-                    <span class="caret green"></span>
-                </a>
-                <!-- <button id="btn-append-to-body" type="button" uib-dropdown-toggle>
-                    PERSON <span class="caret"></span>
-                </button> -->
-                <ul uib-dropdown-menu class="dropdown-menu-right" role="menu" aria-labelledby="btn-append-to-body">
-                    <li role="menuitem">
-                        <a href="#">My Profile</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li
-                        role="menuitem">
-                        <a ng-click="logout()" href="#">Logout</a>
-                    </li>
-                </ul>
-            </div>
+            <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+            <button ng-show="user" ng-click="logout()" class="btn logout-button">Logout</button>
         </div>
-
 
     </div>
 </nav>
