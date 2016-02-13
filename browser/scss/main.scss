@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway|Merriweather:300);
+
 // color variables
 $button-color: #57bb89;  //green
 $button-font-color: #fff;
@@ -7,18 +9,22 @@ $white: #fefefe;
 
 // font variables
 $sans-font: 'Raleway', sans-serif;
-$serif-font: 'Josefin Slab', serif;
+$serif-font: 'Merriweather', serif;
 
 * {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, button, .panel {
+h1, h2, h3, h4, button {
     font-family: $sans-font;
 }
 
-p {
+p, .panel {
     font-family: $serif-font;
+}
+
+.panel {
+    font-weight: 400;
 }
 
 body {

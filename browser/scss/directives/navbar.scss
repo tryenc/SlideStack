@@ -32,6 +32,7 @@ navbar {
     transition: color 0.2s;
     padding-top: 10px;
     font-family: $serif-font;
+    font-weight: 300;
     &.active {
       color: darken(#f31214, 10%);
     }
