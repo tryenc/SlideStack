@@ -1,9 +1,11 @@
 <div class="profileClass">
-    <button
-            ng-click="newPresMenu = !newPresMenu"
-            class="btn">
-        New Presentation
-    </button>
+
+    <div
+        ng-click="newPresMenu = !newPresMenu"
+        id="new-presentation-button">
+        <span class="text">Create A Presentation</span>
+        <span class="glyphicon glyphicon-plus-sign"></span>
+    </div>
     <div ng-show="newPresMenu" class="newClass">
         <form ng-submit="createPresentation(newPres)">
             <div class="form-group">
@@ -17,7 +19,8 @@
                 <label>Class</label><br>
                 <select
                         ng-options="class._id as class.name for class in classes"
-                        ng-model="newPres.class">
+                        ng-model="newPres.class"
+                        class="form-control">
                 </select>
             </div>
             <button type="submit" class="btn">Create</button>

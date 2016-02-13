@@ -45,3 +45,36 @@
   padding: 3px 6px 3px 6px;
 
 }
+
+.nav-tabs li {
+	font-weight: 300;
+	a {
+		color: #999999;
+	}
+	&.active {
+		color: #555555;
+		font-weight: 400;
+	}
+}
+
+#new-presentation-button {
+	font-family: $sans-font;
+	padding: 20px;
+	cursor: pointer;
+	padding: 10px 20px;
+	font-size: 24px;
+	display: flex;
+	.text {
+		text-decoration: underline;
+		margin-right: 6px;
+	}
+	.glyphicon {
+		color: $orange;
+		font-size: 30px;
+		text-decoration: none;
+	}
+}
+
+.newClass {
+	padding: 10px 40px;
+}
