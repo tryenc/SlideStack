@@ -1,7 +1,7 @@
 <!--Fullscreen Student VIEW -->
 
 <div id="presentation-view" class="fullscreen">
-    <div class="slideshow-container clearfix" ratio="1.77" relative-sizes>
+    <div class="slideshow-container clearfix" ratio="1.77" relative-sizes ng-class="presentation.theme">
         <!-- ng-class="{ 'classA': expressionA, 'classB': expressionB }" -->
         <!-- <ss-slideshow display="{ fullscreen: true, mode: 'student' }" ng-class="{ 'simple': presentation.theme === 'simple', 'black': presentation.theme === 'black'}"> -->
         <ss-slideshow display="{ fullscreen: true, mode: 'student' }" ng-class="presentation.theme">
@@ -18,7 +18,7 @@
             <h3 class="modal-title">Have a Question?</h3>
         </div>
         <div class="modal-body">
- 			<textarea placeholder="Type your question here" ng-model="question"></textarea>
+ 			<textarea placeholder="Type your question here" ng-model="question" class="form-control"></textarea>
             <h3>Confused?</h3>
             <div id="confusion" class="toggle-button" ng-class="{'toggle-button-selected': user.confused }" ng-click="toggleConfusion()">
                 <button></button>

@@ -38,11 +38,11 @@ ss-slideshow {
 
     .slide-controls {
         position: absolute;
-        // bottom: 10px;
-        // right: 10px;
-        top: 50%;
-        width: 100%;
-        left: .1px;
+        bottom: 10px;
+        right: 10px;
+        // top: 50%;
+        // width: 100%;
+        // left: .1px;
     }
 
     .slide-container {
@@ -77,6 +77,12 @@ ss-slideshow {
                 opacity: 1;
             }
         }
+    }
+}
+
+#live-preview {
+    .slideshow-container {
+        position: relative;
     }
 }
 
@@ -117,6 +123,14 @@ ss-slideshow {
   position: absolute;
   bottom: 10px;
   right: 200px;
+
+}
+
+.modal-header, .modal-body {
+    h3 {
+        font-family: $serif-font;
+        color: #111;
+    }
 }
 
 .cancel {
@@ -124,7 +138,6 @@ ss-slideshow {
 }
 
 .previous {
-    float: left;
     -webkit-appearance: none;
     outline: none;
     border: 0;
@@ -134,12 +147,15 @@ ss-slideshow {
 }
 
 .next {
-    float: right;
     -webkit-appearance: none;
     outline: none;
     border: 0;
     background: transparent;
     color: $button-color;
+}
+
+#student-controls {
+    margin-right: 30px;
 }
 
 .toggle-button { background-color: green; margin: 0px 80px; border-radius: 20px; border: 2px solid #D0D0D0 ; height: 30px; cursor: pointer; width: 50px; position: relative; display: inline-block; user-select: none; -webkit-user-select: none; -ms-user-select: none; -moz-user-select: none; }

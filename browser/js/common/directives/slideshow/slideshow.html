@@ -8,15 +8,15 @@
         <button ng-click="next()" class="glyphicon glyphicon-step-forward"></button>
     </div>
 
-    <div ng-if="display.mode !== 'edit'">
+    <div ng-if="display.mode !== 'edit'" id="student-controls">
         <!-- PREV -->
         <button ng-click="prev()" ng-disabled="syncedWithTeacher" class="previous"><span class="glyphicon glyphicon-triangle-left"></span></button>
-        <!-- NEXT -->
-        <button ng-click="next()" ng-disabled="syncedWithTeacher" class="next"><span class="glyphicon glyphicon-triangle-right"></span></button>
         <!-- PAUSE/RESUME -->
-        <button ng-if="display.mode !== 'teacher'" ng-click="toggleSync()">
+        <button ng-if="display.mode !== 'teacher'" class="pause" ng-click="toggleSync()">
             <span ng-show="syncedWithTeacher" class="glyphicon glyphicon-pause"></span>
             <span ng-show="!syncedWithTeacher" class="glyphicon glyphicon-play"></span>
         </button>
+        <!-- NEXT -->
+        <button ng-click="next()" ng-disabled="syncedWithTeacher" class="next"><span class="glyphicon glyphicon-triangle-right"></span></button>
     </div>
 </div>
