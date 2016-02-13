@@ -1,8 +1,14 @@
 <div class="container">
 
-    <img ng-src="{{user.imageUrl}}" class="profile-picture">
-    <h3 class="profile-name">{{ user.name }}</h3>
-    <h4>{{ user.role }}</h4>
+    <div class="row profile-heading">
+        <div class="col-xs-2">
+            <img ng-src="{{user.imageUrl}}" class="profile-picture">
+        </div>
+        <div class="col-xs-8">
+            <h3 class="profile-name">{{ user.name }}</h3>
+            <h4>{{ user.email }}</h4>
+        </div>
+    </div>
 
     <div class="panel">
         <ul class="nav nav-tabs">
