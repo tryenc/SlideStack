@@ -7,12 +7,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         controller: "navbarCntrl",
         link: function (scope) {
 
-            // scope.items = [
-            //     // { label: 'About', state: 'about' },
-            //     // { label: 'Documentation', state: 'docs' },
-            //     // { label: 'Members Only', state: 'membersOnly', auth: true },
-            //     // { label: 'Help', state: 'docs' },
-            // ];
+            scope.items = [
+                { label: 'Presentations', state: 'user.presentations({ id: user._id })' },
+                { label: 'Guide', state: 'docs' },
+            ];
 
             scope.user = null;
 
