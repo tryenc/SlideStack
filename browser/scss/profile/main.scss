@@ -61,7 +61,7 @@
 	}
 }
 
-#new-presentation-button, #new-class-button {
+#new-presentation-button, #new-class-button, #add-student-button {
 	font-family: $sans-font;
 	padding: 20px;
 	cursor: pointer;
@@ -73,19 +73,20 @@
 		margin-right: 6px;
 	}
 	.glyphicon {
-		color: $orange;
+		color: $button-color;
 		font-size: 30px;
 		text-decoration: none;
 	}
 }
 
-.new-class, .new-pres {
+.new-class, .new-pres, .add-student {
 	padding: 10px 40px;
 }
 
-.pres-list {
+.pres-list, .student-list, .found-users-list {
 	padding: 0;
-	.pres-item {
+	background-color: $background;
+	.pres-item, .student-item, .found-user-item {
 		padding: 0 10px;
 		display: flex;
 		justify-content: space-between;
@@ -95,7 +96,7 @@
 		}
 	}
 
-	.pres-list-info {
+	.pres-list-info, .student-item-info, .found-user-info {
 		flex: 1;
 	}
 
@@ -105,5 +106,13 @@
 			font-size: 14px;
 			padding: 4px 8px;
 		}
+	}
+	.remove-student {
+		color: $orange;
+		font-size: 24px;
+		cursor: pointer;
+	}
+	.no-presentations {
+		padding: 20px;
 	}
 }

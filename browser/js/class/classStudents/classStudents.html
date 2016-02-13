@@ -1,24 +1,41 @@
-<div>
-
-    <div ng-repeat="student in students">
-        <h4>{{ student.name }}</h4>
-        <button
-            class="btn"
-            ng-click="deleteStudent(student._id)"
-            ng-show="loggedInUser._id === teacher._id">
-            Remove
-        </button>
+<div class="profileClass">
+    <div
+        ng-click="addStudentMenu = !addStudentMenu"
+        ng-show="teacher._id === loggedInUser._id"
+        id="add-student-button">
+        <span class="text">Add Student</span>
+        <span class="glyphicon glyphicon-plus-sign"></span>
+    </div>
+    <div ng-show="loggedInUser._id === teacher._id && addStudentMenu" class="add-student">
+        <form ng-submit="findByName(searchQuery)" class="form-inline">
+            <input type="text" ng-model="searchQuery.name" class="form-control" placeholder="Enter name...">
+            <button type="submit" class="btn">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </form>
+        <div class="found-users-list">
+            <div ng-repeat="user in foundUsers" class="found-user-item">
+                <div class="found-user-info">
+                    <h4> {{user.name}} </h4>
+                    <p> {{user.email}} </p>
+                </div>
+                <button class="btn" ng-click="addToClass(user._id)">Add To Class</button>
+            </div>
+        </div>
     </div>
 
-    <div ng-show="loggedInUser._id === teacher._id">
-        <form ng-submit="findByName(searchQuery)">
-            <input type="text" ng-model="searchQuery.name" class="form-control">
-            <button type="submit" class="btn">Search</button>
-        </form>
-        <div ng-repeat="user in foundUsers">
-            <p> {{user.name}} </p>
-            <p> {{user.email}} </p>
-            <button class="btn" ng-click="addToClass(user._id)">Add To Class</button>
+    <div class="student-list">
+        <div ng-repeat="student in students" class="student-item">
+            <div class="student-item-info">
+                <h4>{{ student.name }}</h4>
+                <p>{{ student.email }}</p>
+            </div>
+            <div
+                class="remove-student"
+                ng-click="deleteStudent(student._id)"
+                ng-show="loggedInUser._id === teacher._id">
+                <span class="glyphicon glyphicon-remove-circle"></span>
+            </div>
         </div>
     </div>
 

@@ -1,6 +1,7 @@
 app.factory('PresentationFactory', function ($http) {
     return {
         create (newPres) {
+            console.log(newPres);
             return $http({
                 url: '/api/presentations/',
                 method: 'POST',
