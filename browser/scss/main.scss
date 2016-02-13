@@ -21,9 +21,10 @@ h1, h2, h3, h4, button {
 
 p, .panel {
     font-family: $serif-font;
+    font-weight: 300;
 }
 
-.panel {
+.panel .nav-tabs {
     font-weight: 400;
 }
 
