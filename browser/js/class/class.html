@@ -1,8 +1,20 @@
-<h1> {{ className }} </h1>
-<div class="panel">
-    <ul class="nav nav-tabs">
-        <li role="presentations" ui-sref-active="active"><a ui-sref="class.presentations">Presentations</a></li>
-        <li role="students" ui-sref-active="active"><a ui-sref="class.students">Students</a></li>
-    </ul>
-    <ui-view></ui-view>
+<div class="container">
+    <div class="row profile-heading">
+        <div class="col-xs-2">
+            <img ng-src="{{image}}" class="profile-picture">
+        </div>
+        <div class="col-xs-8">
+            <h3>{{ className }}</h3>
+            <h4>Teacher: {{teacher.name}}</h4>
+        </div>
+    </div>
+
+    <div class="panel">
+        <ul class="nav nav-tabs">
+            <li role="presentations" ui-sref-active="active"><a ui-sref="class.presentations">Presentations</a></li>
+            <li role="students" ui-sref-active="active"><a ui-sref="class.students">Students</a></li>
+        </ul>
+        <ui-view></ui-view>
+    </div>
+
 </div>

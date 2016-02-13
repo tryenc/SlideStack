@@ -5,6 +5,8 @@ app.controller('classStudsCtrl', function ($scope, $state, currClass, UserFactor
   $scope.description = currClass.foundClass.description;
   $scope.students = currClass.foundClass.students;
 
+  $scope.addStudentMenu = false;
+
   $scope.findByName = function(query){
     UserFactory.findByName(query)
     .then(foundUsers => {
