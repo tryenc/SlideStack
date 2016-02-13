@@ -1,6 +1,5 @@
-h3 {
-  text-align: center;
-  color: blue;
+h3#admin {
+    color: blue;
 }
 
 #addUser {
@@ -9,7 +8,7 @@ h3 {
 
 .panel {
   width: 750px;
-  margin: auto;
+  margin: 0 auto 10px;
 }
 
 .panel-primary {

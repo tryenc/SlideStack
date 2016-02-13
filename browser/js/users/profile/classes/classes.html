@@ -1,10 +1,11 @@
 <div class="profileClass">
-    <button
+    <div
         ng-click="newClassMenu = !newClassMenu"
-        class="btn">
-        Create A New Class
-    </button>
-    <div ng-show="newClassMenu" >
+        id="new-class-button">
+        <span class="text">Create A Class</span>
+        <span class="glyphicon glyphicon-plus-sign"></span>
+    </div>
+    <div ng-show="newClassMenu" class="new-class">
         <form ng-submit="createClass(newClass)">
             <div class="form-group">
                 <label>Name</label>
@@ -16,7 +17,8 @@
             <div class="form-group">
                 <label>Description</label><br>
                 <textarea
-                    ng-model="newClass.description">
+                    ng-model="newClass.description"
+                    class="form-control">
                 </textarea>
             </div>
             <button type="submit" class="btn">Create</button>
@@ -26,7 +28,7 @@
     <div>
         <div ng-repeat="class in classes" ui-sref="class({id: class._id})">
             <li class="classList">
-                <h4>{{class.name}}</h4>
+                <h3>{{class.name}}</h3>
                 <p>{{class.description}}</p>
             </li>
         </div>

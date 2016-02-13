@@ -6,7 +6,7 @@
         <span class="text">Create A Presentation</span>
         <span class="glyphicon glyphicon-plus-sign"></span>
     </div>
-    <div ng-show="newPresMenu" class="newClass">
+    <div ng-show="newPresMenu" class="new-pres">
         <form ng-submit="createPresentation(newPres)">
             <div class="form-group">
                 <label>Title</label>
@@ -26,27 +26,32 @@
             <button type="submit" class="btn">Create</button>
         </form>
     </div>
-    <div class="well">
-        <div ng-repeat="presentation in presentations">
-            <h4>{{ presentation.name }}</h4>
-            <button
-                    class="btn" ui-sref="viewPres({ id: presentation._id })">
-                View
-            </button>
-        <span ng-show="user._id === presentation.owner">
-            <button
-                    class="btn" ui-sref="teacherPres({ id: presentation._id })">
-                Present
-            </button>
-            <button class="btn" ui-sref="editPres({ id: presentation._id })">
-                Edit
-            </button>
-            </button>
-            <button class="btn" ng-click="delete(presentation)">
-                Delete
-            </button>
-        </span>
-
+    <div class="well pres-list">
+        <div ng-repeat="presentation in presentations" class="pres-item">
+            <div class="pres-list-info">
+                <h3>{{ presentation.name }}</h3>
+                <p>{{ presentation.class.name }}</p>
+                <p>Last updated: {{presentation.datetime | date: 'MMM d, y'}}</p>
+            </div>
+            <div class="pres-list-buttons clearfix">
+                <button
+                        class="btn" ui-sref="viewPres({ id: presentation._id })">
+                    View
+                </button>
+                <span ng-show="user._id === presentation.owner">
+                    <button
+                            class="btn" ui-sref="teacherPres({ id: presentation._id })">
+                        Present
+                    </button>
+                    <button class="btn" ui-sref="editPres({ id: presentation._id })">
+                        Edit
+                    </button>
+                    </button>
+                    <button class="btn" ng-click="delete(presentation)">
+                        Delete
+                    </button>
+                </span>
+            </div>
         </div>
     </div>
 </div>

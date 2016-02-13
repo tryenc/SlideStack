@@ -6,6 +6,10 @@
 	text-align: left;
 }
 
+.profile-heading {
+	margin: 20px 0 50px;
+}
+
 .panel-picture {
 	width: 50px;
 	float: left;
@@ -30,7 +34,7 @@
 .classList {
   border: 1px solid black;
   //padding: 0px 5px 0px 5px;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 2px;
   margin-bottom: 3px;
   list-style: none;
@@ -57,7 +61,7 @@
 	}
 }
 
-#new-presentation-button {
+#new-presentation-button, #new-class-button {
 	font-family: $sans-font;
 	padding: 20px;
 	cursor: pointer;
@@ -75,6 +79,31 @@
 	}
 }
 
-.newClass {
+.new-class, .new-pres {
 	padding: 10px 40px;
+}
+
+.pres-list {
+	padding: 0;
+	.pres-item {
+		padding: 0 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		&:nth-child(even) {
+			background-color: $white;
+		}
+	}
+
+	.pres-list-info {
+		flex: 1;
+	}
+
+	.pres-list-buttons {
+		margin-left: 20px;
+		button {
+			font-size: 14px;
+			padding: 4px 8px;
+		}
+	}
 }
