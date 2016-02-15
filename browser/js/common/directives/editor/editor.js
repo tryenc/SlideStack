@@ -58,8 +58,6 @@ app.directive('editor', function (Socket) {
 
                 scope.code.text = editor.getValue().trim();
 
-                console.log(scope.code.text);
-
                 // Emit socket event if sharing code
                 if (scope.sharing) Socket.shareCode(scope.code);
 
