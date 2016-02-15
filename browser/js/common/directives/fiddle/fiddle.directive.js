@@ -2,7 +2,7 @@ app.directive('fiddle', function () {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/fiddle/fiddle.html',
-        controller: function ($scope, $element, $transclude) {
+        controller: function ($scope, $element) {
             $scope.tabs = [];
             let viewTab;
             let libraries = '';
@@ -16,10 +16,7 @@ app.directive('fiddle', function () {
                 let currentType;
                 let allContent = $element.attr('content') || '';
 
-                console.log('all content: ', allContent);
-
                 allContent.split('\n').forEach(line => {
-                    console.log('line: ', line)
                     if (/html=|css=|js=/.test(line)) {
                         currentType = line.replace('=', '').toLowerCase();
                     } else if (line) {
@@ -31,7 +28,6 @@ app.directive('fiddle', function () {
             }
 
             $scope.content = getContent();
-            console.log($scope.content);
 
             this.addTab = function (tab) {
                 $scope.tabs.push(tab);
@@ -56,7 +52,6 @@ app.directive('fiddle', function () {
                 }
             ];
 
-            // TODO do this for CSS libraries too
             $scope.addLibrary = function (newLib) {
                 newLib.name = newLib.url.match(
                     /(?:\/)[\w*\d*\.*\-*\_*]*\.(js|css)$/
