@@ -22,4 +22,6 @@ Creating a presentation in SlideStack is a simple process.  The user can click o
 ## Student learning tools
 
 SlideStack helps a teacher's lecture become less of an introduction to a topic and more of an immersive learning process.  During the lecture, students have the teacher's presentation on their screen as it moves along with the teacher.  If the student wants to go at his or her own pace, they have the option to pause the lecture and view any slide on their own screen.  
+
+
 The teacher can call on a student to let him or her edit the teacher's code and broadcast the changes to the rest of the class.  If students are confused at any point, they can submit a question to the teacher directly from the presentation view.  Students have the option to ask the question anonymously in case they find their question embarrassing.  Remember there is no such thing as a stupid question!  If the students are confused but don't have any specific question, they have the option to toggle the Confuse-O-Meter switch.  This will update on the teacher's screen and will show the percentage of the class that is confused.  
