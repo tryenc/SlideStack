@@ -33,8 +33,8 @@ connectToDb.then(function () {
     // Create the users
     var users = [
         {
-            name: 'Testy McTersterson',
-            email: 'testing@fsa.com',
+            name: 'Sam Narisi',
+            email: 'sam@fsa.com',
             password: 'password',
             isAdmin: true
         },
@@ -93,56 +93,50 @@ connectToDb.then(function () {
         // users 0 - 9
         var classes = [
             {
-                name: 'American History',
-                description: 'The history of the United States spanning from the Native Americans to present day',
+                name: 'JavaScript 101',
+                description: 'An introduction to key language concepts.',
                 teacher: users[0]._id,
                 students: users.slice(3)
             },
             {
-                name: 'Physics',
-                description: 'An introduction to the laws that govern all things big and small',
+                name: 'Compilers',
+                description: 'This course will discuss the major ideas used today in the implementation of programming language compilers, including lexical analysis, parsing, syntax-directed translation, abstract syntax trees, types and type checking, intermediate languages, dataflow analysis, program optimization, code generation, and runtime systems.',
                 teacher: users[1]._id,
                 students: users.slice(3)
             },
             {
-                name: 'Greek Mythology',
-                description: 'An overview of the most important characters and stories in Greek mythology',
+                name: 'Operating Systems',
+                description: 'The topics covered include a review of linkers and loaders and the high-level design of key operating systems concepts such as process scheduling and synchronization; deadlocks and their prevention; memory management, including (demand) paging and segmentation; and I/O and file systems, with examples from Unix/Linux and Windows. Programming assignments may require C, C++, Java, or C#.',
                 teacher: users[2]._id,
                 students: users.slice(3)
             },
             {
-                name: 'Film History',
-                description: 'This is the only fun class this school has to offer',
+                name: 'Software Engineering',
+                description: 'This is a capstone course focusing on large-scale software development. This course presents modern software engineering techniques and examines the software life cycle, including software specification, design, implementation, testing, and maintenance. Object-oriented design methods are also considered. Software engineering projects involve creation of a large-scale software system and require some or all of the following elements: formation of a small team, project proposal, literature review, interim report, project presentation, and final report.',
                 teacher: users[0]._id,
                 students: users.slice(3)
             },
             {
-                name: 'Literature',
-                description: 'See name',
+                name: 'Linear Algebra',
+                description: 'Linear algebra is the branch of mathematics concerning vector spaces and linear mappings between such spaces. It includes the study of lines, planes, and subspaces, but is also concerned with properties common to all vector spaces.',
                 teacher: users[0]._id,
                 students: users.slice(3)
             },
             {
-                name: 'Math',
-                description: 'An introduction to the laws that govern all things big and small',
+                name: 'Networks And Mobile Systems',
+                description: 'A course in computer networks and large-scale distributed systems. Teaches the design and implementation techniques essential for engineering both robust networks and Internet-scale distributed systems. The goal is to guide students so they can initiate and critique research ideas in networks and distributed systems and implement and evaluate a working system that can handle a real-world workload. Topics include routing protocols, network congestion control, wireless networking, peer-to-peer systems, overlay networks and applications, distributed storage systems, and network security.',
                 teacher: users[0]._id,
                 students: users.slice(3)
             },
             {
-                name: 'Computer Science',
-                description: 'An overview of the most important characters and stories in Greek mythology',
+                name: 'The History of Computer Science',
+                description: 'An introduction to key concepts from Turing to the present.',
                 teacher: users[1]._id,
                 students: users.slice(3)
             },
             {
-                name: 'Phys Ed',
-                description: 'This is the only fun class this school has to offer',
-                teacher: users[1]._id,
-                students: users.slice(3)
-            },
-            {
-                name: 'Theater',
-                description: 'See name',
+                name: 'Intro to Object-Oriented Programming',
+                description: 'A language-agnostic introduction to the OOP philosophy.',
                 teacher: users[1]._id,
                 students: users.slice(3)
             }
@@ -152,36 +146,36 @@ connectToDb.then(function () {
     .then(classes => {
         var presentations = [
             {
-                name: 'Shakespeare Shakedown',
+                name: 'Responsive Design with Bootstap',
                 markdown:'# Heres some markdown about Shakespeare.\n He wrote\n*Romeo and Juliet«\n*Othello\n*MacBeth',
                 class: classes[4]._id,
                 owner: classes[4].teacher,
                 theme: 'simple'
             },
             {
-                name: 'The Native Americans',
+                name: 'Functional Programming in JavaScript',
                 markdown:'# Heres some markdown about the Native Americans.',
                 class: classes[0]._id,
                 owner: classes[0].teacher,
                 theme: 'black'
             },
             {
-                name: 'To Kill a Mockingbird',
+                name: 'The V8 Engine',
                 markdown:'# Atticus Finch was a great lawyer, a great father and a great man',
                 class: classes[4]._id,
                 owner: classes[4].teacher
             },
             {
-                name: 'Advanced Calculus',
+                name: 'Advanced Angular Directives',
                 markdown:'# Advanced Calculus',
                 class: classes[5]._id,
                 owner: classes[5].teacher
             },
             {
-                name: 'Communication Breakdown',
+                name: 'JavaScript Promises',
                 markdown:'# Led Zeppelin.',
-                class: classes[8]._id,
-                owner: classes[8].teacher
+                class: classes[3]._id,
+                owner: classes[3].teacher
             },
             {
                 name: 'Compilers and Interpreters',
@@ -190,28 +184,16 @@ connectToDb.then(function () {
                 owner: classes[6].teacher
             },
             {
-                name: 'Pushups',
+                name: 'OOP in JavaScript',
                 markdown:'# Drop and give me 20!',
                 class: classes[7]._id,
                 owner: classes[7].teacher
             },
             {
-                name: 'Huckleberry Finn',
+                name: 'WebAssembly',
                 markdown:'# Mark Twain and the Anti-Hero',
                 class: classes[4]._id,
                 owner: classes[4].teacher
-            },
-            {
-                name: 'Orson Welles',
-                markdown:"# The Highs and Lows of One of America's Greatest Actors",
-                class: classes[1]._id,
-                owner: classes[1].teacher
-            },
-            {
-                name: 'An American In Paris',
-                markdown:'# Those Parisians sure can dance',
-                class: classes[2]._id,
-                owner: classes[2].teacher
             }
         ];
         return PresentationModel.create(presentations);
