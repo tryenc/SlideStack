@@ -5,10 +5,49 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    h1 {
+      font-size: 100px;
+    }
     img {
         margin-left: 21px;
     }
     button {
-        font-size: 24px;
+      background: $button-color;
+      color: $button-font-color;
+      font-size: 20px;
+      border: 0;
+    }
+    .signLogDiv {
+      display: flex;
+      justify-content: center;
+
+      h1 {
+        font-size: 40px;
+        display:flex;
+        justify-content: center;
+      }
+      label {
+        font-size: 25px;
+      }
+      .signupDiv {
+        height: 203px;
+        width: 200px;
+        padding-right: 0px;
+      }
+      .loginDiv {
+        h1 {
+          font-size: 40px;
+          margin-left: 70px;
+        }
+        #login-form {
+          border-left-style: solid;
+          border-left-color: gray;
+          border-left-width: 1px;
+          padding-left: 10px;
+        }
+        height: 203px;
+        width: 450px;
+
+      }
     }
 }

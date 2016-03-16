@@ -8,15 +8,11 @@ app.config(function ($stateProvider) {
 
 app.controller('HomeCtrl', function ($scope, $state, AuthService) {
 
-    var setUser = function(){
-          AuthService.getLoggedInUser()
-          .then(function (user) {
-              $scope.user = user;
-          });
-    }
 
-    setUser();
-
+    AuthService.getLoggedInUser()
+    .then(function (user) {
+        $scope.user = user;
+    });
     $scope.goToProfile = function(user){
       $state.go('user', { id: user._id });
     }
